@@ -1,0 +1,122 @@
+--------------------------------
+- MNwkGm1TwxN78DXhqeNWyhGWYCj1 -
+--------------------------------
+
+bairro : "Hilda Mandarino" (string)
+
+celular : "18991391954" (string)
+
+cidade : "Araçatuba" (string)
+
+curtidas : "0" (string)
+
+dataCadastro : "11-10-2023" (string)
+
+doacoes : "0" (string)
+
+estado : "São Paulo" (string)
+
+foto : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FMNwkGm1TwxN78DXhqeNWyhGWYCj1.jpg?alt=media&token=c27bea54-72a0-42cb-a421-018fbad9e0f6" (string)
+
+nome : "Rafael Henrique" (string)
+
+numAnimais : "0" (string)
+
+refFoto : "MNwkGm1TwxN78DXhqeNWyhGWYCj1.jpg" (string)
+
+rua : "Felipe Garcia Aldana, 289" (string)
+
+seguidores : "0" (string)
+
+
+--------------------------------
+- aGgHbEsz1XRuiBbQksBUPl1ADvO2 -
+--------------------------------
+
+bairro : "b" (string)
+
+celular : "11111111111" (string)
+
+cidade : "d" (string)
+
+curtidas : "0" (string)
+
+dataCadastro : "11-10-2023" (string)
+
+doacoes : "0" (string)
+
+estado : "c" (string)
+
+foto : "" (string)
+
+nome : "Maria das Dores" (string)
+
+numAnimais : "3" (string)
+
+refFoto : "" (string)
+
+rua : "a" (string)
+
+seguidores : "0" (string)
+
+
+--------------------------------
+- ewAjERCZssfxhuTee90Ds7tHi4S2 -
+--------------------------------
+
+bairro : "Meridiano" (string)
+
+celular : "12345678901" (string)
+
+cidade : "São Francisco" (string)
+
+curtidas : "0" (string)
+
+dataCadastro : "11-10-2023" (string)
+
+doacoes : "0" (string)
+
+estado : "Acre" (string)
+
+foto : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FewAjERCZssfxhuTee90Ds7tHi4S2.jpg?alt=media&token=d2d44c9a-b0bf-411c-a460-af504f49bbe2" (string)
+
+nome : "Joãozinho da Silva Fulano José Gomez" (string)
+
+numAnimais : "4" (string)
+
+refFoto : "ewAjERCZssfxhuTee90Ds7tHi4S2.jpg" (string)
+
+rua : "Serra da Estrela" (string)
+
+seguidores : "0" (string)
+
+
+--------------------------------
+- wWXIP3qdqIR5dGbbrUPVFfDjhbr2 -
+--------------------------------
+
+bairro : "Bairrismo" (string)
+
+celular : "18987654321" (string)
+
+cidade : "Águas de cristal" (string)
+
+curtidas : "0" (string)
+
+dataCadastro : "09-11-2023" (string)
+
+doacoes : "0" (string)
+
+estado : "Passos de Coelho" (string)
+
+foto : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FwWXIP3qdqIR5dGbbrUPVFfDjhbr2.png?alt=media&token=56db8b71-ef6b-4ce0-83d5-eb48401b48b9" (string)
+
+nome : "Felipe massa muscular" (string)
+
+numAnimais : "2" (string)
+
+refFoto : "wWXIP3qdqIR5dGbbrUPVFfDjhbr2.png" (string)
+
+rua : "Rua do trabalho de amanhã" (string)
+
+seguidores : "0" (string)

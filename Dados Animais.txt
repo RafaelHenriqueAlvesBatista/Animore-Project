@@ -1,0 +1,431 @@
+----------------------------------
+- ewAjERCZssfxhuTee90Ds7tHi4S2_1 -
+----------------------------------
+
+descricao : "" (string)
+
+deslikes : "0" (string)
+
+dono : "ewAjERCZssfxhuTee90Ds7tHi4S2" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FewAjERCZssfxhuTee90Ds7tHi4S2_1a.jpg?alt=media&token=65b795c6-11b2-48d3-8615-418c12af77dd" (string)
+
+foto2 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FewAjERCZssfxhuTee90Ds7tHi4S2_1b.jpg?alt=media&token=ef820716-2bcd-4785-9e86-d7f757fa9bca" (string)
+
+foto3 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FewAjERCZssfxhuTee90Ds7tHi4S2_1c.jpg?alt=media&token=6f7b89ac-a2e1-4662-a7dc-83aee7cbae9b" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+idade : "4" (string)
+
+likes : "2" (string)
+
+local : "São Francisco - Acre" (string)
+
+nome : "Mercedes" (string)
+
+peso : "4" (string)
+
+raca : "Gato Exótico" (string)
+
+refFoto1 : "ewAjERCZssfxhuTee90Ds7tHi4S2_1a.jpg" (string)
+
+refFoto2 : "ewAjERCZssfxhuTee90Ds7tHi4S2_1b.jpg" (string)
+
+refFoto3 : "ewAjERCZssfxhuTee90Ds7tHi4S2_1c.jpg" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+sexo : "Macho" (string)
+
+tipo : "Gato" (string)
+
+vacina : "0001000" (string)
+
+----------------------------------
+- ewAjERCZssfxhuTee90Ds7tHi4S2_2 -
+----------------------------------
+
+descricao : "Insira sua mensagem aqui." (string)
+
+deslikes : "0" (string)
+
+dono : "ewAjERCZssfxhuTee90Ds7tHi4S2" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FewAjERCZssfxhuTee90Ds7tHi4S2_2a.png?alt=media&token=0c15285e-bfe1-4218-b0dd-ca9de54b6433" (string)
+
+foto2 : "" (string)
+
+foto3 : "" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+idade : "3" (string)
+
+likes : "0" (string)
+
+local : "São Francisco - Acre" (string)
+
+nome : "Rover" (string)
+
+peso : "2.1" (string)
+
+raca : "Lhasa Apso" (string)
+
+refFoto1 : "ewAjERCZssfxhuTee90Ds7tHi4S2_2a.png" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+sexo : "Macho" (string)
+
+tipo : "Cachorro" (string)
+
+vacina : "0100" (string)
+
+----------------------------------
+- ewAjERCZssfxhuTee90Ds7tHi4S2_3 -
+----------------------------------
+
+descricao : "Canta que é uma beleza." (string)
+
+deslikes : "0" (string)
+
+dono : "ewAjERCZssfxhuTee90Ds7tHi4S2" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FewAjERCZssfxhuTee90Ds7tHi4S2_3a.png?alt=media&token=321852ab-a1f4-4d67-ba80-0ef5e0bef781" (string)
+
+foto2 : "" (string)
+
+foto3 : "" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+idade : "1" (string)
+
+likes : "1" (string)
+
+local : "São Francisco - Acre" (string)
+
+nome : "Piu" (string)
+
+peso : "0.4" (string)
+
+raca : "Calopsita" (string)
+
+refFoto1 : "ewAjERCZssfxhuTee90Ds7tHi4S2_3a.png" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+sexo : "Macho" (string)
+
+tipo : "Pássaro" (string)
+
+vacina : "000" (string)
+
+----------------------------------
+- aGgHbEsz1XRuiBbQksBUPl1ADvO2_1 -
+----------------------------------
+
+descricao : "" (string)
+
+deslikes : "0" (string)
+
+dono : "aGgHbEsz1XRuiBbQksBUPl1ADvO2" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FaGgHbEsz1XRuiBbQksBUPl1ADvO2_1a.png?alt=media&token=74ee113d-aa32-4295-86aa-768a53aa9732" (string)
+
+foto2 : "" (string)
+
+foto3 : "" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+idade : "4" (string)
+
+likes : "1" (string)
+
+local : "d - c" (string)
+
+nome : "Bolinha de pelos" (string)
+
+peso : "2" (string)
+
+raca : "Porquinho-da-Índia" (string)
+
+refFoto1 : "aGgHbEsz1XRuiBbQksBUPl1ADvO2_1a.png" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+sexo : "Fêmea" (string)
+
+tipo : "Rato" (string)
+
+vacina : "0" (string)
+
+----------------------------------
+- aGgHbEsz1XRuiBbQksBUPl1ADvO2_2 -
+----------------------------------
+
+descricao : "" (string)
+
+deslikes : "0" (string)
+
+dono : "aGgHbEsz1XRuiBbQksBUPl1ADvO2" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FaGgHbEsz1XRuiBbQksBUPl1ADvO2_2a.jpg?alt=media&token=35c39d1f-55b8-4c1e-bb15-c6e8263d81af" (string)
+
+foto2 : "" (string)
+
+foto3 : "" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+idade : "2" (string)
+
+likes : "3" (string)
+
+local : "d - c" (string)
+
+nome : "Marcela" (string)
+
+peso : "3.1" (string)
+
+raca : "Shih Tzu" (string)
+
+refFoto1 : "aGgHbEsz1XRuiBbQksBUPl1ADvO2_2a.jpg" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+sexo : "Fêmea" (string)
+
+tipo : "Cachorro" (string)
+
+vacina : "0110" (string)
+
+----------------------------------
+- aGgHbEsz1XRuiBbQksBUPl1ADvO2_3 -
+----------------------------------
+
+descricao : "Ela come bem pouco. Fica latindo a cada pessoa que passa pela rua, e até corre atrás se deixar o portão aberto. Em casa, ela é uma doçura, vocês tem que ver. Ela é minha companheira de casa, faça chuva, faça sol." (string)
+
+deslikes : "0" (string)
+
+dono : "aGgHbEsz1XRuiBbQksBUPl1ADvO2" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FaGgHbEsz1XRuiBbQksBUPl1ADvO2_3a.jpg?alt=media&token=d63c2411-83ce-4b04-8e58-37cf6a2145c3" (string)
+
+foto2 : "" (string)
+
+foto3 : "" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+idade : "3" (string)
+
+likes : "0" (string)
+
+local : "d - c" (string)
+
+nome : "Azeitona" (string)
+
+peso : "1.8" (string)
+
+raca : "Pinscher" (string)
+
+refFoto1 : "aGgHbEsz1XRuiBbQksBUPl1ADvO2_3a.jpg" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+sexo : "Fêmea" (string)
+
+tipo : "Cachorro" (string)
+
+vacina : "0000" (string)
+
+----------------------------------
+- wWXIP3qdqIR5dGbbrUPVFfDjhbr2_1 -
+----------------------------------
+
+descricao : "" (string)
+
+deslikes : "0" (string)
+
+dono : "wWXIP3qdqIR5dGbbrUPVFfDjhbr2" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FwWXIP3qdqIR5dGbbrUPVFfDjhbr2_1a.png?alt=media&token=15c52224-edf6-4b71-a296-277d7b693fa5" (string)
+
+foto2 : "" (string)
+
+foto3 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FwWXIP3qdqIR5dGbbrUPVFfDjhbr2_1c.jpg?alt=media&token=77cc5200-9807-46d8-bbb2-b37bdc3b0234" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+idade : "3" (string)
+
+likes : "6" (string)
+
+local : "Bairrismo - Passos de Coelho" (string)
+
+nome : "Bola de neve" (string)
+
+peso : "3" (string)
+
+raca : "Himalaio" (string)
+
+refFoto1 : "wWXIP3qdqIR5dGbbrUPVFfDjhbr2_1a.png" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "wWXIP3qdqIR5dGbbrUPVFfDjhbr2_1c.jpg" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+sexo : "Macho" (string)
+
+tipo : "Gato" (string)
+
+vacina : "0010010" (string)
+
+----------------------------------
+- wWXIP3qdqIR5dGbbrUPVFfDjhbr2_2 -
+----------------------------------
+
+descricao : "Dorme o dia inteiro." (string)
+
+deslikes : "0" (string)
+
+dono : "wWXIP3qdqIR5dGbbrUPVFfDjhbr2" (string)
+
+foto1 : "" (string)
+
+foto2 : "" (string)
+
+foto3 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FwWXIP3qdqIR5dGbbrUPVFfDjhbr2_2c.jpg?alt=media&token=297daa24-d8af-49ce-b536-0a130399b1e8" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+idade : "1" (string)
+
+likes : "1" (string)
+
+local : "Bairrismo - Passos de Coelho" (string)
+
+nome : "Astolfo" (string)
+
+peso : "3" (string)
+
+raca : "Pug" (string)
+
+refFoto1 : "" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "wWXIP3qdqIR5dGbbrUPVFfDjhbr2_2c.jpg" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+sexo : "Macho" (string)
+
+tipo : "Cachorro" (string)
+
+vacina : "0100" (string)
+
+----------------------------------
+-      w8cYyiqlwJmsQ1UeNnsf      -
+----------------------------------
+
+descricao : "" (string)
+
+deslikes : "0" (string)
+
+dono : "ewAjERCZssfxhuTee90Ds7tHi4S2" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2Fw8cYyiqlwJmsQ1UeNnsf_a.png?alt=media&token=a0725dc2-a9ea-4e26-8cb8-3f480e98d975" (string)
+
+foto2 : "" (string)
+
+foto3 : "" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+idade : "3" (string)
+
+likes : "0" (string)
+
+local : "São Francisco - Acre" (string)
+
+nome : "Matt" (string)
+
+peso : "2.3" (string)
+
+raca : "Porquinho-da-Índia" (string)
+
+refFoto1 : "w8cYyiqlwJmsQ1UeNnsf_a.png" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+sexo : "Macho" (string)
+
+tipo : "Rato" (string)
+
+vacina : "0" (string)
