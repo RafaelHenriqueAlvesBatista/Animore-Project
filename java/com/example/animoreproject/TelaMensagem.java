@@ -14,8 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -85,6 +83,13 @@ public class TelaMensagem extends AppCompatActivity {
         programarComponentes();
         procurarUsuarioAtual();
         recuperarDadosUsuario();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        receberIntents();
     }
 
     private void instanciarComponentes() {
@@ -290,9 +295,26 @@ public class TelaMensagem extends AppCompatActivity {
         Toast.makeText(TelaMensagem.this, exception, Toast.LENGTH_SHORT).show();
     }
 
-    private String receberIntent() {
-        Intent receberIntent = getIntent();
-        return receberIntent.getStringExtra("IDdono");
+    private void receberIntents(){
+        Intent receberFeedback = getIntent();
+        Intent IDremetente     = getIntent();
+        Intent IDdono          = getIntent();
+
+        String IDremetenteString = IDremetente.getStringExtra("IDremetente");
+        String IDdonoString      = IDdono.getStringExtra("IDdono");
+
+        if(receberFeedback.getIntExtra("enviarFeedback", 0) == 1){
+            Toast.makeText(TelaMensagem.this, R.string.message_notificationSuccess, Toast.LENGTH_SHORT).show();
+            receberFeedback.removeExtra("enviarFeedback");
+        }
+        if(IDremetenteString != null && !IDremetenteString.equals("")){
+            System.out.println("IDremetente: " + IDremetenteString);
+            receberFeedback.removeExtra("IDremetente");
+        }
+        if(IDdonoString != null && !IDdonoString.equals("")){
+            System.out.println("IDdono: " + IDdonoString);
+            receberFeedback.removeExtra("IDdono");
+        }
     }
 
     private void scrollLinearLayoutUp() {

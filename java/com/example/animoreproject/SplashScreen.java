@@ -30,7 +30,8 @@ public class SplashScreen extends AppCompatActivity {
         // ESCONDE A JANELA DE STATUS POR ALGUNS SEGUNDOS
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
 
-        // CRIA O CANAL DE NOTIFICACAO DE ADOCAO DO ANIMAL
+        // CRIA OS CANAIS DE NOTIFICACAO
+        ServiceNotificacoes.criarCanalNotificacaoTeste(getApplicationContext());
         ServiceNotificacoes.criarCanalNotificacaoAdocao(getApplicationContext());
 
         // ESPERA POR 3 SEGUNDOS ANTES DE IR PARA A TELA PRINCIPAL

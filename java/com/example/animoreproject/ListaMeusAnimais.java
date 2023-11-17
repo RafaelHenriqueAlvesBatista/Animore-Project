@@ -337,7 +337,7 @@ public class ListaMeusAnimais extends AppCompatActivity {
     private void receberFeedback(){
         Intent receberFeedback = getIntent();
         if(receberFeedback.getIntExtra("enviarFeedback", 0) == 1){
-            Toast.makeText(ListaMeusAnimais.this, R.string.message_registerSuccess, Toast.LENGTH_SHORT).show();
+            Toast.makeText(ListaMeusAnimais.this, R.string.message_registerAnimalSuccess, Toast.LENGTH_SHORT).show();
         }
         receberFeedback.removeExtra("enviarFeedback");
     }

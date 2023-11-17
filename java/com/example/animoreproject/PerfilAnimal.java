@@ -20,6 +20,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.animoreproject.classes.ServiceNotificacoes;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,6 +42,9 @@ public class PerfilAnimal extends AppCompatActivity {
     private int limiteCaracteres;
     private String descricaoCompleta, descricaoCurta;
     private String IDdono;
+
+    // DADOS PARA A NOTIFICACAO
+    private String nomeRemetente, nomeAnimal, emailDestinatario;
 
     // COMPONENTES TOOLBAR
     private ImageButton botaoMenu, botaoCompartilhar;
@@ -95,6 +99,9 @@ public class PerfilAnimal extends AppCompatActivity {
     private DatabaseReference databaseRef;
     private StorageReference storageRef;
     private DocumentReference documentReference;
+
+    // INSTANCIA O GERENCIADOR DE NOTIFICACOES
+    private ServiceNotificacoes serviceNotificacoes = new ServiceNotificacoes();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -302,6 +309,7 @@ public class PerfilAnimal extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot != null){
                     txvMenuNomeUsuario.setText(documentSnapshot.getString("nome"));
+                    nomeRemetente = documentSnapshot.getString("nome");
 
                     carregarFotoUsuario();
                 }
@@ -359,6 +367,8 @@ public class PerfilAnimal extends AppCompatActivity {
 
                     String descricao = documentSnapshot.getString("descricao");
                     txvDescricao.setText(descricao);
+
+                    nomeAnimal = documentSnapshot.getString("nome");
 
                     String vacina = documentSnapshot.getString("vacina");
 
@@ -492,6 +502,7 @@ public class PerfilAnimal extends AppCompatActivity {
                     if (documentSnapshot != null) {
                         txvNomeDono.setText(documentSnapshot.getString("nome"));
                         txvLocalDono.setText(documentSnapshot.getString("rua"));
+                        emailDestinatario = documentSnapshot.getString("email");
                         String foto = documentSnapshot.getString("foto");
                         if (foto != null && !foto.isEmpty()) {
                             imvFotoDonoAnimal.setBackgroundColor(getResources().getColor(R.color.transparent));
@@ -529,8 +540,10 @@ public class PerfilAnimal extends AppCompatActivity {
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        enviarNotificacaoDono();
                         Intent telaMensagem = new Intent(PerfilAnimal.this, TelaMensagem.class);
                         telaMensagem.putExtra("IDdono", IDdono);
+                        telaMensagem.putExtra("enviarFeedback", 1);
                         startActivity(telaMensagem);
                     }
                 })
@@ -540,6 +553,16 @@ public class PerfilAnimal extends AppCompatActivity {
                 })
                 .create()
                 .show();
+    }
+
+    private void enviarNotificacaoDono() {
+        serviceNotificacoes.construirNotificacaoAdocao(
+                getString(R.string.notificationTitle_adoptionRequest),
+                getString(R.string.notificationBody_adoptionRequest),
+                nomeRemetente,
+                nomeAnimal,
+                emailDestinatario,
+                usuarioID);
     }
 
     @Override

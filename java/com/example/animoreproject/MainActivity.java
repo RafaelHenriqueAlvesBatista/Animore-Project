@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             Button botao17 = findViewById(R.id.tela17);
             Button botao18 = findViewById(R.id.tela18);
             Button notificacao1 = findViewById(R.id.notificacao1);
+            Button notificacao2 = findViewById(R.id.notificacao2);
             Button deslogar = findViewById(R.id.deslogar);
 
             botao1.setOnClickListener(new View.OnClickListener() {
@@ -194,11 +195,24 @@ public class MainActivity extends AppCompatActivity {
             notificacao1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    serviceNotificacoes.construirNotificacaoTeste(
+                            "Título da Notificação",
+                            "Conteúdo da notificação.");
+                    onResume();
+                    Toast.makeText(MainActivity.this, "Notificação enviada com sucesso!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            notificacao2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     serviceNotificacoes.construirNotificacaoAdocao(
                             getString(R.string.notificationTitle_adoptionRequest),
                             getString(R.string.notificationBody_adoptionRequest),
-                            getString(R.string.test_placeholderName),
-                            getString(R.string.test_placeholderName));
+                            "Fulano de Tal",
+                            "Fulano de Tal",
+                            "joao@gmail.com",
+                            "1");
+                            //"teste@gmail.com"
                     onResume();
                     Toast.makeText(MainActivity.this, "Notificação enviada com sucesso!", Toast.LENGTH_SHORT).show();
                 }
