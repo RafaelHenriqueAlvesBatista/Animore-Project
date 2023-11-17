@@ -284,7 +284,7 @@
     <string name="notificationTitle_adoptionRequest">Solicitação de Adoção</string>
 
     <!-- CONTEUDO DAS NOTIFICACOES -->
-    <string name="notificationBody_adoptionRequest">tem interesse em adotar o animal</string>
+    <string name="notificationBody_adoptionRequest">​ tem interesse em adotar o animal ​</string>
 
     <!-- MENSAGENS DE FEEDBACK -->
     <string name="message_emptyInputs">Por favor, preencha todos os campos!</string>
@@ -294,6 +294,8 @@
     <string name="message_updateSuccess">Atualização realizada com sucesso!</string>
     <string name="message_deleteSuccess">Exclusão realizada com sucesso!</string>
     <string name="message_signOutSuccess">Usuário deslogado com sucesso!</string>
+    <string name="message_registerAnimalSuccess">Animal cadastrado com sucesso!</string>
+    <string name="message_notificationSuccess">Notificacao enviada com sucesso!</string>
 
     <!-- MENSAGENS DE ERRO -->
     <string name="exception_registerWeakPassword">Digite uma senha com no mínimo 6 caracteres!</string>
