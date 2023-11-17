@@ -188,7 +188,13 @@
                 android:id="@+id/notificacao1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="notificacao 1 - adocao"
+                android:text="notificacao 1 - teste"
+                android:backgroundTint="@color/analogous1_500"/>
+            <Button
+                android:id="@+id/notificacao2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="notificacao 2 - adocao solicitada"
                 android:backgroundTint="@color/analogous1_500"/>
 
             <LinearLayout
