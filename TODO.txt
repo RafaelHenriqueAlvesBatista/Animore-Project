@@ -1,0 +1,12 @@
+## Todo TCC
+
+- ~~Mudar o nome do botão de visualizar foto, para outro que faça mais sentido.~~
+- ~~Testar como o perfil do animal se comporta com o ID de outro usuário.~~
+- ~~Fazer uma lista de consulta com o top 10 de animais na tela inicial.~~
+- ~~Ver a parte do espelhamento com o **AirDroid**.~~
+- ~~Tirar o diagrama de classes, já que o sistema é híbrido, em relação a orientação a objeto.~~
+- Criar uma tabela de adoção para saber quando o animal está em processo de adoção.
+- Ver a comunicação com o Whatsapp, quando enviar mensagens ao dono do animal.
+- Adicionar as tabelas do banco de dados nos campos de Raça e Tipo do animal, e Acessório respectivamente.
+- Na busca, fazer campos para filtrem a busca, como nome - raca - porte - dono, etc.
+- Fazer os menus da parte inferior uma opcao de aparecer e desaparecer, para obter mais visibilidade no app.
