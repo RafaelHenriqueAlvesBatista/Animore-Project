@@ -2,8 +2,13 @@ package com.example.animoreproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private String cargo;
 
     private ServiceNotificacoes serviceNotificacoes = new ServiceNotificacoes();
+
+    String nomePacoteWhatsApp = "com.whatsapp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
             Button botao18 = findViewById(R.id.tela18);
             Button notificacao1 = findViewById(R.id.notificacao1);
             Button notificacao2 = findViewById(R.id.notificacao2);
+            Button servico1 = findViewById(R.id.servico1);
+            Button servico2 = findViewById(R.id.servico2);
             Button deslogar = findViewById(R.id.deslogar);
 
             botao1.setOnClickListener(new View.OnClickListener() {
@@ -178,14 +187,14 @@ public class MainActivity extends AppCompatActivity {
                     onResume();
                 }
             });
-            botao16.setOnClickListener(new View.OnClickListener() {
+            botao17.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     tela = 17;
                     onResume();
                 }
             });
-            botao16.setOnClickListener(new View.OnClickListener() {
+            botao18.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     tela = 18;
@@ -215,6 +224,45 @@ public class MainActivity extends AppCompatActivity {
                             //"teste@gmail.com"
                     onResume();
                     Toast.makeText(MainActivity.this, "Notificação enviada com sucesso!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            servico1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        Intent abrirWhatsApp = getPackageManager().getLaunchIntentForPackage(nomePacoteWhatsApp);
+                        if (abrirWhatsApp != null) {
+                            startActivity(abrirWhatsApp);
+                        } else {
+                            Uri linkPlayStore = Uri.parse("market://details?id=" + nomePacoteWhatsApp);
+                            Intent marketIntent = new Intent(Intent.ACTION_VIEW, linkPlayStore);
+                            startActivity(marketIntent);
+                        }
+                    } catch (ActivityNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    onResume();
+                }
+            });
+            servico2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // CODIGO DO PAIS + DDD + NUMERO DO CELULAR
+                    String numeroTelefoneTeste = "5518991391954";
+
+                    if (aplicativoEstaInstalado(nomePacoteWhatsApp)) {
+                        Intent abrirWhatsApp = new Intent("android.intent.action.MAIN");
+                        abrirWhatsApp.setComponent(new ComponentName(nomePacoteWhatsApp, "com.whatsapp.Conversation"));
+                        abrirWhatsApp.putExtra("jid", PhoneNumberUtils.stripSeparators(numeroTelefoneTeste) + "@s.whatsapp.net");
+                        startActivity(abrirWhatsApp);
+                    } else {
+                        Uri linkPlayStore = Uri.parse("market://details?id=" + nomePacoteWhatsApp);
+                        Intent marketIntent = new Intent(Intent.ACTION_VIEW, linkPlayStore);
+                        startActivity(marketIntent);
+                    }
+
+                    onResume();
                 }
             });
             deslogar.setOnClickListener(new View.OnClickListener() {
@@ -400,6 +448,16 @@ public class MainActivity extends AppCompatActivity {
         botaoContinuar1.setVisibility(View.INVISIBLE);
         botaoContinuar1Ativo.setEnabled(true);
         botaoContinuar1Ativo.setVisibility(View.VISIBLE);
+    }
+
+    private boolean aplicativoEstaInstalado(String packageName) {
+        PackageManager packageManager = getPackageManager();
+        try {
+            packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 
     @Override

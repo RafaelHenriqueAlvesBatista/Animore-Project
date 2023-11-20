@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,7 +82,8 @@ public class PerfilAnimal extends AppCompatActivity {
     private TextView txvDescricao, txvLerMais;
 
     // COMPONENTES DONO ANIMAL
-    private LinearLayout llyLigarDono, llyMensagemDono;
+    //private LinearLayout llyLigarDono, llyMensagemDono;
+    private LinearLayout llyWhatsappDono;
     private ImageView imvFotoDonoAnimal;
     private TextView txvNomeDono, txvLocalDono;
 
@@ -102,6 +107,11 @@ public class PerfilAnimal extends AppCompatActivity {
 
     // INSTANCIA O GERENCIADOR DE NOTIFICACOES
     private ServiceNotificacoes serviceNotificacoes = new ServiceNotificacoes();
+
+    // VARIAVEIS PARA ABRIR O WHATSAPP
+    String nomePacoteWhatsApp = "com.whatsapp";
+    String nomeDono;
+    String numeroDono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,8 +167,9 @@ public class PerfilAnimal extends AppCompatActivity {
         imvFotoDonoAnimal      = findViewById(R.id.imvFotoDonoAnimal);
         txvNomeDono            = findViewById(R.id.txvNomeDono);
         txvLocalDono           = findViewById(R.id.txvLocalDono);
-        llyLigarDono           = findViewById(R.id.llyLigarDono);
-        llyMensagemDono        = findViewById(R.id.llyMensagemDono);
+        //llyLigarDono           = findViewById(R.id.llyLigarDono);
+        //llyMensagemDono        = findViewById(R.id.llyMensagemDono);
+        llyWhatsappDono        = findViewById(R.id.llyWhatsappDono);
 
         llyVacinaAnimal1       = findViewById(R.id.llyVacinaAnimal1);
         llyVacinaAnimal2       = findViewById(R.id.llyVacinaAnimal2);
@@ -293,6 +304,13 @@ public class PerfilAnimal extends AppCompatActivity {
                 avisoAdotar();
             }
         });
+
+        llyWhatsappDono.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                avisoWhatsApp();
+            }
+        });
     }
 
     private void procurarUsuarioAtual() {
@@ -388,7 +406,7 @@ public class PerfilAnimal extends AppCompatActivity {
                         }
                     }
 
-                    IDdono = documentSnapshot.getString("dono");
+                    IDdono     = documentSnapshot.getString("dono");
 
                     verificarVacinas(vacina);
                     carregarFotosAnimal(foto1, foto2, foto3, foto4, foto5, fotoNaoVazia);
@@ -483,8 +501,9 @@ public class PerfilAnimal extends AppCompatActivity {
                             Picasso.get().load(foto).into(imvFotoDonoAnimal);
                         }
 
-                        llyLigarDono.setVisibility(View.GONE);
-                        llyMensagemDono.setVisibility(View.GONE);
+                        //llyLigarDono.setVisibility(View.GONE);
+                        //llyMensagemDono.setVisibility(View.GONE);
+                        llyWhatsappDono.setVisibility(View.GONE);
                         llyOpcoesVazio.setVisibility(View.GONE);
                         llyPerfilAnimalOpcoes1.setVisibility(View.VISIBLE);
                     }
@@ -508,6 +527,8 @@ public class PerfilAnimal extends AppCompatActivity {
                             imvFotoDonoAnimal.setBackgroundColor(getResources().getColor(R.color.transparent));
                             Picasso.get().load(foto).into(imvFotoDonoAnimal);
                         }
+                        nomeDono   = documentSnapshot.getString("nome");
+                        numeroDono = documentSnapshot.getString("celular");
                         btnAdotarAnimal.setVisibility(View.VISIBLE);
                     }
                 }
@@ -555,6 +576,25 @@ public class PerfilAnimal extends AppCompatActivity {
                 .show();
     }
 
+    private void avisoWhatsApp() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(PerfilAnimal.this);
+        builder.setIcon(R.drawable.ic_botao_whatsapp);
+        builder.setTitle("Conversar via WhatsApp");
+        builder.setMessage("\nIniciar conversa com " + nomeDono + "?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        abrirWhatsApp(numeroDono);
+                    }
+                })
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                })
+                .create()
+                .show();
+    }
+
     private void enviarNotificacaoDono() {
         serviceNotificacoes.construirNotificacaoAdocao(
                 getString(R.string.notificationTitle_adoptionRequest),
@@ -563,6 +603,29 @@ public class PerfilAnimal extends AppCompatActivity {
                 nomeAnimal,
                 emailDestinatario,
                 usuarioID);
+    }
+
+    private void abrirWhatsApp(String numero) {
+        if (aplicativoEstaInstalado(nomePacoteWhatsApp)) {
+            Intent abrirWhatsApp = new Intent("android.intent.action.MAIN");
+            abrirWhatsApp.setComponent(new ComponentName(nomePacoteWhatsApp, "com.whatsapp.Conversation"));
+            abrirWhatsApp.putExtra("jid", PhoneNumberUtils.stripSeparators(numero) + "@s.whatsapp.net");
+            startActivity(abrirWhatsApp);
+        } else {
+            Uri linkPlayStore = Uri.parse("market://details?id=" + nomePacoteWhatsApp);
+            Intent marketIntent = new Intent(Intent.ACTION_VIEW, linkPlayStore);
+            startActivity(marketIntent);
+        }
+    }
+
+    private boolean aplicativoEstaInstalado(String nomePacote) {
+        PackageManager packageManager = getPackageManager();
+        try {
+            packageManager.getPackageInfo(nomePacote, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 
     @Override

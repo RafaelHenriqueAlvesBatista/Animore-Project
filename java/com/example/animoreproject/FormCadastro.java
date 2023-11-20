@@ -277,14 +277,14 @@ public class FormCadastro extends AppCompatActivity {
     private void salvarDados() {
         // DADOS DO FORMULARIO
         String nome     = edtNome.getText().toString();
-        String celular  = edtTelefone.getUnMasked();
+        String celular  = "55" + edtTelefone.getUnMasked();
         String rua      = edtRua.getText().toString();
         String bairro   = edtBairro.getText().toString();
         String cidade   = edtCidade.getText().toString();
         String estado   = edtEstado.getText().toString();
 
         // PEGA A DATA ATUAL, QUE VAI SER ATRIBUIDA NA HORA QUE O USUARIO FOR CADASTRO
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar   = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String dataCadastro = df.format(calendar.getTime());
 
@@ -292,21 +292,21 @@ public class FormCadastro extends AppCompatActivity {
         Map<String,Object> usuarios = new HashMap<>();
 
         // VALORES QUE O USUARIO ESCREVEU NO FORMULARIO, E VALORES FIXOS
-        usuarios.put("nome", nome);
-        usuarios.put("celular", celular);
-        usuarios.put("rua", rua);
-        usuarios.put("bairro", bairro);
-        usuarios.put("cidade", cidade);
-        usuarios.put("estado", estado);
+        usuarios.put("nome",         nome);
+        usuarios.put("celular",      celular);
+        usuarios.put("rua",          rua);
+        usuarios.put("bairro",       bairro);
+        usuarios.put("cidade",       cidade);
+        usuarios.put("estado",       estado);
         usuarios.put("dataCadastro", dataCadastro);
 
         // VALORES QUE SAO ATRIBUIDOS POR PADRAO
-        usuarios.put("foto", "");
-        usuarios.put("refFoto", "");
+        usuarios.put("foto",       "");
+        usuarios.put("refFoto",    "");
         usuarios.put("numAnimais", "0");
         usuarios.put("seguidores", "0");
-        usuarios.put("doacoes", "0");
-        usuarios.put("curtidas", "0");
+        usuarios.put("doacoes",    "0");
+        usuarios.put("curtidas",   "0");
 
         // INSTANCIA A CLASSE DB PARA VERIFICAR SE O USUARIO FOI CADASTRADO COM SUCESSO
         FirebaseFirestore db = FirebaseFirestore.getInstance();

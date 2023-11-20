@@ -327,7 +327,7 @@ public class PerfilUsuario extends AppCompatActivity {
                             mensagem.setBackgroundTint(Color.WHITE);
                             mensagem.setTextColor(Color.BLACK);
                             mensagem.show();
-                        } else if (edtCelularUsuario.length() < 14) {
+                        } else if (edtCelularUsuario.length() < 19) {
                             Snackbar mensagem = Snackbar.make(view, R.string.exception_registerInvalidPhone, Snackbar.LENGTH_SHORT);
                             mensagem.setBackgroundTint(Color.WHITE);
                             mensagem.setTextColor(Color.BLACK);
@@ -624,7 +624,7 @@ public class PerfilUsuario extends AppCompatActivity {
                 }
                 if (!edtCelularUsuario.getUnMasked().equals("") && !edtCelularUsuario.getUnMasked().equals(documentSnapshot.getString("celular"))) {
                     ativarProgresso();
-                    documentReference.update("celular", edtCelularUsuario.getUnMasked()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    documentReference.update("celular", ("55" + edtCelularUsuario.getUnMasked())).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             desativarProgresso();
@@ -780,24 +780,24 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private String obterCelularSemMascara(String numero) {
-        // numero     = (18) 12345-6789
+        // numero     = +55 (18) 12345-6789
         // novoNumero = 18123456789
         String novoNumero = "";
         char charNumero;
         for (int i = 0; i < numero.length(); i++) {
             charNumero = numero.charAt(i);
             switch (i) {
-                case 1:
-                case 2:
                 case 5:
                 case 6:
-                case 7:
-                case 8:
                 case 9:
+                case 10:
                 case 11:
                 case 12:
                 case 13:
-                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
                     novoNumero += Character.toString(charNumero);
                     break;
             }
@@ -806,20 +806,23 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private String obterCelularComMascara(String numero) {
-        // numero     = 18123456789
-        // novoNumero = (18) 12345-6789
-        String novoNumero = "";
+        // numero     = 5518123456789
+        // novoNumero = +55 (18) 12345-6789
+        String novoNumero = "+55 ";
         char charNumero;
         for (int i = 0; i < numero.length(); i++) {
             charNumero = numero.charAt(i);
             switch (i) {
                 case 0:
-                    novoNumero += "("  + Character.toString(charNumero);
+                case 1:
                     break;
                 case 2:
+                    novoNumero += "("  + Character.toString(charNumero);
+                    break;
+                case 4:
                     novoNumero += ") " + Character.toString(charNumero);
                     break;
-                case 7:
+                case 9:
                     novoNumero += "-"  + Character.toString(charNumero);
                     break;
                 default:
