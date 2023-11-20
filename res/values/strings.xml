@@ -124,7 +124,7 @@
     <string name="hint_password">Digite a senha&#8230;</string>
     <string name="hint_name">Digite o nome&#8230;</string>
     <string name="hint_phone">Digite o DDD + número&#8230;</string>
-    <string name="hint_phoneMask">(00) 00000&#8211;0000</string>
+    <string name="hint_phoneMask">+55 (00) 00000&#8211;0000</string>
     <string name="hint_address">Informe a rua onde mora&#8230;</string>
     <string name="hint_district">Informe o bairro&#8230;</string>
     <string name="hint_city">Informe a cidade&#8230;</string>
