@@ -197,6 +197,19 @@
                 android:text="notificacao 2 - adocao solicitada"
                 android:backgroundTint="@color/analogous1_500"/>
 
+            <Button
+                android:id="@+id/servico1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="servico 1 - abrir whatsapp"
+                android:backgroundTint="@color/analogous2_600"/>
+            <Button
+                android:id="@+id/servico2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="servico 2 - abrir whatsapp numero dono animal"
+                android:backgroundTint="@color/analogous2_600"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>

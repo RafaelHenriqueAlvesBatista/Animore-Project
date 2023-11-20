@@ -139,7 +139,7 @@
                             android:textColor="@color/white"
                             android:textColorHint="@color/gray_600"
                             android:inputType="number"
-                            app:mask="(__) _____-____"
+                            app:mask="+55 (__) _____-____"
                             app:maskCharacter="_"
                             app:maskStyle="normal"/>
                     </LinearLayout>

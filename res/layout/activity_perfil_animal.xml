@@ -413,6 +413,7 @@
                                     android:ellipsize="end"/>
                             </LinearLayout>
 
+                            <!--
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="100dp"
                                 android:layout_height="match_parent">
@@ -441,6 +442,24 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"/>
                             </androidx.constraintlayout.widget.ConstraintLayout>
+                            -->
+
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+                                <LinearLayout
+                                    android:id="@+id/llyWhatsappDono"
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:orientation="horizontal"
+                                    android:background="@drawable/layout_botao_whatsapp"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:stateListAnimator="@animator/button_click_effect_2"/>
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
