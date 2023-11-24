@@ -111,79 +111,103 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="tela 6 - tela inicial"
-                android:backgroundTint="@color/triadic2_700"/>
+                android:backgroundTint="@color/primary_900"/>
             <Button
                 android:id="@+id/tela7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="tela 7 - perfil usuario"
-                android:backgroundTint="@color/triadic2_700"/>
+                android:backgroundTint="@color/primary_900"/>
             <Button
                 android:id="@+id/tela8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="tela 8 - meus animais"
-                android:backgroundTint="@color/triadic2_700"/>
+                android:backgroundTint="@color/primary_900"/>
             <Button
                 android:id="@+id/tela9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="tela 9 - perfil animal"
-                android:backgroundTint="@color/triadic2_700"/>
+                android:backgroundTint="@color/primary_900"/>
             <Button
                 android:id="@+id/tela10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tela 10 - cadastro animal / acessorio"
-                android:backgroundTint="@color/triadic2_700"/>
+                android:text="tela 10 - perfil acessorio"
+                android:backgroundTint="@color/primary_900"/>
             <Button
                 android:id="@+id/tela11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tela 11 - configuracoes"
-                android:backgroundTint="@color/triadic2_700"/>
+                android:text="tela 11 - cadastro animal / acessorio"
+                android:backgroundTint="@color/primary_900"/>
             <Button
                 android:id="@+id/tela12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tela 12 - tela mensagem"
-                android:backgroundTint="@color/triadic2_700"/>
+                android:text="tela 12 - configuracoes"
+                android:backgroundTint="@color/primary_900"/>
             <Button
                 android:id="@+id/tela13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tela 13 - template"
-                android:backgroundTint="@color/triadic1_800"/>
+                android:text="tela 13 - tela mensagem"
+                android:backgroundTint="@color/primary_900"/>
             <Button
                 android:id="@+id/tela14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tela 14 - apresentacao"
-                android:backgroundTint="@color/triadic1_800"/>
+                android:text="tela 14 - template"
+                android:backgroundTint="@color/primary_500"/>
             <Button
                 android:id="@+id/tela15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tela 15 - item_checkbox"
-                android:backgroundTint="@color/text_900"/>
+                android:text="tela 15 - apresentacao"
+                android:backgroundTint="@color/primary_500"/>
             <Button
-                android:id="@+id/tela16"
+                android:id="@+id/item1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tela 16 - item_meus_animais"
-                android:backgroundTint="@color/text_900"/>
+                android:text="item 1 - item_checkbox"
+                android:backgroundTint="@color/triadic2_700"/>
             <Button
-                android:id="@+id/tela17"
+                android:id="@+id/item2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tela 17 - item_animais_tela_inicial"
-                android:backgroundTint="@color/text_900"/>
+                android:text="item 2 - item_meus_animais"
+                android:backgroundTint="@color/triadic2_700"/>
             <Button
-                android:id="@+id/tela18"
+                android:id="@+id/item3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="tela 18 - menu_head"
-                android:backgroundTint="@color/text_900"/>
+                android:text="item 3 - item_meus_acessorios"
+                android:backgroundTint="@color/triadic2_700"/>
+            <Button
+                android:id="@+id/item4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="item 4 - item_animais_tela_inicial"
+                android:backgroundTint="@color/triadic2_700"/>
+            <Button
+                android:id="@+id/menu1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="menu 1 - menu_head"
+                android:backgroundTint="@color/triadic2_400"/>
+            <Button
+                android:id="@+id/fragment1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fragment 1 - fragment_meus_animais"
+                android:backgroundTint="@color/triadic1_800"/>
+            <Button
+                android:id="@+id/fragment2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fragment 2 - fragment_meus_acessorios"
+                android:backgroundTint="@color/triadic1_800"/>
             <Button
                 android:id="@+id/notificacao1"
                 android:layout_width="wrap_content"

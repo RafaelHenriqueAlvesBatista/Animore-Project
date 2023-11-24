@@ -108,62 +108,40 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                        <LinearLayout
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tblListas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:tabMode="scrollable"
+                            app:tabGravity="center"
+                            app:tabIndicatorColor="@color/analogous1_200"
+                            app:tabTextColor="@color/darken_1"
+                            app:tabSelectedTextColor="@color/white"
+                            android:background="@color/analogous1_700"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/vprListas"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
+                            android:layout_marginTop="48dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="parent"/>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/title_myAnimals"
-                                android:textColor="@color/text_800"
-                                android:textStyle="bold"
-                                android:textSize="25sp"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="15dp"/>
-
-                            <!-- LISTA ANIMAIS -->
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/rcvListaAnimais"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone"/>
-
-                            <!-- PLACEHOLDER QUANDO A LISTA ESTIVER VAZIA -->
-                            <LinearLayout
-                                android:id="@+id/llyListaVazia"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:gravity="center"
-                                android:paddingBottom="50dp">
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:background="@drawable/ic_discord_leaf"
-                                    android:contentDescription="@string/content_leaf"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_noAnimals"
-                                    android:textSize="15sp"
-                                    android:textColor="@color/text_700"
-                                    android:layout_marginTop="10dp"/>
-                                <Button
-                                    android:id="@+id/btnCadastrarAnimal"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/btn_registerAnimal"
-                                    android:textSize="15sp"
-                                    android:layout_marginTop="25dp"/>
-                            </LinearLayout>
-
-                        </LinearLayout>
-
+                        <FrameLayout
+                            android:id="@+id/fragmentListaAnimais"
+                            android:layout_width="1dp"
+                            android:layout_height="1dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                        <FrameLayout
+                            android:id="@+id/fragmentListaAcessorios"
+                            android:layout_width="1dp"
+                            android:layout_height="1dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </ScrollView>
