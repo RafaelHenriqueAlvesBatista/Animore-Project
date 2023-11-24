@@ -29,6 +29,7 @@
     <string name="title_vacines">Vacinas</string>
     <string name="title_imagesAnimal">Imagens do Animal</string>
     <string name="title_ownerAnimal">Dono do Animal</string>
+    <string name="title_myAcessories"><u> Meus acessórios </u></string>
 
     <!-- TEXTOS -->
     <string name="text_welcome_1">Bem vindo a Animore Project!\nEncontre o melhor amigo dos sonhos,\nou venha doar para os seus amigos\nde graça!\n\nVamos começar?</string>
@@ -51,6 +52,7 @@
     <string name="text_noAnimals">Você ainda não possui nenhum animal registrado.\nFaça um registro pressionando o botão abaixo.</string>
     <string name="text_noVacines">Nenhuma vacina.</string>
     <string name="text_noDescription"><b>Sem descrição.</b></string>
+    <string name="text_noAcessories">A sua cesta está vazia.\nAdicione algo fazendo um registro abaixo.</string>
 
     <!-- DESCRICOES -->
     <string name="desc_animals1">Animais    </string>
@@ -99,6 +101,7 @@
     <string name="btn_adoptAnimal">Adotar Animal</string>
     <string name="btn_readMore">Ler Mais</string>
     <string name="btn_readLess">Ler Menos</string>
+    <string name="btn_registerAcessory">Cadastrar Acessório</string>
 
     <!-- FORMULARIO -->
     <string name="prompt_name">Nome:</string>
@@ -296,6 +299,7 @@
     <string name="message_signOutSuccess">Usuário deslogado com sucesso!</string>
     <string name="message_registerAnimalSuccess">Animal cadastrado com sucesso!</string>
     <string name="message_notificationSuccess">Notificacao enviada com sucesso!</string>
+    <string name="message_registerAcessorySuccess">Acessório cadastrado com sucesso!</string>
 
     <!-- MENSAGENS DE ERRO -->
     <string name="exception_registerWeakPassword">Digite uma senha com no mínimo 6 caracteres!</string>
@@ -349,6 +353,7 @@
     <string name="content_info">Ícone de um símbolo de informação.</string>
     <string name="content_messageMedia">Botão para enviar anexar um arquivo a mensagem.</string>
     <string name="content_messageSend">Botão para enviar uma mensagem.</string>
+    <string name="content_basket">Ícone de uma cesta.</string>
 
     <!-- TEXTOS DE TESTE -->
     <string name="test_placeholderName">Fulano de Tal</string>
