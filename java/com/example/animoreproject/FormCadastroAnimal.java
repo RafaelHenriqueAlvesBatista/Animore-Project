@@ -144,6 +144,7 @@ public class FormCadastroAnimal extends AppCompatActivity {
         instanciarVariaveis();
         instanciarComponentes();
         programarComponentes();
+        receberIntent();
         procurarUsuarioAtual();
         recuperarDadosUsuario();
     }
@@ -551,6 +552,14 @@ public class FormCadastroAnimal extends AppCompatActivity {
         });
     }
 
+    private void receberIntent() {
+        Intent telaFormulario = getIntent();
+        if(telaFormulario.getIntExtra("telaFormulario", 0) == 1){
+            abrirFormularioAcessorio();
+        }
+        telaFormulario.removeExtra("telaFormulario");
+    }
+
     private void procurarUsuarioAtual() {
         usuarioID                     = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -942,44 +951,87 @@ public class FormCadastroAnimal extends AppCompatActivity {
             } else {
                 cadastrarAnimal(tipo, raca, nome, idade, peso, vacina, sexo, descricao);
             }
+        } else {
+            String tipo      = spnTipoAcessorio.getSelectedItem().toString();
+            String nome      = edtNomeAcessorio.getText().toString();
+            String descricao = edtDescricaoAcessorio.getText().toString();
+
+            //depurarVariaveis();
+
+            if (nome.isEmpty()) {
+                Toast.makeText(FormCadastroAnimal.this, R.string.message_emptyInputs, Toast.LENGTH_SHORT).show();
+            } else if (checarFotosVaziasParaCadastro()) {
+                Toast.makeText(FormCadastroAnimal.this, R.string.exception_emptyPhotos, Toast.LENGTH_SHORT).show();
+            } else {
+                cadastrarAcessorio(tipo, nome, descricao);
+            }
         }
     }
 
     private boolean checarFotosVaziasParaCadastro() {
-        return uriFotosAnimal[0] == null && uriFotosAnimal[1] == null && uriFotosAnimal[2] == null && uriFotosAnimal[3] == null && uriFotosAnimal[4] == null;
+        if (telaFormulario == 1) {
+            return uriFotosAnimal[0] == null && uriFotosAnimal[1] == null && uriFotosAnimal[2] == null && uriFotosAnimal[3] == null && uriFotosAnimal[4] == null;
+        } else {
+            return uriFotosAcessorio[0] == null && uriFotosAcessorio[1] == null && uriFotosAcessorio[2] == null && uriFotosAcessorio[3] == null && uriFotosAcessorio[4] == null;
+        }
     }
 
     private void depurarVariaveis() {
-        String tipo      = spnTipoAnimal.getSelectedItem().toString();
-        String raca      = spnRacaAnimal.getSelectedItem().toString();
-        String nome      = edtNomeAnimal.getText().toString();
-        String idade     = edtIdadeAnimal.getText().toString();
-        String peso      = edtPesoAnimal.getText().toString();
-        String vacina    = obterCodigoVacinasSelecionadas();
-        String sexo      = checarSexoSelecionado();
-        String descricao = edtDescricaoAnimal.getText().toString();
-        String foto1     = uriFotosAnimal[0];
-        String foto2     = uriFotosAnimal[1];
-        String foto3     = uriFotosAnimal[2];
-        String foto4     = uriFotosAnimal[3];
-        String foto5     = uriFotosAnimal[4];
+        if (telaFormulario == 1) {
+            String tipo      = spnTipoAnimal.getSelectedItem().toString();
+            String raca      = spnRacaAnimal.getSelectedItem().toString();
+            String nome      = edtNomeAnimal.getText().toString();
+            String idade     = edtIdadeAnimal.getText().toString();
+            String peso      = edtPesoAnimal.getText().toString();
+            String vacina    = obterCodigoVacinasSelecionadas();
+            String sexo      = checarSexoSelecionado();
+            String descricao = edtDescricaoAnimal.getText().toString();
+            String foto1     = uriFotosAnimal[0];
+            String foto2     = uriFotosAnimal[1];
+            String foto3     = uriFotosAnimal[2];
+            String foto4     = uriFotosAnimal[3];
+            String foto5     = uriFotosAnimal[4];
 
-        System.out.println("DADOS CADASTRADOS:\n" +
-                "\nTIPO:      " + tipo +
-                "\nRACA:      " + raca +
-                "\nNOME:      " + nome +
-                "\nIDADE:     " + idade +
-                "\nPESO:      " + peso +
-                "\nVACINAS:   " + vacina +
-                "\nSEXO:      " + sexo +
-                "\nDESCRICAO: " + descricao +
-                "\nFOTOS:     " + foto1 +
-                "\n           " + foto2 +
-                "\n           " + foto3 +
-                "\n           " + foto4 +
-                "\n           " + foto5);
+            System.out.println("DADOS CADASTRADOS:\n" +
+                    "\n- ANIMAL -" +
+                    "\nTIPO:      " + tipo +
+                    "\nRACA:      " + raca +
+                    "\nNOME:      " + nome +
+                    "\nIDADE:     " + idade +
+                    "\nPESO:      " + peso +
+                    "\nVACINAS:   " + vacina +
+                    "\nSEXO:      " + sexo +
+                    "\nDESCRICAO: " + descricao +
+                    "\nFOTOS:     " + foto1 +
+                    "\n           " + foto2 +
+                    "\n           " + foto3 +
+                    "\n           " + foto4 +
+                    "\n           " + foto5);
 
-        Toast.makeText(FormCadastroAnimal.this, "- Dados foram mostrados no terminal -", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FormCadastroAnimal.this, "- Dados foram mostrados no terminal -", Toast.LENGTH_SHORT).show();
+        } else {
+            String tipo      = spnTipoAcessorio.getSelectedItem().toString();
+            String nome      = edtNomeAcessorio.getText().toString();
+            String descricao = edtDescricaoAcessorio.getText().toString();
+            String foto1     = uriFotosAcessorio[0];
+            String foto2     = uriFotosAcessorio[1];
+            String foto3     = uriFotosAcessorio[2];
+            String foto4     = uriFotosAcessorio[3];
+            String foto5     = uriFotosAcessorio[4];
+
+            System.out.println("DADOS CADASTRADOS:\n" +
+                    "\n- ACESSORIO -" +
+                    "\nTIPO:      " + tipo +
+                    "\nNOME:      " + nome +
+                    "\nDESCRICAO: " + descricao +
+                    "\nFOTOS:     " + foto1 +
+                    "\n           " + foto2 +
+                    "\n           " + foto3 +
+                    "\n           " + foto4 +
+                    "\n           " + foto5);
+
+            Toast.makeText(FormCadastroAnimal.this, "- Dados foram mostrados no terminal -", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private String obterCodigoVacinasSelecionadas() {
@@ -1052,7 +1104,7 @@ public class FormCadastroAnimal extends AppCompatActivity {
                         public void onSuccess(DocumentReference documentReference) {
                             String IDanimal = documentReference.getId();
                             DocumentReference documentReferenceAnimal = db.collection("Animais").document(IDanimal);
-                            salvarFotos(IDanimal, documentReferenceAnimal, 0);
+                            salvarFotosAnimal(IDanimal, documentReferenceAnimal, 0);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -1070,8 +1122,63 @@ public class FormCadastroAnimal extends AppCompatActivity {
         });
     }
 
-    private void salvarFotos(String IDanimal, DocumentReference documentReferenceAnimal, int index) {
-        totalUploads = uriFotosAnimal.length;
+    private void cadastrarAcessorio(String tipo, String nome, String descricao) {
+        ativarProgresso();
+
+        // ATRIBUI O LOCAL ONDE O ACESSORIO FICA, COM O LOCAL DO DONO
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot != null) {
+                    local = documentSnapshot.getString("cidade");
+                    local += " - " + documentSnapshot.getString("estado");
+
+                    // MONTA A TABELA DO ACESSORIO COM OS DADOS JA PREENCHIDOS
+                    Map<String,Object> acessorios = new HashMap<>();
+
+                    // VALORES QUE O USUARIO ESCREVEU NO FORMULARIO, E VALORES FIXOS
+                    acessorios.put("tipo",      tipo);
+                    acessorios.put("nome",      nome);
+                    acessorios.put("descricao", descricao);
+
+                    // VALORES QUE SAO ATRIBUIDOS POR PADRAO
+                    acessorios.put("foto1",     "");
+                    acessorios.put("foto2",     "");
+                    acessorios.put("foto3",     "");
+                    acessorios.put("foto4",     "");
+                    acessorios.put("foto5",     "");
+                    acessorios.put("refFoto1",  "");
+                    acessorios.put("refFoto2",  "");
+                    acessorios.put("refFoto3",  "");
+                    acessorios.put("refFoto4",  "");
+                    acessorios.put("refFoto5",  "");
+                    acessorios.put("local",     local);
+                    acessorios.put("dono",      usuarioID);
+
+                    db.collection("Acessorios").add(acessorios).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            String IDacessorio = documentReference.getId();
+                            DocumentReference documentReferenceAcessorio = db.collection("Acessorios").document(IDacessorio);
+                            salvarFotosAcessorio(IDacessorio, documentReferenceAcessorio, 0);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            cancelarOperacao(e.getMessage());
+                        }
+                    });
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                cancelarOperacao(e.getMessage());
+            }
+        });
+    }
+
+    private void salvarFotosAnimal(String IDanimal, DocumentReference documentReferenceAnimal, int index) {
         if (index < uriFotosAnimal.length) {
             // VERIFICA SE A URI NAO ESTA VAZIA
             if (uriFotosAnimal[index] != null && !uriFotosAnimal[index].isEmpty()) {
@@ -1137,13 +1244,7 @@ public class FormCadastroAnimal extends AppCompatActivity {
                                 databaseRef.child(IDanimal).child(fotoField).setValue(uri.toString());
                                 documentReferenceAnimal.update(fotoField, uri.toString());
 
-                                uploadsConcluidos++;
-
-                                if (uploadsConcluidos == totalUploads) {
-                                    atualizarNumeroAnimais();
-                                }
-
-                                salvarFotos(IDanimal, documentReferenceAnimal, index + 1);
+                                salvarFotosAnimal(IDanimal, documentReferenceAnimal, index + 1);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -1159,10 +1260,99 @@ public class FormCadastroAnimal extends AppCompatActivity {
                     }
                 });
             } else {
-                salvarFotos(IDanimal, documentReferenceAnimal, index + 1);
+                salvarFotosAnimal(IDanimal, documentReferenceAnimal, index + 1);
             }
         } else {
             atualizarNumeroAnimais();
+        }
+    }
+
+    private void salvarFotosAcessorio(String IDacessorio, DocumentReference documentReferenceAcessorio, int index) {
+        if (index < uriFotosAcessorio.length) {
+            // VERIFICA SE A URI NAO ESTA VAZIA
+            if (uriFotosAcessorio[index] != null && !uriFotosAcessorio[index].isEmpty()) {
+                // CONVERTE AS STRINGS DA URI DAS FOTOS SALVAS, DE VOLTA PARA URI
+                uriArquivo = Uri.parse(uriFotosAcessorio[index]);
+
+                // ATRIBUI A NUMERACAO DAS FOTOS
+                String numFoto = "";
+
+                switch (index) {
+                    case 0:
+                        numFoto = "_a";
+                        break;
+                    case 1:
+                        numFoto = "_b";
+                        break;
+                    case 2:
+                        numFoto = "_c";
+                        break;
+                    case 3:
+                        numFoto = "_d";
+                        break;
+                    case 4:
+                        numFoto = "_e";
+                        break;
+                    default:
+                        numFoto = "_xxx";
+                        break;
+                }
+
+                // SALVA O NOME DA FOTO COM O ID DO USUARIO MAIS A EXTENSAO NA TABELA DO USUARIO
+                String nomeArquivo = IDacessorio + numFoto + "." + getFileExtension(uriArquivo);
+                StorageReference fileReference = storageRef.child(nomeArquivo);
+
+                switch (index) {
+                    case 0:
+                        documentReferenceAcessorio.update("refFoto1", nomeArquivo);
+                        break;
+                    case 1:
+                        documentReferenceAcessorio.update("refFoto2", nomeArquivo);
+                        break;
+                    case 2:
+                        documentReferenceAcessorio.update("refFoto3", nomeArquivo);
+                        break;
+                    case 3:
+                        documentReferenceAcessorio.update("refFoto4", nomeArquivo);
+                        break;
+                    case 4:
+                        documentReferenceAcessorio.update("refFoto5", nomeArquivo);
+                        break;
+                    default:
+                        break;
+                }
+
+                // FAZ O UPLOAD DA IMAGEM
+                fileReference.putFile(uriArquivo).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String fotoField = "foto" + (index + 1);
+                                databaseRef.child(IDacessorio).child(fotoField).setValue(uri.toString());
+                                documentReferenceAcessorio.update(fotoField, uri.toString());
+
+                                salvarFotosAnimal(IDacessorio, documentReferenceAcessorio, index + 1);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                cancelarOperacao(e.getMessage());
+                            }
+                        });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        cancelarOperacao(e.getMessage());
+                    }
+                });
+            } else {
+                salvarFotosAcessorio(IDacessorio, documentReferenceAcessorio, index + 1);
+            }
+        } else {
+            incrementarEstatisticas();
         }
     }
 
@@ -1195,7 +1385,7 @@ public class FormCadastroAnimal extends AppCompatActivity {
         desativarProgresso();
 
         Intent enviarFeedback = new Intent(FormCadastroAnimal.this, ListaMeusAnimais.class);
-        enviarFeedback.putExtra("enviarFeedback", 1);
+        enviarFeedback.putExtra("enviarFeedback", telaFormulario);
         startActivity(enviarFeedback);
         finish();
     }
@@ -1233,18 +1423,33 @@ public class FormCadastroAnimal extends AppCompatActivity {
         documentReferenceEstatisticas.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                int animaisInt = Integer.parseInt(documentSnapshot.getString("animais"));
-                documentReferenceEstatisticas.update("animais", String.valueOf(animaisInt += 1)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        irTelaMeusAnimais();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        cancelarOperacao(e.getMessage());
-                    }
-                });
+                if (telaFormulario == 1) {
+                    int animaisInt = Integer.parseInt(documentSnapshot.getString("animais"));
+                    documentReferenceEstatisticas.update("animais", String.valueOf(animaisInt += 1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            irTelaMeusAnimais();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            cancelarOperacao(e.getMessage());
+                        }
+                    });
+                } else {
+                    int acessoriosInt = Integer.parseInt(documentSnapshot.getString("acessorios"));
+                    documentReferenceEstatisticas.update("acessorios", String.valueOf(acessoriosInt += 1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            irTelaMeusAnimais();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            cancelarOperacao(e.getMessage());
+                        }
+                    });
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

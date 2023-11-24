@@ -5,8 +5,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,22 +23,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.animoreproject.classes.AdapterMeuAcessorio;
 import com.example.animoreproject.classes.AdapterMeuAnimal;
+import com.example.animoreproject.classes.AdapterViewPager;
+import com.example.animoreproject.classes.FragmentListaAnimais;
+import com.example.animoreproject.classes.FragmentListaAcessorios;
+import com.example.animoreproject.classes.ItemMeuAcessorio;
 import com.example.animoreproject.classes.ItemMeuAnimal;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -47,7 +51,10 @@ public class ListaMeusAnimais extends AppCompatActivity {
     // VARIAVEIS DA ACTIVITY
     private List<ItemMeuAnimal> meuAnimal;
     private AdapterMeuAnimal animalAdapter;
-    private String[] dadosListaAnimal;
+    private List<ItemMeuAcessorio> meuAcessorio;
+    private AdapterMeuAcessorio acessorioAdapter;
+    private int posicaoTab;
+
 
     // COMPONENTES TOOLBAR
     private ImageButton botaoMenu, botaoCompartilhar;
@@ -69,41 +76,34 @@ public class ListaMeusAnimais extends AppCompatActivity {
     private MenuItem mnuOpcoes;
     private MenuItem mnuSair;
 
-    // COMPONENTES LISTA VAZIA
-    private LinearLayout llyListaVazia;
-    private Button btnCadastrarAnimal;
-
-    // COMPONENTES LISTA ANIMAIS
-    private RecyclerView rcvListaAnimais;
+    // COMPONENTES VIEWPAGER
+    private ViewPager vprListas;
+    private TabLayout tblListas;
 
     // ATRIBUTOS DO FIREBASE
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String usuarioID;
-    private DatabaseReference databaseRef;
-    private StorageReference storageRef;
     private DocumentReference documentReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_animais);
-        instanciarVariaveis();
         instanciarComponentes();
         programarComponentes();
         procurarUsuarioAtual();
         recuperarDadosUsuario();
+        adicionarTagsFragments();
+        montarPaginaListas(vprListas);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        popularLista();
+        popularListaAnimais();
+        popularListaAcessorios();
         receberFeedback();
-    }
-
-    private void instanciarVariaveis() {
-        dadosListaAnimal = new String[4];
     }
 
     private void instanciarComponentes() {
@@ -127,10 +127,8 @@ public class ListaMeusAnimais extends AppCompatActivity {
 
         fabAdicionar          = findViewById(R.id.fabAdicionar);
 
-        llyListaVazia         = findViewById(R.id.llyListaVazia);
-        btnCadastrarAnimal    = findViewById(R.id.btnCadastrarAnimal);
-
-        rcvListaAnimais       = findViewById(R.id.rcvListaAnimais);
+        vprListas             = findViewById(R.id.vprListas);
+        tblListas             = findViewById(R.id.tblListas);
     }
 
     private void programarComponentes() {
@@ -217,18 +215,24 @@ public class ListaMeusAnimais extends AppCompatActivity {
         fabAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                irTelaCadastroAnimal();
+                irTelaCadastro();
             }
         });
-        btnCadastrarAnimal.setOnClickListener(new View.OnClickListener() {
+
+        tblListas.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View view) {
-                irTelaCadastroAnimal();
+            public void onTabSelected(TabLayout.Tab tab) {
+                posicaoTab = tab.getPosition();
             }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
     }
 
-    private void popularLista() {
+    private void popularListaAnimais() {
         meuAnimal = new ArrayList<>();
         /* -- COMANDO SQL EQUIVALENTE -
             SELECT    *    FROM    Animais    WHERE    Animais.dono = Usuarios.id;
@@ -262,32 +266,154 @@ public class ListaMeusAnimais extends AppCompatActivity {
                 }
 
                 if (!meuAnimal.isEmpty()) {
-                    montarLista();
+                    montarListaAnimais();
+                } else {
+                    programarBotaoListaVazia(1);
                 }
             }
         });
     }
 
-    private void montarLista() {
-        animalAdapter = new AdapterMeuAnimal(meuAnimal, new AdapterMeuAnimal.OnAnimalClickListener() {
+    private void montarListaAnimais() {
+        FragmentListaAnimais fragmentListaAnimais = (FragmentListaAnimais) getSupportFragmentManager().findFragmentByTag("fragmentListaAnimaisTAG");
+        if (fragmentListaAnimais != null) {
+            if (fragmentListaAnimais.getView() != null) {
+                animalAdapter = new AdapterMeuAnimal(meuAnimal, new AdapterMeuAnimal.OnAnimalClickListener() {
+                    @Override
+                    public void onAnimalClick(String IDanimal) {
+                        Intent abrirPerfil = new Intent(ListaMeusAnimais.this, PerfilAnimal.class);
+                        abrirPerfil.putExtra("IDanimal", IDanimal);
+                        startActivity(abrirPerfil);
+                    }
+                });
+
+                LinearLayout llyListaVazia1     = findViewById(R.id.llyListaVazia1);
+                RecyclerView rcvListaAnimais    = findViewById(R.id.rcvListaAnimais);
+
+                rcvListaAnimais.setLayoutManager(new LinearLayoutManager(this));
+                rcvListaAnimais.setAdapter(animalAdapter);
+                rcvListaAnimais.setVisibility(View.VISIBLE);
+                llyListaVazia1.setVisibility(View.GONE);
+            } else {
+                Toast.makeText(ListaMeusAnimais.this, "Falha ao encontrar a View do Fragment!", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(ListaMeusAnimais.this, "Tag do fragment não encontrado!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void popularListaAcessorios() {
+        meuAcessorio = new ArrayList<>();
+        /* -- COMANDO SQL EQUIVALENTE -
+            SELECT    *    FROM   Acessorios   WHERE   Acessorios.dono = Usuarios.id;
+         */
+        db.collection("Acessorios").whereEqualTo("dono", usuarioID).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onAnimalClick(String IDanimal) {
-                Intent abrirPerfil = new Intent(ListaMeusAnimais.this, PerfilAnimal.class);
-                abrirPerfil.putExtra("IDanimal", IDanimal);
-                startActivity(abrirPerfil);
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    String animalId      = document.getId();
+                    String foto1         = document.getString("foto1");
+                    String foto2         = document.getString("foto2");
+                    String foto3         = document.getString("foto3");
+                    String foto4         = document.getString("foto4");
+                    String foto5         = document.getString("foto5");
+                    String nome          = document.getString("nome");
+                    String tipo          = document.getString("tipo");
+                    ImageView imvNaoNulo = findViewById(R.id.imvMeuAnimal);
+
+                    String[] fotos = {foto1, foto2, foto3, foto4, foto5};
+                    String fotoNaoVazia = null;
+
+                    for (String foto : fotos) {
+                        if (foto != null && !foto.isEmpty()) {
+                            fotoNaoVazia = foto;
+                            break;
+                        }
+                    }
+
+                    meuAcessorio.add(new ItemMeuAcessorio(animalId, fotoNaoVazia, nome, tipo, imvNaoNulo));
+                }
+
+                if (!meuAcessorio.isEmpty()) {
+                    montarListaAcessorios();
+                } else {
+                    programarBotaoListaVazia(2);
+                }
             }
         });
-        rcvListaAnimais.setLayoutManager(new LinearLayoutManager(this));
-        rcvListaAnimais.setAdapter(animalAdapter);
-        rcvListaAnimais.setVisibility(View.VISIBLE);
-        llyListaVazia.setVisibility(View.GONE);
+    }
+
+    private void montarListaAcessorios() {
+        FragmentListaAcessorios fragmentListaAcessorios = (FragmentListaAcessorios) getSupportFragmentManager().findFragmentByTag("fragmentListaAcessoriosTAG");
+        if (fragmentListaAcessorios != null) {
+            if (fragmentListaAcessorios.getView() != null) {
+                acessorioAdapter = new AdapterMeuAcessorio(meuAcessorio, new AdapterMeuAcessorio.OnAcessorioClickListener() {
+                    @Override
+                    public void onAcessorioClick(String IDacessorio) {
+                        Intent abrirPerfil = new Intent(ListaMeusAnimais.this, PerfilAcessorio.class);
+                        abrirPerfil.putExtra("IDacessorio", IDacessorio);
+                        startActivity(abrirPerfil);
+                    }
+                });
+
+                LinearLayout llyListaVazia2        = findViewById(R.id.llyListaVazia2);
+                RecyclerView rcvListaAcessorios    = findViewById(R.id.rcvListaAcessorios);
+
+                rcvListaAcessorios.setLayoutManager(new LinearLayoutManager(this));
+                rcvListaAcessorios.setAdapter(acessorioAdapter);
+                rcvListaAcessorios.setVisibility(View.VISIBLE);
+                llyListaVazia2.setVisibility(View.GONE);
+            } else {
+                Toast.makeText(ListaMeusAnimais.this, "Falha ao encontrar a View do Fragment!", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(ListaMeusAnimais.this, "Tag do fragment não encontrado!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void programarBotaoListaVazia(int tela) {
+        if (tela == 1) {
+            FragmentListaAnimais fragmentListaAnimais = (FragmentListaAnimais) getSupportFragmentManager().findFragmentByTag("fragmentListaAnimaisTAG");
+            if (fragmentListaAnimais != null) {
+                if (fragmentListaAnimais.getView() != null) {
+                    Button btnCadastrarAnimal = findViewById(R.id.btnCadastrarAnimal);
+
+                    btnCadastrarAnimal.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            irTelaCadastro();
+                        }
+                    });
+                } else {
+                    Toast.makeText(ListaMeusAnimais.this, "Falha ao encontrar a View do Fragment!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(ListaMeusAnimais.this, "Tag do fragment não encontrado!", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            FragmentListaAcessorios fragmentListaAcessorios = (FragmentListaAcessorios) getSupportFragmentManager().findFragmentByTag("fragmentListaAcessoriosTAG");
+            if (fragmentListaAcessorios != null) {
+                if (fragmentListaAcessorios.getView() != null) {
+                    Button btnCadastrarAcessorio = findViewById(R.id.btnCadastrarAcessorio);
+
+                    btnCadastrarAcessorio.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            irTelaCadastro();
+                        }
+                    });
+                } else {
+                    Toast.makeText(ListaMeusAnimais.this, "Falha ao encontrar a View do Fragment!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(ListaMeusAnimais.this, "Tag do fragment não encontrado!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void procurarUsuarioAtual() {
         usuarioID                     = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        databaseRef                   = FirebaseDatabase.getInstance().getReference("uploads");
-        storageRef                    = FirebaseStorage.getInstance().getReference("uploads");
         documentReference             = db.collection("Usuarios").document(usuarioID);
     }
 
@@ -329,8 +455,31 @@ public class ListaMeusAnimais extends AppCompatActivity {
         });
     }
 
-    private void irTelaCadastroAnimal() {
+    private void adicionarTagsFragments() {
+        FragmentListaAnimais fragmentAnimais = new FragmentListaAnimais();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentListaAnimais, (Fragment) fragmentAnimais, "fragmentListaAnimaisTAG")
+                .commit();
+
+        FragmentListaAcessorios fragmentAcessorios = new FragmentListaAcessorios();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentListaAcessorios, (Fragment) fragmentAcessorios, "fragmentListaAcessoriosTAG")
+                .commit();
+    }
+
+    private void montarPaginaListas(ViewPager vprListas) {
+        AdapterViewPager adapterViewPager = new AdapterViewPager(getSupportFragmentManager());
+
+        adapterViewPager.addFragment(new FragmentListaAnimais(), "Animais");
+        adapterViewPager.addFragment(new FragmentListaAcessorios(), "Acessórios");
+
+        vprListas.setAdapter(adapterViewPager);
+        tblListas.setupWithViewPager(vprListas);
+    }
+
+    private void irTelaCadastro() {
         Intent cadastroAnimal = new Intent(ListaMeusAnimais.this, FormCadastroAnimal.class);
+        cadastroAnimal.putExtra("telaFormulario", posicaoTab);
         startActivity(cadastroAnimal);
     }
 
@@ -338,6 +487,9 @@ public class ListaMeusAnimais extends AppCompatActivity {
         Intent receberFeedback = getIntent();
         if(receberFeedback.getIntExtra("enviarFeedback", 0) == 1){
             Toast.makeText(ListaMeusAnimais.this, R.string.message_registerAnimalSuccess, Toast.LENGTH_SHORT).show();
+        }
+        if(receberFeedback.getIntExtra("enviarFeedback", 0) == 2){
+            Toast.makeText(ListaMeusAnimais.this, R.string.message_registerAcessorySuccess, Toast.LENGTH_SHORT).show();
         }
         receberFeedback.removeExtra("enviarFeedback");
     }

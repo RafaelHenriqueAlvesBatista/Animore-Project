@@ -21,9 +21,12 @@
         android:theme="@style/Theme.AnimoreProject"
         tools:targetApi="31">
         <activity
+            android:name=".PerfilAcessorio"
+            android:exported="false" />
+        <activity
             android:name=".TelaMensagem"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".PerfilAnimal"
             android:exported="false" />
@@ -64,12 +67,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".classes.ServiceNotificacoes"
+
+        <service
+            android:name=".classes.ServiceNotificacoes"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_menu_animal" />

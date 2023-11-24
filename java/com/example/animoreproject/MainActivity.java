@@ -66,9 +66,13 @@ public class MainActivity extends AppCompatActivity {
             Button botao13 = findViewById(R.id.tela13);
             Button botao14 = findViewById(R.id.tela14);
             Button botao15 = findViewById(R.id.tela15);
-            Button botao16 = findViewById(R.id.tela16);
-            Button botao17 = findViewById(R.id.tela17);
-            Button botao18 = findViewById(R.id.tela18);
+            Button item1 = findViewById(R.id.item1);
+            Button item2 = findViewById(R.id.item2);
+            Button item3 = findViewById(R.id.item3);
+            Button item4 = findViewById(R.id.item4);
+            Button menu1 = findViewById(R.id.menu1);
+            Button fragment1 = findViewById(R.id.fragment1);
+            Button fragment2 = findViewById(R.id.fragment2);
             Button notificacao1 = findViewById(R.id.notificacao1);
             Button notificacao2 = findViewById(R.id.notificacao2);
             Button servico1 = findViewById(R.id.servico1);
@@ -180,24 +184,52 @@ public class MainActivity extends AppCompatActivity {
                     onResume();
                 }
             });
-            botao16.setOnClickListener(new View.OnClickListener() {
+            item1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     tela = 16;
                     onResume();
                 }
             });
-            botao17.setOnClickListener(new View.OnClickListener() {
+            item2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     tela = 17;
                     onResume();
                 }
             });
-            botao18.setOnClickListener(new View.OnClickListener() {
+            item3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     tela = 18;
+                    onResume();
+                }
+            });
+            item4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tela = 19;
+                    onResume();
+                }
+            });
+            menu1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tela = 20;
+                    onResume();
+                }
+            });
+            fragment1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tela = 21;
+                    onResume();
+                }
+            });
+            fragment2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tela = 22;
                     onResume();
                 }
             });
@@ -221,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                             "Fulano de Tal",
                             "joao@gmail.com",
                             "1");
-                            //"teste@gmail.com"
+                    //"teste@gmail.com"
                     onResume();
                     Toast.makeText(MainActivity.this, "Notificação enviada com sucesso!", Toast.LENGTH_SHORT).show();
                 }
@@ -380,54 +412,75 @@ public class MainActivity extends AppCompatActivity {
             startActivity(perfilAnimal);
         }
 
-        // DECIMA TELA - CADASTRO ANIMAL
+        // DECIMA TELA - PERFIL DO ACESSORIO
         if (tela == 10) {
+            Intent perfilAcessorio = new Intent(MainActivity.this, PerfilAcessorio.class);
+            startActivity(perfilAcessorio);
+        }
+
+        // DECIMA-PRIMEIRA TELA - CADASTRO ANIMAL
+        if (tela == 11) {
             Intent cadastroAnimal = new Intent(MainActivity.this, FormCadastroAnimal.class);
             startActivity(cadastroAnimal);
         }
 
-        // DECIMA-PRIMEIRA TELA - CONFIGURACOES APLICATIVO
-        if (tela == 11) {
+        // DECIMA-SEGUNDA TELA - CONFIGURACOES APLICATIVO
+        if (tela == 12) {
             Intent opcoesApp = new Intent(MainActivity.this, TelaOpcoes.class);
             startActivity(opcoesApp);
         }
 
-        // DECIMA-SEGUNDA TELA - TELA MENSAGEM
-        if (tela == 12) {
+        // DECIMA-TERCEIRA TELA - TELA MENSAGEM
+        if (tela == 13) {
             Intent telaMensagem = new Intent(MainActivity.this, TelaMensagem.class);
             startActivity(telaMensagem);
         }
 
-        // DECIMA-TERCEIRA TELA - TEMPLATE LAYOUT
-        if (tela == 13) {
+        // DECIMA-QUARTA TELA - TEMPLATE LAYOUT
+        if (tela == 14) {
             setContentView(R.layout.activity_template);
         }
 
-        // DECIMA-QUARTA TELA - SPLASH SCREEN
-        if (tela == 14) {
+        // DECIMA-QUINTA TELA - SPLASH SCREEN
+        if (tela == 15) {
             Intent splashScreen = new Intent(MainActivity.this, SplashScreen.class);
             startActivity(splashScreen);
             finish();
         }
 
-        // DECIMA-QUINTA TELA - LAYOUT CHECKBOX CUSTOM SPINNER
-        if (tela == 15) {
+        // PRIMEIRO ITEM - LAYOUT CHECKBOX CUSTOM SPINNER
+        if (tela == 16) {
             setContentView(R.layout.item_checkbox);
         }
 
-        // DECIMA-SEXTA TELA - LAYOUT LISTA MEUS ANIMAIS
-        if (tela == 16) {
+        // SEGUNDO ITEM - LAYOUT LISTA MEUS ANIMAIS
+        if (tela == 17) {
             setContentView(R.layout.item_meus_animais);
         }
 
-        // DECIMA-SETIMA TELA - LAYOUT LISTA ANIMAIS TELA INICIO
-        if (tela == 17) {
+        // TERCEIRO ITEM - LAYOUT LISTA MEUS ACESSORIOS
+        if (tela == 18) {
+            setContentView(R.layout.item_meus_acessorios);
+        }
+
+        // QUARTO ITEM - LAYOUT LISTA ANIMAIS TELA INICIO
+        if (tela == 19) {
             setContentView(R.layout.item_animais_tela_inicial);
         }
 
-        // DECIMA-OITAVA TELA - LAYOUT MENU
-        if (tela == 18) {
+        // PRIMEIRO MENU - LAYOUT MENU
+        if (tela == 20) {
             setContentView(R.layout.menu_head);
+        }
+
+        // PRIMEIRO FRAGMENT - LISTA MEUS ANIMAIS
+        if (tela == 21) {
+            setContentView(R.layout.fragment_meus_animais);
+        }
+
+        // SEGUNDO FRAGMENT - LISTA MEUS ACESSORIOS
+        if (tela == 22) {
+            setContentView(R.layout.fragment_meus_acessorios);
         }
     }
 
