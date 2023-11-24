@@ -1,0 +1,33 @@
+------------------------
+- w0YnA12WK0sSkITi8JJV -
+------------------------
+
+descricao : "Bola de tênis do Mercedes. Ele não brinca mais com ela, então vou ver se alguém vai querer." (string)
+
+dono : "bss9Se4Dm1MSOMCjCMQU78AlIHt1" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2Fw0YnA12WK0sSkITi8JJV_a.jpg?alt=media&token=96e1496b-5ce7-45a1-ae66-2e25b24daf08" (string)
+
+foto2 : "" (string)
+
+foto3 : "" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+local : "São Francisco - Acre" (string)
+
+nome : "Bola de tênis" (string)
+
+refFoto1 : "w0YnA12WK0sSkITi8JJV_a.jpg" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+tipo : "Brinquedo" (string)
