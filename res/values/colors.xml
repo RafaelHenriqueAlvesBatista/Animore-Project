@@ -86,6 +86,7 @@
 
     <color name="darken_1">#80000000</color>
     <color name="darken_2">#40000000</color>
+    <color name="brighten_1">#60FFFFFF</color>
 
     <color name="text_900">#1F2D3D</color>
     <color name="text_800">#343F4B</color>

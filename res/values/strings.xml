@@ -30,6 +30,8 @@
     <string name="title_imagesAnimal">Imagens do Animal</string>
     <string name="title_ownerAnimal">Dono do Animal</string>
     <string name="title_myAcessories"><u> Meus acessórios </u></string>
+    <string name="title_ownerAccesory">Dono do Acessório</string>
+    <string name="title_imagesAccesory">Imagens do Acessório</string>
 
     <!-- TEXTOS -->
     <string name="text_welcome_1">Bem vindo a Animore Project!\nEncontre o melhor amigo dos sonhos,\nou venha doar para os seus amigos\nde graça!\n\nVamos começar?</string>
@@ -53,6 +55,12 @@
     <string name="text_noVacines">Nenhuma vacina.</string>
     <string name="text_noDescription"><b>Sem descrição.</b></string>
     <string name="text_noAcessories">A sua cesta está vazia.\nAdicione algo fazendo um registro abaixo.</string>
+    <string name="text_whatsappMessageStart">Olá tudo bem? Eu vi</string>
+    <string name="text_whatsappMessageStartAnimal">seu animal</string>
+    <string name="text_whatsappMessageStartAcessory">o item</string>
+    <string name="text_whatsappMessageBody">no aplicativo Animore Project, e tenho interesse em</string>
+    <string name="text_whatsappMessageEndAnimal">adotá-lo.</string>
+    <string name="text_whatsappMessageEndAcessory">obtê-lo.</string>
 
     <!-- DESCRICOES -->
     <string name="desc_animals1">Animais    </string>
