@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +31,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -46,6 +49,10 @@ public class PerfilAnimal extends AppCompatActivity {
     private int limiteCaracteres;
     private String descricaoCompleta, descricaoCurta;
     private String IDdono;
+    private boolean modoEdicao = false;
+    private boolean atualizouFoto = false;
+    private int feedbackAtualizou = 0;
+    private boolean excluindo = false;
 
     // DADOS PARA A NOTIFICACAO
     private String nomeRemetente, nomeAnimal, emailDestinatario;
@@ -72,23 +79,25 @@ public class PerfilAnimal extends AppCompatActivity {
     private MenuItem mnuSair;
 
     // COMPONENTES ANIMAL
+    private LinearLayout llyNomeAnimal;
     private ImageView imvFotoAnimal;
     private TextView txvNomeAnimal, txvRacaAnimal, txvIdadeAnimal, txvLocalAnimal;
 
     // BOTAO ADOTAR ANIMAL
-    private LinearLayout btnAdotarAnimal;
+    //private LinearLayout btnAdotarAnimal;
 
     // DESCRICAO ANIMAL
+    private LinearLayout llyDescricaoNormal;
     private TextView txvDescricao, txvLerMais;
 
     // COMPONENTES DONO ANIMAL
+    private LinearLayout llyDonoAnimal, llyWhatsappDono;
     //private LinearLayout llyLigarDono, llyMensagemDono;
-    private LinearLayout llyWhatsappDono;
     private ImageView imvFotoDonoAnimal;
     private TextView txvNomeDono, txvLocalDono;
 
     // VACINAS ANIMAL
-    private LinearLayout llyVacinaAnimal1, llyVacinaAnimal2, llyVacinaAnimal3, llyVacinaAnimal4;
+    private LinearLayout llyVacinasNormal, llyVacinaAnimal1, llyVacinaAnimal2, llyVacinaAnimal3, llyVacinaAnimal4;
     private TextView txvVacinaAnimalVazio;
 
     // FOTOS ANIMAL
@@ -97,6 +106,13 @@ public class PerfilAnimal extends AppCompatActivity {
     // OPCOES ANIMAL
     private LinearLayout llyPerfilAnimalOpcoes1, llyPerfilAnimalOpcoes2, llyOpcoesVazio;
     private Button btnEditar, btnExcluir, btnSalvar, btnCancelar;
+
+    // COMPONENTES EDICAO
+    private LinearLayout llyNomeAnimalEdit, llyDescricaoEdit, llyVacinasEdit;
+    private TextInputEditText edtNomeAnimal, edtIdadeAnimal;
+    private TextView txvRacaAnimalEdit, txvLocalAnimalEdit;
+    private EditText edtDescricao;
+    private RecyclerView rcvVacinaAnimal;
 
     // VARIAVEIS DO FIREBASE
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -153,17 +169,18 @@ public class PerfilAnimal extends AppCompatActivity {
 
         scvTela                = findViewById(R.id.scvTela);
 
+        llyNomeAnimal          = findViewById(R.id.llyNomeAnimal);
         imvFotoAnimal          = findViewById(R.id.imvFotoAnimal);
         txvNomeAnimal          = findViewById(R.id.txvNomeAnimal);
         txvRacaAnimal          = findViewById(R.id.txvRacaAnimal);
         txvIdadeAnimal         = findViewById(R.id.txvIdadeAnimal);
         txvLocalAnimal         = findViewById(R.id.txvLocalAnimal);
 
-        btnAdotarAnimal        = findViewById(R.id.btnAdotarAnimal);
-
+        llyDescricaoNormal     = findViewById(R.id.llyDescricaoNormal);
         txvDescricao           = findViewById(R.id.txvDescricao);
         txvLerMais             = findViewById(R.id.txvLerMais);
 
+        llyDonoAnimal          = findViewById(R.id.llyDonoAnimal);
         imvFotoDonoAnimal      = findViewById(R.id.imvFotoDonoAnimal);
         txvNomeDono            = findViewById(R.id.txvNomeDono);
         txvLocalDono           = findViewById(R.id.txvLocalDono);
@@ -171,6 +188,7 @@ public class PerfilAnimal extends AppCompatActivity {
         //llyMensagemDono        = findViewById(R.id.llyMensagemDono);
         llyWhatsappDono        = findViewById(R.id.llyWhatsappDono);
 
+        llyVacinasNormal       = findViewById(R.id.llyVacinasNormal);
         llyVacinaAnimal1       = findViewById(R.id.llyVacinaAnimal1);
         llyVacinaAnimal2       = findViewById(R.id.llyVacinaAnimal2);
         llyVacinaAnimal3       = findViewById(R.id.llyVacinaAnimal3);
@@ -191,6 +209,16 @@ public class PerfilAnimal extends AppCompatActivity {
         btnExcluir             = findViewById(R.id.btnExcluir);
         btnSalvar              = findViewById(R.id.btnSalvar);
         btnCancelar            = findViewById(R.id.btnCancelar);
+
+        llyNomeAnimalEdit      = findViewById(R.id.llyNomeAnimalEdit);
+        llyDescricaoEdit       = findViewById(R.id.llyDescricaoEdit);
+        llyVacinasEdit         = findViewById(R.id.llyVacinasEdit);
+        edtNomeAnimal          = findViewById(R.id.edtNomeAnimal);
+        edtIdadeAnimal         = findViewById(R.id.edtIdadeAnimal);
+        txvRacaAnimalEdit      = findViewById(R.id.txvRacaAnimalEdit);
+        txvLocalAnimalEdit     = findViewById(R.id.txvLocalAnimalEdit);
+        edtDescricao           = findViewById(R.id.edtDescricao);
+        rcvVacinaAnimal        = findViewById(R.id.rcvVacinaAnimal);
     }
 
     private void programarComponentes() {
@@ -298,17 +326,55 @@ public class PerfilAnimal extends AppCompatActivity {
             }
         });
 
+        /*
         btnAdotarAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 avisoAdotar();
             }
         });
+        */
 
         llyWhatsappDono.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 avisoWhatsApp();
+            }
+        });
+
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ativarModoEdicao();
+            }
+        });
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                desativarModoEdicao();
+            }
+        });
+
+        btnExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(PerfilAnimal.this);
+                builder.setIcon(R.drawable.ic_aviso);
+                builder.setTitle("Aviso");
+                builder.setMessage("\nDeseja realmente excluir?\nEssa operação NÃO poderá ser desfeita.")
+                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // TODO
+                            }
+                        })
+                        .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {}
+                        })
+                        .create()
+                        .show();
             }
         });
     }
@@ -381,7 +447,6 @@ public class PerfilAnimal extends AppCompatActivity {
                     txvNomeAnimal.setText(documentSnapshot.getString("nome"));
                     txvIdadeAnimal.setText(documentSnapshot.getString("idade"));
                     txvRacaAnimal.setText(documentSnapshot.getString("raca"));
-                    txvLocalAnimal.setText(documentSnapshot.getString("local"));
 
                     String descricao = documentSnapshot.getString("descricao");
                     txvDescricao.setText(descricao);
@@ -495,6 +560,10 @@ public class PerfilAnimal extends AppCompatActivity {
                     if (documentSnapshot != null) {
                         txvNomeDono.setText(documentSnapshot.getString("nome"));
                         txvLocalDono.setText(documentSnapshot.getString("rua"));
+                        txvLocalAnimal.setText(
+                                documentSnapshot.getString("cidade") +
+                                " - " +
+                                documentSnapshot.getString("estado"));
                         String foto = documentSnapshot.getString("foto");
                         if (foto != null && !foto.isEmpty()) {
                             imvFotoDonoAnimal.setBackgroundColor(getResources().getColor(R.color.transparent));
@@ -521,6 +590,10 @@ public class PerfilAnimal extends AppCompatActivity {
                     if (documentSnapshot != null) {
                         txvNomeDono.setText(documentSnapshot.getString("nome"));
                         txvLocalDono.setText(documentSnapshot.getString("rua"));
+                        txvLocalAnimal.setText(
+                                documentSnapshot.getString("cidade") +
+                                " - " +
+                                documentSnapshot.getString("estado"));
                         emailDestinatario = documentSnapshot.getString("email");
                         String foto = documentSnapshot.getString("foto");
                         if (foto != null && !foto.isEmpty()) {
@@ -529,7 +602,7 @@ public class PerfilAnimal extends AppCompatActivity {
                         }
                         nomeDono   = documentSnapshot.getString("nome");
                         numeroDono = documentSnapshot.getString("celular");
-                        btnAdotarAnimal.setVisibility(View.VISIBLE);
+                        //btnAdotarAnimal.setVisibility(View.VISIBLE);
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -608,8 +681,20 @@ public class PerfilAnimal extends AppCompatActivity {
     private void abrirWhatsApp(String numero) {
         if (aplicativoEstaInstalado(nomePacoteWhatsApp)) {
             Intent abrirWhatsApp = new Intent("android.intent.action.MAIN");
-            abrirWhatsApp.setComponent(new ComponentName(nomePacoteWhatsApp, "com.whatsapp.Conversation"));
+            abrirWhatsApp.setAction(Intent.ACTION_SEND);
             abrirWhatsApp.putExtra("jid", PhoneNumberUtils.stripSeparators(numero) + "@s.whatsapp.net");
+            abrirWhatsApp.putExtra(Intent.EXTRA_TEXT,
+                    getResources().getString(R.string.text_whatsappMessageStart)
+                            + " "
+                            + getResources().getString(R.string.text_whatsappMessageStartAnimal)
+                            + " "
+                            + nomeAnimal
+                            + " "
+                            + getResources().getString(R.string.text_whatsappMessageBody)
+                            + " "
+                            + getResources().getString(R.string.text_whatsappMessageEndAnimal));
+            abrirWhatsApp.setType("text/plain");
+            abrirWhatsApp.setPackage(nomePacoteWhatsApp);
             startActivity(abrirWhatsApp);
         } else {
             Uri linkPlayStore = Uri.parse("market://details?id=" + nomePacoteWhatsApp);
@@ -626,6 +711,40 @@ public class PerfilAnimal extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             return false;
         }
+    }
+
+    private void ativarModoEdicao() {
+        modoEdicao = true;
+        llyNomeAnimal.setVisibility(View.GONE);
+        llyNomeAnimalEdit.setVisibility(View.VISIBLE);
+        llyDescricaoNormal.setVisibility(View.GONE);
+        llyDescricaoEdit.setVisibility(View.VISIBLE);
+        llyPerfilAnimalOpcoes1.setVisibility(View.GONE);
+        llyPerfilAnimalOpcoes2.setVisibility(View.VISIBLE);
+        llyVacinasNormal.setVisibility(View.GONE);
+        llyVacinasEdit.setVisibility(View.VISIBLE);
+
+        edtNomeAnimal.setText(txvNomeAnimal.getText());
+        edtIdadeAnimal.setText(txvIdadeAnimal.getText());
+        txvRacaAnimalEdit.setText(txvRacaAnimal.getText());
+        txvLocalAnimalEdit.setText(txvLocalAnimal.getText());
+        edtDescricao.setText(descricaoCompleta);
+        llyDonoAnimal.setForeground(getResources().getDrawable(R.drawable.color_brighten_1));
+    }
+
+    private void desativarModoEdicao() {
+        modoEdicao = false;
+        atualizouFoto = false;
+        feedbackAtualizou = 0;
+        llyNomeAnimal.setVisibility(View.VISIBLE);
+        llyNomeAnimalEdit.setVisibility(View.GONE);
+        llyDescricaoNormal.setVisibility(View.VISIBLE);
+        llyDescricaoEdit.setVisibility(View.GONE);
+        llyVacinasNormal.setVisibility(View.VISIBLE);
+        llyVacinasEdit.setVisibility(View.GONE);
+        llyPerfilAnimalOpcoes1.setVisibility(View.VISIBLE);
+        llyPerfilAnimalOpcoes2.setVisibility(View.GONE);
+        llyDonoAnimal.setForeground(getResources().getDrawable(R.drawable.color_transparent));
     }
 
     @Override

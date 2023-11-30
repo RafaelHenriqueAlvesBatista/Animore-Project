@@ -88,7 +88,6 @@ public class PerfilUsuario extends AppCompatActivity {
     private boolean atualizouFoto = false;
     private int feedbackAtualizou = 0;
     private boolean excluindo = false;
-    private boolean excluindoConta = false;
     private Uri uriFoto;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String usuarioID;

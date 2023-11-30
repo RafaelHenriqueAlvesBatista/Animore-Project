@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             Button item2 = findViewById(R.id.item2);
             Button item3 = findViewById(R.id.item3);
             Button item4 = findViewById(R.id.item4);
+            Button item5 = findViewById(R.id.item5);
             Button menu1 = findViewById(R.id.menu1);
             Button fragment1 = findViewById(R.id.fragment1);
             Button fragment2 = findViewById(R.id.fragment2);
@@ -212,24 +213,31 @@ public class MainActivity extends AppCompatActivity {
                     onResume();
                 }
             });
-            menu1.setOnClickListener(new View.OnClickListener() {
+            item5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     tela = 20;
                     onResume();
                 }
             });
-            fragment1.setOnClickListener(new View.OnClickListener() {
+            menu1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     tela = 21;
                     onResume();
                 }
             });
-            fragment2.setOnClickListener(new View.OnClickListener() {
+            fragment1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     tela = 22;
+                    onResume();
+                }
+            });
+            fragment2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tela = 23;
                     onResume();
                 }
             });
@@ -285,8 +293,20 @@ public class MainActivity extends AppCompatActivity {
 
                     if (aplicativoEstaInstalado(nomePacoteWhatsApp)) {
                         Intent abrirWhatsApp = new Intent("android.intent.action.MAIN");
-                        abrirWhatsApp.setComponent(new ComponentName(nomePacoteWhatsApp, "com.whatsapp.Conversation"));
+                        abrirWhatsApp.setAction(Intent.ACTION_SEND);
                         abrirWhatsApp.putExtra("jid", PhoneNumberUtils.stripSeparators(numeroTelefoneTeste) + "@s.whatsapp.net");
+                        abrirWhatsApp.putExtra(Intent.EXTRA_TEXT,
+                                  getResources().getString(R.string.text_whatsappMessageStart)
+                                        + " "
+                                        + getResources().getString(R.string.text_whatsappMessageStartAnimal)
+                                        + " "
+                                        + "Fulano de Tal"
+                                        + " "
+                                        + getResources().getString(R.string.text_whatsappMessageBody)
+                                        + " "
+                                        + getResources().getString(R.string.text_whatsappMessageEndAnimal));
+                        abrirWhatsApp.setType("text/plain");
+                        abrirWhatsApp.setPackage(nomePacoteWhatsApp);
                         startActivity(abrirWhatsApp);
                     } else {
                         Uri linkPlayStore = Uri.parse("market://details?id=" + nomePacoteWhatsApp);
@@ -468,18 +488,23 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.item_animais_tela_inicial);
         }
 
-        // PRIMEIRO MENU - LAYOUT MENU
+        // QUINTO ITEM - LAYOUT LISTA ACESSORIOS TELA INICIO
         if (tela == 20) {
+            setContentView(R.layout.item_acessorios_tela_inicial);
+        }
+
+        // PRIMEIRO MENU - LAYOUT MENU
+        if (tela == 21) {
             setContentView(R.layout.menu_head);
         }
 
         // PRIMEIRO FRAGMENT - LISTA MEUS ANIMAIS
-        if (tela == 21) {
+        if (tela == 22) {
             setContentView(R.layout.fragment_meus_animais);
         }
 
         // SEGUNDO FRAGMENT - LISTA MEUS ACESSORIOS
-        if (tela == 22) {
+        if (tela == 23) {
             setContentView(R.layout.fragment_meus_acessorios);
         }
     }

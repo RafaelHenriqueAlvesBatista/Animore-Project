@@ -3,7 +3,7 @@ package com.example.animoreproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -18,13 +18,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.animoreproject.classes.AdapterAcessorioTelaInicial;
 import com.example.animoreproject.classes.AdapterAnimalTelaInicial;
-import com.example.animoreproject.classes.AdapterMeuAnimal;
+import com.example.animoreproject.classes.ItemAcessorioTelaInicial;
 import com.example.animoreproject.classes.ItemAnimalTelaInicial;
-import com.example.animoreproject.classes.ItemMeuAnimal;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -40,17 +41,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class TelaInicial extends AppCompatActivity {
 
     // VARIAVEIS DA ACTIVITY
     private List<ItemAnimalTelaInicial> animalInicial;
     private AdapterAnimalTelaInicial animalAdapter;
-    private String[] dadosListaAnimal;
+    private List<ItemAcessorioTelaInicial> acessorioInicial;
+    private AdapterAcessorioTelaInicial acessorioAdapter;
+    private boolean footerOculto = false;
 
     // COMPONENTES TOOLBAR
     private ImageButton botaoMenu, botaoCompartilhar;
@@ -71,6 +72,11 @@ public class TelaInicial extends AppCompatActivity {
     private MenuItem mnuOpcoes;
     private MenuItem mnuSair;
 
+    // COMPONENTES FOOTER
+    private CardView btnFooterMenuResize;
+    private LinearLayout llyFooterMenuOpcao1, llyFooterMenuOpcao2, llyFooterMenuOpcao3;
+    private ConstraintLayout clyMenuFooter;
+
     // ATRIBUTOS USUARIO
     private TextView txvNomeUsuario, atributoValorUsuario1, atributoValorUsuario2, atributoValorUsuario3;
     private ImageView imvFotoUsuario;
@@ -79,17 +85,8 @@ public class TelaInicial extends AppCompatActivity {
     private ImageButton imbProcurarAnimais, imbProcurarMicrofone;
     private TextInputEditText edtBusca;
 
-    // ANIMAIS EM DESTAQUE
-    private RecyclerView rcvAnimaisTelaInicial;
-
-    // CAMPOS ITENS EM ALTA
-    private ConstraintLayout clyAcessorio1, clyAcessorio2, clyAcessorio3, clyAcessorio4, clyAcessorio5, clyAcessorio6, clyAcessorio7, clyAcessorio8, clyAcessorio9, clyAcessorio10;
-    private TextView txvNomeAcessorio1, txvNomeAcessorio2, txvNomeAcessorio3, txvNomeAcessorio4, txvNomeAcessorio5, txvNomeAcessorio6, txvNomeAcessorio7, txvNomeAcessorio8, txvNomeAcessorio9, txvNomeAcessorio10;
-    private ImageView imvAcessorio1, imvAcessorio2, imvAcessorio3, imvAcessorio4, imvAcessorio5, imvAcessorio6, imvAcessorio7, imvAcessorio8, imvAcessorio9, imvAcessorio10;
-
-    // ATRIBUTOS ITENS EM ALTA
-    private ImageButton imvBolsaAcessorio1, imvBolsaAcessorio2, imvBolsaAcessorio3, imvBolsaAcessorio4, imvBolsaAcessorio5, imvBolsaAcessorio6, imvBolsaAcessorio7, imvBolsaAcessorio8, imvBolsaAcessorio9, imvBolsaAcessorio10;
-    private ImageButton imvInfoAcessorio1, imvInfoAcessorio2, imvInfoAcessorio3, imvInfoAcessorio4, imvInfoAcessorio5, imvInfoAcessorio6, imvInfoAcessorio7, imvInfoAcessorio8, imvInfoAcessorio9, imvInfoAcessorio10;
+    // LISTA ANIMAIS E ACESSORIOS
+    private RecyclerView rcvAnimaisTelaInicial, rcvAcessoriosTelaInicial;
 
     // ATRIBUTOS ESTATISTICAS
     private TextView txvEstatisticasUsuarios, txvEstatisticasAnimais, txvEstatisticasAcessorios, txvEstatisticasDoacoes;
@@ -107,11 +104,9 @@ public class TelaInicial extends AppCompatActivity {
         instanciarComponentes();
         programarComponentes();
         recuperarDados();
-        for (int i = 0; i <= 4; i++) {
-            depurarListaAcessorios(i);
-        }
         atualizarEstatisticas();
-        popularLista();
+        popularListaAnimais();
+        popularListaAcessorios();
     }
 
     private void procurarUsuarioAtual() {
@@ -139,6 +134,12 @@ public class TelaInicial extends AppCompatActivity {
         mnuOpcoes                 = menu.findItem(R.id.menu_opcoes);
         mnuSair                   = menu.findItem(R.id.menu_sair);
 
+        clyMenuFooter             = findViewById(R.id.clyMenuFooter);
+        btnFooterMenuResize       = findViewById(R.id.btnFooterMenuResize);
+        llyFooterMenuOpcao1       = findViewById(R.id.llyFooterMenuOpcao1);
+        llyFooterMenuOpcao2       = findViewById(R.id.llyFooterMenuOpcao2);
+        llyFooterMenuOpcao3       = findViewById(R.id.llyFooterMenuOpcao3);
+
         txvNomeUsuario            = findViewById(R.id.txvNomeUsuario);
         atributoValorUsuario1     = findViewById(R.id.atributoValorUsuario1);
         atributoValorUsuario2     = findViewById(R.id.atributoValorUsuario2);
@@ -151,56 +152,7 @@ public class TelaInicial extends AppCompatActivity {
 
         rcvAnimaisTelaInicial     = findViewById(R.id.rcvAnimaisTelaInicial);
 
-        clyAcessorio1             = findViewById(R.id.clyAcessorio1);
-        txvNomeAcessorio1         = findViewById(R.id.txvNomeAcessorio1);
-        imvAcessorio1             = findViewById(R.id.imvAcessorio1);
-        imvBolsaAcessorio1        = findViewById(R.id.imvBolsaAcessorio1);
-        imvInfoAcessorio1         = findViewById(R.id.imvInfoAcessorio1);
-        clyAcessorio2             = findViewById(R.id.clyAcessorio2);
-        txvNomeAcessorio2         = findViewById(R.id.txvNomeAcessorio2);
-        imvAcessorio2             = findViewById(R.id.imvAcessorio2);
-        imvBolsaAcessorio2        = findViewById(R.id.imvBolsaAcessorio2);
-        imvInfoAcessorio2         = findViewById(R.id.imvInfoAcessorio2);
-        clyAcessorio3             = findViewById(R.id.clyAcessorio3);
-        txvNomeAcessorio3         = findViewById(R.id.txvNomeAcessorio3);
-        imvAcessorio3             = findViewById(R.id.imvAcessorio3);
-        imvBolsaAcessorio3        = findViewById(R.id.imvBolsaAcessorio3);
-        imvInfoAcessorio3         = findViewById(R.id.imvInfoAcessorio3);
-        clyAcessorio4             = findViewById(R.id.clyAcessorio4);
-        txvNomeAcessorio4         = findViewById(R.id.txvNomeAcessorio4);
-        imvAcessorio4             = findViewById(R.id.imvAcessorio4);
-        imvBolsaAcessorio4        = findViewById(R.id.imvBolsaAcessorio4);
-        imvInfoAcessorio4         = findViewById(R.id.imvInfoAcessorio4);
-        clyAcessorio5             = findViewById(R.id.clyAcessorio5);
-        txvNomeAcessorio5         = findViewById(R.id.txvNomeAcessorio5);
-        imvAcessorio5             = findViewById(R.id.imvAcessorio5);
-        imvBolsaAcessorio5        = findViewById(R.id.imvBolsaAcessorio5);
-        imvInfoAcessorio5         = findViewById(R.id.imvInfoAcessorio5);
-        clyAcessorio6             = findViewById(R.id.clyAcessorio6);
-        txvNomeAcessorio6         = findViewById(R.id.txvNomeAcessorio6);
-        imvAcessorio6             = findViewById(R.id.imvAcessorio6);
-        imvBolsaAcessorio6        = findViewById(R.id.imvBolsaAcessorio6);
-        imvInfoAcessorio6         = findViewById(R.id.imvInfoAcessorio6);
-        clyAcessorio7             = findViewById(R.id.clyAcessorio7);
-        txvNomeAcessorio7         = findViewById(R.id.txvNomeAcessorio7);
-        imvAcessorio7             = findViewById(R.id.imvAcessorio7);
-        imvBolsaAcessorio7        = findViewById(R.id.imvBolsaAcessorio7);
-        imvInfoAcessorio7         = findViewById(R.id.imvInfoAcessorio7);
-        clyAcessorio8             = findViewById(R.id.clyAcessorio8);
-        txvNomeAcessorio8         = findViewById(R.id.txvNomeAcessorio8);
-        imvAcessorio8             = findViewById(R.id.imvAcessorio8);
-        imvBolsaAcessorio8        = findViewById(R.id.imvBolsaAcessorio8);
-        imvInfoAcessorio8         = findViewById(R.id.imvInfoAcessorio8);
-        clyAcessorio9             = findViewById(R.id.clyAcessorio9);
-        txvNomeAcessorio9         = findViewById(R.id.txvNomeAcessorio9);
-        imvAcessorio9             = findViewById(R.id.imvAcessorio9);
-        imvBolsaAcessorio9        = findViewById(R.id.imvBolsaAcessorio9);
-        imvInfoAcessorio9         = findViewById(R.id.imvInfoAcessorio9);
-        clyAcessorio10            = findViewById(R.id.clyAcessorio10);
-        txvNomeAcessorio10        = findViewById(R.id.txvNomeAcessorio10);
-        imvAcessorio10            = findViewById(R.id.imvAcessorio10);
-        imvBolsaAcessorio10       = findViewById(R.id.imvBolsaAcessorio10);
-        imvInfoAcessorio10        = findViewById(R.id.imvInfoAcessorio10);
+        rcvAcessoriosTelaInicial  = findViewById(R.id.rcvAcessoriosTelaInicial);
 
         txvEstatisticasUsuarios   = findViewById(R.id.txvEstatisticasUsuarios);
         txvEstatisticasAnimais    = findViewById(R.id.txvEstatisticasAnimais);
@@ -289,6 +241,25 @@ public class TelaInicial extends AppCompatActivity {
             }
         });
 
+        btnFooterMenuResize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!footerOculto) {
+                    drlPagina.animate().scaleY(1.15f).setDuration(300).start();
+                    drlPagina.animate().translationY(125).setDuration(300).start();
+                    btnFooterMenuResize.animate().translationY(125).setDuration(300).start();
+                    clyMenuFooter.animate().translationY(125).setDuration(300).start();
+                    footerOculto = true;
+                } else {
+                    drlPagina.animate().scaleY(1).setDuration(300).start();
+                    drlPagina.animate().translationY(-35).setDuration(300).start();
+                    btnFooterMenuResize.animate().translationY(-35).setDuration(300).start();
+                    clyMenuFooter.animate().translationY(-35).setDuration(300).start();
+                    footerOculto = false;
+                }
+            }
+        });
+
         txvNomeUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -350,65 +321,6 @@ public class TelaInicial extends AppCompatActivity {
         });
     }
 
-    private void depurarListaAcessorios(int numListaAcessorio) {
-        switch (numListaAcessorio) {
-            case 1:
-                clyAcessorio1.setVisibility(View.VISIBLE);
-                imvAcessorio1.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio1.setText(R.string.test_placeholderText);
-                break;
-            case 2:
-                clyAcessorio2.setVisibility(View.VISIBLE);
-                imvAcessorio2.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio2.setText(R.string.test_placeholderText);
-                break;
-            case 3:
-                clyAcessorio3.setVisibility(View.VISIBLE);
-                imvAcessorio3.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio3.setText(R.string.test_placeholderText);
-                break;
-            case 4:
-                clyAcessorio4.setVisibility(View.VISIBLE);
-                imvAcessorio4.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio4.setText(R.string.test_placeholderText);
-                break;
-            case 5:
-                clyAcessorio5.setVisibility(View.VISIBLE);
-                imvAcessorio5.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio5.setText(R.string.test_placeholderText);
-                break;
-            case 6:
-                clyAcessorio6.setVisibility(View.VISIBLE);
-                imvAcessorio6.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio6.setText(R.string.test_placeholderText);
-                break;
-            case 7:
-                clyAcessorio7.setVisibility(View.VISIBLE);
-                imvAcessorio7.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio7.setText(R.string.test_placeholderText);
-                break;
-            case 8:
-                clyAcessorio8.setVisibility(View.VISIBLE);
-                imvAcessorio8.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio8.setText(R.string.test_placeholderText);
-                break;
-            case 9:
-                clyAcessorio9.setVisibility(View.VISIBLE);
-                imvAcessorio9.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio9.setText(R.string.test_placeholderText);
-                break;
-            case 10:
-                clyAcessorio10.setVisibility(View.VISIBLE);
-                imvAcessorio10.setBackground(AppCompatResources.getDrawable(TelaInicial.this, R.drawable.ic_launcher_background));
-                txvNomeAcessorio10.setText(R.string.test_placeholderText);
-                break;
-            default:
-                System.out.println("ERRO AO DEPURAR LISTA!");
-                System.out.println("NUMLISTAACESSORIO: " + numListaAcessorio);
-                break;
-        }
-    }
-
     private void atualizarEstatisticas() {
         DocumentReference documentReferenceEstatisticas;
         documentReferenceEstatisticas = db.collection("Estatisticas").document("Estatisticas");
@@ -430,7 +342,7 @@ public class TelaInicial extends AppCompatActivity {
         });
     }
 
-    private void popularLista() {
+    private void popularListaAnimais() {
         animalInicial = new ArrayList<>();
         Map<String, List<ItemAnimalTelaInicial>> animaisPorDono = new HashMap<>();
 
@@ -480,7 +392,7 @@ public class TelaInicial extends AppCompatActivity {
                             animalInicial.addAll(animaisDoDono);
                         }
 
-                        montarLista();
+                        montarListaAnimais();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -490,7 +402,7 @@ public class TelaInicial extends AppCompatActivity {
                 });
     }
 
-    private void montarLista() {
+    private void montarListaAnimais() {
         animalAdapter = new AdapterAnimalTelaInicial(animalInicial, new AdapterAnimalTelaInicial.OnAnimalClickListener() {
             @Override
             public void onAnimalClick(String IDanimal) {
@@ -502,6 +414,76 @@ public class TelaInicial extends AppCompatActivity {
         LinearLayoutManager linearLayoutManagerHorizontal = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rcvAnimaisTelaInicial.setLayoutManager(linearLayoutManagerHorizontal);
         rcvAnimaisTelaInicial.setAdapter(animalAdapter);
+    }
+
+    private void popularListaAcessorios() {
+        acessorioInicial = new ArrayList<>();
+        Map<String, List<ItemAcessorioTelaInicial>> acessoriosPorDono = new HashMap<>();
+
+        db.collection("Acessorios")
+                .limit(10)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            String dono = document.getString("dono");
+                            List<ItemAcessorioTelaInicial> acessoriosDoDono = acessoriosPorDono.get(dono);
+
+                            if (acessoriosDoDono == null) {
+                                acessoriosDoDono = new ArrayList<>();
+                                acessoriosPorDono.put(dono, acessoriosDoDono);
+                            }
+
+                            if (acessoriosDoDono.size() < 2) {
+                                String acessorioId      = document.getId();
+                                String foto1         = document.getString("foto1");
+                                String foto2         = document.getString("foto2");
+                                String foto3         = document.getString("foto3");
+                                String foto4         = document.getString("foto4");
+                                String foto5         = document.getString("foto5");
+                                String nome          = document.getString("nome");
+                                ImageView imvNaoNulo = findViewById(R.id.imvFotoAcessorio);
+
+                                String[] fotos = {foto1, foto2, foto3, foto4, foto5};
+                                String fotoNaoVazia = null;
+
+                                for (String foto : fotos) {
+                                    if (foto != null && !foto.isEmpty()) {
+                                        fotoNaoVazia = foto;
+                                        break;
+                                    }
+                                }
+
+                                acessoriosDoDono.add(new ItemAcessorioTelaInicial(acessorioId, nome, fotoNaoVazia, imvNaoNulo));
+                            }
+                        }
+                        for (List<ItemAcessorioTelaInicial> acessoriosDoDono : acessoriosPorDono.values()) {
+                            acessorioInicial.addAll(acessoriosDoDono);
+                        }
+
+                        montarListaAcessorios();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(TelaInicial.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void montarListaAcessorios() {
+        acessorioAdapter = new AdapterAcessorioTelaInicial(acessorioInicial, new AdapterAcessorioTelaInicial.OnAcessorioClickListener() {
+            @Override
+            public void onAcessorioClick(String IDacessorio) {
+                Intent abrirPerfil = new Intent(TelaInicial.this, PerfilAcessorio.class);
+                abrirPerfil.putExtra("IDacessorio", IDacessorio);
+                startActivity(abrirPerfil);
+            }
+        });
+        LinearLayoutManager linearLayoutManagerHorizontal = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rcvAcessoriosTelaInicial.setLayoutManager(linearLayoutManagerHorizontal);
+        rcvAcessoriosTelaInicial.setAdapter(acessorioAdapter);
     }
 
     @Override
