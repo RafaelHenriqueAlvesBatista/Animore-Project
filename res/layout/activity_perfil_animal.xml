@@ -154,6 +154,8 @@
                                 android:layout_marginBottom="100dp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            <!-- DADOS DO PERFIL - MODO NORMAL -->
                             <LinearLayout
                                 android:id="@+id/llyNomeAnimal"
                                 android:layout_width="match_parent"
@@ -257,8 +259,118 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginBottom="0dp"/>
                             </LinearLayout>
+
+                            <!-- DADOS DO PERFIL - MODO EDICAO -->
+                            <LinearLayout
+                                android:id="@+id/llyNomeAnimalEdit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="vertical"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginBottom="50dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/llyBordaFoto"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:visibility="gone">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edtNomeAnimal"
+                                    android:layout_width="310dp"
+                                    android:layout_height="45dp"
+                                    android:backgroundTint="@color/text_700"
+                                    android:textColor="@color/text_900"
+                                    android:textSize="20sp"
+                                    android:maxLength="100"
+                                    android:inputType="textPersonName"
+                                    android:ellipsize="end"
+                                    android:gravity="center_horizontal"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginEnd="20dp"/>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="horizontal">
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/edtIdadeAnimal"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="@color/text_700"
+                                        android:textColor="@color/text_900"
+                                        android:textSize="16sp"
+                                        android:maxLength="3"
+                                        android:inputType="textPostalAddress"
+                                        android:ellipsize="end"
+                                        android:gravity="center_horizontal"/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/text_years"
+                                        android:textStyle="bold"
+                                        android:textColor="@color/text_700"
+                                        android:textSize="18sp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginEnd="0dp"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginEnd="0dp">
+                                    <ImageView
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:background="@drawable/ic_menu_animal"
+                                        android:backgroundTint="@color/text_700"
+                                        android:contentDescription="@string/content_paw1"/>
+                                    <TextView
+                                        android:id="@+id/txvRacaAnimalEdit"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/text_600"
+                                        android:textSize="16sp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:layout_gravity="center_vertical"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginEnd="0dp">
+                                    <ImageView
+                                        android:layout_width="40dp"
+                                        android:layout_height="35dp"
+                                        android:background="@drawable/ic_localizacao"
+                                        android:backgroundTint="@color/text_700"
+                                        android:contentDescription="@string/content_paw1"/>
+                                    <TextView
+                                        android:id="@+id/txvLocalAnimalEdit"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/text_600"
+                                        android:textSize="16sp"
+                                        android:ellipsize="end"
+                                        android:maxLines="1"
+                                        android:layout_gravity="center_vertical"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/text_700"
+                                    android:orientation="horizontal"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginEnd="20dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="0dp"/>
+                            </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
+                        <!--
                         <LinearLayout
                             android:id="@+id/btnAdotarAnimal"
                             android:layout_width="225dp"
@@ -292,41 +404,90 @@
                                 android:textSize="19sp"
                                 android:textStyle="bold"/>
                         </LinearLayout>
+                        -->
 
                         <LinearLayout
                             android:id="@+id/llyDescricao"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:orientation="horizontal"
                             android:layout_margin="15dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/btnAdotarAnimal">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/title_description"
-                                android:textStyle="bold"
-                                android:textSize="22sp"
-                                android:textColor="@color/black"
-                                android:layout_marginBottom="8dp"/>
-                            <TextView
-                                android:id="@+id/txvDescricao"
+                            app:layout_constraintTop_toBottomOf="@id/clyFotoPerfilAnimal">
+
+                            <!-- DESCRICAO DO ANIMAL - MODO NORMAL -->
+                            <LinearLayout
+                                android:id="@+id/llyDescricaoNormal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/text_700"
-                                android:textSize="14sp"/>
-                            <TextView
-                                android:id="@+id/txvLerMais"
-                                android:layout_width="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_description"
+                                    android:textStyle="bold"
+                                    android:textSize="22sp"
+                                    android:textColor="@color/black"
+                                    android:layout_marginBottom="8dp"/>
+                                <TextView
+                                    android:id="@+id/txvDescricao"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/text_700"
+                                    android:textSize="14sp"/>
+                                <TextView
+                                    android:id="@+id/txvLerMais"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/btn_readMore"
+                                    android:textColor="@color/text_700"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:stateListAnimator="@animator/button_click_effect_3"
+                                    android:visibility="gone"/>
+                            </LinearLayout>
+
+                            <!-- DESCRICAO DO ANIMAL - MODO EDICAO -->
+                            <LinearLayout
+                                android:id="@+id/llyDescricaoEdit"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/btn_readMore"
-                                android:textColor="@color/text_700"
-                                android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:stateListAnimator="@animator/button_click_effect_3"
-                                android:visibility="gone"/>
+                                android:orientation="vertical"
+                                android:visibility="gone">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/title_description"
+                                    android:textStyle="bold"
+                                    android:textSize="22sp"
+                                    android:textColor="@color/black"
+                                    android:layout_marginBottom="8dp"/>
+                                <LinearLayout
+                                    android:layout_width="325dp"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/layout_borda_quadrada"
+                                    android:padding="5dp"
+                                    android:layout_gravity="center_horizontal">
+                                    <EditText
+                                        android:id="@+id/edtDescricao"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="@color/transparent"
+                                        android:textSize="16sp"
+                                        android:hint="@string/hint_animalDescription"
+                                        android:textColorHint="@color/text_600"
+                                        android:gravity="top"
+                                        android:lines="5"
+                                        android:inputType="textMultiLine"
+                                        android:scrollbars="vertical"
+                                        android:maxLength="512"
+                                        android:autofillHints="name"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <TextView
@@ -493,6 +654,7 @@
                                     android:layout_marginStart="0dp"
                                     android:layout_marginEnd="12dp"/>
                                 <LinearLayout
+                                    android:id="@+id/llyVacinasNormal"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
@@ -600,6 +762,27 @@
                                         android:textStyle="bold"
                                         android:textSize="15sp"
                                         android:textColor="@color/text_700"/>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/llyVacinasEdit"
+                                    android:layout_width="200dp"
+                                    android:layout_height="85dp"
+                                    android:foreground="@drawable/layout_borda_quadrada"
+                                    android:orientation="vertical"
+                                    android:visibility="gone">
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scrollbars="vertical"
+                                        android:scrollbarSize="5dp"
+                                        android:scrollbarFadeDuration="0"
+                                        android:fillViewport="true">
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/rcvVacinaAnimal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"/>
+                                    </androidx.core.widget.NestedScrollView>
                                 </LinearLayout>
                             </LinearLayout>
 

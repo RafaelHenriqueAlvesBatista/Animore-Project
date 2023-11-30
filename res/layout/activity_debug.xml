@@ -191,6 +191,12 @@
                 android:text="item 4 - item_animais_tela_inicial"
                 android:backgroundTint="@color/triadic2_700"/>
             <Button
+                android:id="@+id/item5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="item 5 - item_acessorios_tela_inicial"
+                android:backgroundTint="@color/triadic2_700"/>
+            <Button
                 android:id="@+id/menu1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
