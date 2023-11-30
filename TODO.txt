@@ -7,7 +7,12 @@
 - ~~Tirar o diagrama de classes, já que o sistema é híbrido, em relação a orientação a objeto.~~
 - ~~Ver a comunicação com o Whatsapp, quando enviar mensagens ao dono do animal.~~
 - ~~Arrumar a documentação do projeto. (diagramas e outros slides)~~
+- ~~Pesquisar pela Intent do Whatsapp, onde adiciona o parâmetro de texto para o usuário enviar para o dono.~~
+- ~~Fazer os menus da parte inferior uma opcao de aparecer e desaparecer, para obter mais visibilidade no app.~~
+- ~~Remover todos os componentes e códigos que foram comentados / obsoletos / não usados.~~
+
+- ## Revisar a apresentação!
+
 - Criar uma tabela de adoção para saber quando o animal está em processo de adoção.
 - Adicionar as tabelas do banco de dados nos campos de Raça e Tipo do animal, e Acessório respectivamente.
 - Na busca, fazer campos para filtrem a busca, como nome - raca - porte - dono, etc.
-- Fazer os menus da parte inferior uma opcao de aparecer e desaparecer, para obter mais visibilidade no app.
