@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_paginaInicial"
+        android:icon="@drawable/ic_menu_inicio"
+        android:title="Página Inicial"/>
+    <item
+        android:id="@+id/menu_perfil"
+        android:icon="@drawable/ic_menu_perfil"
+        android:title="Perfil" />
+    <item
+        android:id="@+id/menu_meusAnimais"
+        android:icon="@drawable/ic_menu_animal"
+        android:title="Meus Animais" />
+    <item
+        android:id="@+id/menu_sair"
+        android:icon="@drawable/ic_menu_deslogar"
+        android:title="Deslogar" />
+</menu>

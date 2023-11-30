@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/primary_800"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/imvMenuFotoUsuario"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@color/text_600"
+        android:src="@drawable/empty_profile"
+        android:foreground="@drawable/layout_borda_foto_2b"
+        android:contentDescription="@string/content_yourPhoto" />
+
+    <TextView
+        android:id="@+id/txvMenuNomeUsuario"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginTop="2dp"/>
+</LinearLayout>
