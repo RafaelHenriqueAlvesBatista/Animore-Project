@@ -31,3 +31,37 @@ refFoto4 : "" (string)
 refFoto5 : "" (string)
 
 tipo : "Brinquedo" (string)
+
+------------------------
+- tXXE8FqP423P7QPtJX5l -
+------------------------
+
+descricao : "Bola de praia que comprei para brincar com os amigos nas férias. Ninguém mais quis brincar com ela, então estou disponibilizando ela para quem quiser dar para uma criança brincar, ou algo parecido. aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" (string)
+
+dono : "bss9Se4Dm1MSOMCjCMQU78AlIHt1" (string)
+
+foto1 : "https://firebasestorage.googleapis.com/v0/b/animore-project.appspot.com/o/uploads%2FtXXE8FqP423P7QPtJX5l_a.png?alt=media&token=939f6256-fb27-44c9-b087-8db52c155226" (string)
+
+foto2 : "" (string)
+
+foto3 : "" (string)
+
+foto4 : "" (string)
+
+foto5 : "" (string)
+
+local : "São Francisco - Acre" (string)
+
+nome : "Bola de praia" (string)
+
+refFoto1 : "tXXE8FqP423P7QPtJX5l_a.png" (string)
+
+refFoto2 : "" (string)
+
+refFoto3 : "" (string)
+
+refFoto4 : "" (string)
+
+refFoto5 : "" (string)
+
+tipo : "Brinquedo" (string)
