@@ -1,4 +1,4 @@
-## Todo TCC
+# Todo TCC
 
 - ~~Mudar o nome do botão de visualizar foto, para outro que faça mais sentido.~~
 - ~~Testar como o perfil do animal se comporta com o ID de outro usuário.~~
@@ -10,9 +10,7 @@
 - ~~Pesquisar pela Intent do Whatsapp, onde adiciona o parâmetro de texto para o usuário enviar para o dono.~~
 - ~~Fazer os menus da parte inferior uma opcao de aparecer e desaparecer, para obter mais visibilidade no app.~~
 - ~~Remover todos os componentes e códigos que foram comentados / obsoletos / não usados.~~
-
+- ~~Atualizar a tela inicial, e o perfil do usuário, removendo os campos de rede social, e colocando o campo "numAcessorios" no lugar.~~
+- ~~Fazer a leitura e edição das vacinas do animal na tela de perfil.~~
+- ~~Fazer a exclusão dos animais e acessórios, quando o usuário tê-los e decidir excluir sua conta.~~
 - ## Revisar a apresentação!
-
-- Criar uma tabela de adoção para saber quando o animal está em processo de adoção.
-- Adicionar as tabelas do banco de dados nos campos de Raça e Tipo do animal, e Acessório respectivamente.
-- Na busca, fazer campos para filtrem a busca, como nome - raca - porte - dono, etc.
