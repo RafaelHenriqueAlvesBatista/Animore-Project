@@ -1,0 +1,373 @@
+<resources>
+    <!-- SISTEMA -->
+    <string name="app_name">Animore Project</string>
+    <string name="app_nameCut1">Anim</string>
+    <string name="app_nameCut2">re</string>
+    <string name="app_nameCut3">Project</string>
+    <string name="app_wip"><i>Aviso: Este aplicativo está em fase desenvolvimento.\nTodo o conteúdo demonstrado aqui está sujeito a mudanças.\nFique ligado para mais progressos do projeto!\n - Rafael, 2023.</i></string>
+    <string name="app_copyright">&#0169; Rafael Henrique Alves Batista - 2023</string>
+
+    <!-- TITULOS -->
+    <string name="title_login">Login</string>
+    <string name="title_forgotPassword">Esqueci a senha</string>
+    <string name="title_profileDetails">Detalhes do Perfil</string>
+    <string name="title_findBestFriend">Encontre o amigo dos seus sonhos</string>
+    <string name="title_featuredAnimals">Animais em destaque</string>
+    <string name="title_featuredAccesories">Itens em alta</string>
+    <string name="title_statistics">Estatísticas</string>
+    <string name="title_searchAnimals">Procurar Animais</string>
+    <string name="title_searchAccesories">Procurar Acessórios</string>
+    <string name="title_yourPhoto">Detalhes da foto:</string>
+    <string name="title_registerAnimal">Escolha o que deseja registrar:</string>
+    <string name="title_selectTypeAnimal">Selecione o tipo e raça do animal:</string>
+    <string name="title_photoAnimal">Imagem do animal:</string>
+    <string name="title_selectTypeAccesory">Selecione o tipo de acessório:</string>
+    <string name="title_photoAccesory">Imagem do acessório:</string>
+    <string name="title_myAnimals"><u> Meus animais </u></string>
+    <string name="title_description">Descrição</string>
+    <string name="title_statusAnimal">Status do Animal</string>
+    <string name="title_vacines">Vacinas</string>
+    <string name="title_imagesAnimal">Imagens do Animal</string>
+    <string name="title_ownerAnimal">Dono do Animal</string>
+    <string name="title_myAcessories"><u> Meus acessórios </u></string>
+    <string name="title_ownerAccesory">Dono do Acessório</string>
+    <string name="title_imagesAccesory">Imagens do Acessório</string>
+
+    <!-- TEXTOS -->
+    <string name="text_welcome_1">Bem vindo a Animore Project!\nEncontre o melhor amigo dos sonhos,\nou venha doar para os seus amigos\nde graça!\n\nVamos começar?</string>
+    <string name="text_welcome_2">Escolha uma função no aplicativo</string>
+    <string name="text_welcome_2_Donate">Função "Doar" selecionada!</string>
+    <string name="text_welcome_2_Adopt">Função "Adotar" selecionada!</string>
+    <string name="text_welcome_3">Conte-nos um pouco sobre você</string>
+    <string name="text_noRegister">Não tem cadastro?</string>
+    <string name="text_zero">0</string>
+    <string name="text_one">1</string>
+    <string name="text_two">2</string>
+    <string name="text_three">3</string>
+    <string name="text_four">4</string>
+    <string name="text_five">5</string>
+    <string name="text_hyphen">-</string>
+    <string name="text_topic">•</string>
+    <string name="text_forgotPasswordDescription">Informe o e-mail onde deseja redefinir a senha.</string>
+    <string name="text_years">anos</string>
+    <string name="text_weight">Kg</string>
+    <string name="text_noAnimals">Você ainda não possui nenhum animal registrado.\nFaça um registro pressionando o botão abaixo.</string>
+    <string name="text_noVacines">Nenhuma vacina.</string>
+    <string name="text_noDescription"><b>Sem descrição.</b></string>
+    <string name="text_noAcessories">A sua cesta está vazia.\nAdicione algo fazendo um registro abaixo.</string>
+    <string name="text_whatsappMessageStart">Olá tudo bem? Eu vi</string>
+    <string name="text_whatsappMessageStartAnimal">seu animal</string>
+    <string name="text_whatsappMessageStartAcessory">o item</string>
+    <string name="text_whatsappMessageBody">no aplicativo Animore Project, e tenho interesse em</string>
+    <string name="text_whatsappMessageEndAnimal">adotá-lo.</string>
+    <string name="text_whatsappMessageEndAcessory">obtê-lo.</string>
+
+    <!-- DESCRICOES -->
+    <string name="desc_animals1">Animais    </string>
+    <string name="desc_likes">Curtidas   </string>
+    <string name="desc_followers">Seguidores </string>
+    <string name="desc_search">Procurar</string>
+    <string name="desc_contacts">Contatos</string>
+    <string name="desc_events">Compromissos</string>
+    <string name="desc_home">Página Principal</string>
+    <string name="desc_users">Usuários</string>
+    <string name="desc_animals2">Animais</string>
+    <string name="desc_accesories">Acessórios</string>
+    <string name="desc_finishedDonations">Doações feitas</string>
+
+    <!-- LINKS -->
+    <string name="link_registerInvite"><u>Faça um agora mesmo!</u></string>
+    <string name="link_forgotPassword"><u>Esqueçi a senha.</u></string>
+
+    <!-- BOTOES -->
+    <string name="btn_start">Começar -></string>
+    <string name="btn_donate">Doar</string>
+    <string name="btn_adopt">Adotar</string>
+    <string name="btn_continue">Continuar -></string>
+    <string name="btn_enter">Entrar</string>
+    <string name="btn_back">Voltar</string>
+    <string name="btn_quit">Sair</string>
+    <string name="btn_cursorLeft">&#0060;</string>
+    <string name="btn_cursorRight">></string>
+    <string name="btn_viewPhoto">Detalhes da foto</string>
+    <string name="btn_importPhoto">Importar foto</string>
+    <string name="btn_sendEmail">Enviar e-mail</string>
+    <string name="btn_edit">+ Editar</string>
+    <string name="btn_delete">x Excluir</string>
+    <string name="btn_save">v Salvar</string>
+    <string name="btn_cancel">&#0060;- Cancelar</string>
+    <string name="btn_searchAnimals">Procurar Animais</string>
+    <string name="btn_searchAccessories">Procurar Acessórios</string>
+    <string name="btn_animal">Animal</string>
+    <string name="btn_accesory">Acessório</string>
+    <string name="btn_animalMale">Macho</string>
+    <string name="btn_animalFemale">Fêmea</string>
+    <string name="btn_animalUnknown">Não sabe</string>
+    <string name="btn_addPhoto">Adicionar foto ou vídeo</string>
+    <string name="btn_register">Registrar</string>
+    <string name="btn_registerAnimal">Cadastrar Animal</string>
+    <string name="btn_adoptAnimal">Adotar Animal</string>
+    <string name="btn_readMore">Ler Mais</string>
+    <string name="btn_readLess">Ler Menos</string>
+    <string name="btn_registerAcessory">Cadastrar Acessório</string>
+
+    <!-- FORMULARIO -->
+    <string name="prompt_name">Nome:</string>
+    <string name="prompt_phone">Número de celular:</string>
+    <string name="prompt_email">E-mail:</string>
+    <string name="prompt_password">Senha:</string>
+    <string name="prompt_address">Rua:</string>
+    <string name="prompt_district">Bairro:</string>
+    <string name="prompt_city">Cidade:</string>
+    <string name="prompt_state">Estado:</string>
+    <string name="prompt_photo">Foto:</string>
+    <string name="prompt_obligatorySymbol">*</string>
+    <string name="prompt_age">Idade:</string>
+    <string name="prompt_weight">Peso:</string>
+    <string name="prompt_vacines">Vacinas:</string>
+    <string name="prompt_sex">Sexo:</string>
+    <string name="prompt_descriptionAnimal">Descrição do animal:</string>
+    <string name="prompt_addPhotos">Adicionar fotos ou vídeos (mínimo 1)</string>
+    <string name="prompt_descriptionAccesory">Descrição do acessório:</string>
+
+    <!-- HINT DO FORMULARIO -->
+    <string name="hint_email">Digite o email&#8230;</string>
+    <string name="hint_password">Digite a senha&#8230;</string>
+    <string name="hint_name">Digite o nome&#8230;</string>
+    <string name="hint_phone">Digite o DDD + número&#8230;</string>
+    <string name="hint_phoneMask">+55 (00) 00000&#8211;0000</string>
+    <string name="hint_address">Informe a rua onde mora&#8230;</string>
+    <string name="hint_district">Informe o bairro&#8230;</string>
+    <string name="hint_city">Informe a cidade&#8230;</string>
+    <string name="hint_state">Informe o estado&#8230;</string>
+    <string name="hint_search_1">Procurar por animais, acessórios&#8230;</string>
+    <string name="hint_animalType">Tipo do animal</string>
+    <string name="hint_animalBreed">Raça do animal</string>
+    <string name="hint_animalName">Nome do animal&#8230;</string>
+    <string name="hint_animalAge">Idade do animal&#8230;</string>
+    <string name="hint_animalWeight">Peso do animal&#8230;</string>
+    <string name="hint_animalDescription">Escreva uma descrição ou história sobre o animal&#8230;</string>
+    <string name="hint_animalVacines">Vacinas do animal</string>
+    <string name="hint_accesoryType">Tipo de acessório</string>
+    <string name="hint_accesoryName">Nome do acessório&#8230;</string>
+    <string name="hint_accesoryDescription">Escreva uma descrição ou história sobre o acessório&#8230;</string>
+    <string name="hint_message">Mande uma mensagem&#8230;</string>
+
+    <!-- REDES SOCIAIS - LINKS -->
+    <string name="socialMedia_signInGoogle"><u>Continuar com Google</u></string>
+    <string name="socialMedia_signInFacebook"><u>Continuar com Facebook</u></string>
+    <string name="socialMedia_signInTwitter"><u>Continuar com Twitter</u></string>
+    <string name="socialMedia_signUpGoogle"><u>Registrar com Google</u></string>
+    <string name="socialMedia_signUpFacebook"><u>Registrar com Facebook</u></string>
+    <string name="socialMedia_signUpTwitter"><u>Registrar com Twitter</u></string>
+
+    <!-- DADOS DO USUARIO -->
+    <string name="user_name">Nome</string>
+    <string name="user_email">E-mail</string>
+    <string name="user_phone">Celular</string>
+    <string name="user_address">Rua</string>
+    <string name="user_district">Bairro</string>
+    <string name="user_state">Estado</string>
+    <string name="user_animals">Animais:</string>
+    <string name="user_followers">Seguidores:</string>
+    <string name="user_since">Desde:</string>
+    <string name="user_donations">Doações:</string>
+    <string name="user_likes">Curtidas:</string>
+
+    <!-- LISTAS DO SPINNER -->
+    <string-array name="animal_types">
+        <item>Cachorro</item>
+        <item>Gato</item>
+        <item>Pássaro</item>
+        <item>Rato</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_breedDog">
+        <item>Bulldog</item>
+        <item>Border Collie</item>
+        <item>Fox Paulistinha</item>
+        <item>Lhasa Apso</item>
+        <item>Pastor Alemão</item>
+        <item>Pinscher</item>
+        <item>Pug</item>
+        <item>Rottweiler</item>
+        <item>Shih Tzu</item>
+        <item>Yorkshire</item>
+        <item>SRD (Sem Raça Definida)</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_breedCat">
+        <item>Angorá Turco</item>
+        <item>Azul Russo</item>
+        <item>Gato Exótico</item>
+        <item>Gato Persa</item>
+        <item>Himalaio</item>
+        <item>Maine Coon</item>
+        <item>Ragdoll</item>
+        <item>Siamês</item>
+        <item>Snowshoe</item>
+        <item>Sphynx</item>
+        <item>SRD (Sem Raça Definida)</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_breedBird">
+        <item>Agapornis</item>
+        <item>Cacatua</item>
+        <item>Calopsita</item>
+        <item>Canário</item>
+        <item>Coleiro</item>
+        <item>Papagaio</item>
+        <item>Pardal</item>
+        <item>Periquito</item>
+        <item>Ring Neck</item>
+        <item>Galinha</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_breedRat">
+        <item>Camundongo</item>
+        <item>Chinchila</item>
+        <item>Gerbil</item>
+        <item>Porquinho-da-Índia</item>
+        <item>Ratazana</item>
+        <item>Rato-de-telhado</item>
+        <item>Rato da Noruega</item>
+        <item>Twister</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_breedOther">
+        <item>SRD (Sem Raça Definida)</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_vacinesDog">
+        <item>R8</item>
+        <item>Raiva</item>
+        <item>Gripe Canina</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_vacinesCat">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_vacinesBird">
+        <item>123</item>
+        <item>321</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_vacinesRat">
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="animal_vacinesOther">
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="accesory_types">
+        <item>Brinquedo</item>
+        <item>Blusa</item>
+        <item>Caixa</item>
+        <item>Casinha</item>
+        <item>Coleira</item>
+        <item>Ração</item>
+        <item>Outro</item>
+    </string-array>
+
+    <!-- VACINAS -->
+    <string name="vacine_dogFlu">Gripe Canina</string>
+    <string name="vacine_dogRabies">Raiva</string>
+    <string name="vacine_dogR8">R8</string>
+    <string name="vacine_other">Outro</string>
+
+    <!-- TITULO DAS NOTIFICACOES -->
+    <string name="notificationTitle_adoptionRequest">Solicitação de Adoção</string>
+
+    <!-- CONTEUDO DAS NOTIFICACOES -->
+    <string name="notificationBody_adoptionRequest">​ tem interesse em adotar o animal ​</string>
+
+    <!-- MENSAGENS DE FEEDBACK -->
+    <string name="message_emptyInputs">Por favor, preencha todos os campos!</string>
+    <string name="message_emptyInputs2">Há mais campos a preencher na segunda tela.</string>
+    <string name="message_registerSuccess">Cadastro realizado com sucesso!</string>
+    <string name="message_sendEmailSuccess">E-mail enviado com sucesso!</string>
+    <string name="message_updateSuccess">Atualização realizada com sucesso!</string>
+    <string name="message_deleteSuccess">Exclusão realizada com sucesso!</string>
+    <string name="message_signOutSuccess">Usuário deslogado com sucesso!</string>
+    <string name="message_registerAnimalSuccess">Animal cadastrado com sucesso!</string>
+    <string name="message_notificationSuccess">Notificacao enviada com sucesso!</string>
+    <string name="message_registerAcessorySuccess">Acessório cadastrado com sucesso!</string>
+
+    <!-- MENSAGENS DE ERRO -->
+    <string name="exception_registerWeakPassword">Digite uma senha com no mínimo 6 caracteres!</string>
+    <string name="exception_registerDuplicateEmail">Este usuário já foi cadastrado!</string>
+    <string name="exception_registerInvalidEmail">E-mail inválido!</string>
+    <string name="exception_registerAnotherError">Erro ao cadastrar. Por favor, tente novamente.</string>
+    <string name="exception_registerInvalidPhone">Número de telefone inválido!</string>
+    <!-- ______________________________ -->
+    <string name="exception_loginAnotherError">Erro ao realizar o login.</string>
+    <string name="exception_loginInvalidInputs">E-mail ou senha inválidos!</string>
+    <!-- ______________________________ -->
+    <string name="exception_anotherError">Falha ao realizar a tarefa.</string>
+    <!-- ______________________________ -->
+    <string name="exception_emptyInputs">Um ou mais campos estão vazios!</string>
+    <!-- ______________________________ -->
+    <string name="exception_emptyPhotos">Por favor, insira uma foto!</string>
+
+    <!-- CONTENT DESCRIPTIONS -->
+    <string name="content_walk1">Imagem de uma pessoa andando.</string>
+    <string name="content_dog1">Imagem de um cachorro.</string>
+    <string name="content_donate1">Imagem de duas mãos com um coração acima.</string>
+    <string name="content_paw1">Imagem de uma pata de cachorro.</string>
+    <string name="content_google">Ícone do Google.</string>
+    <string name="content_facebook">Ícone do Facebook.</string>
+    <string name="content_twitter">Ícone do Twitter.</string>
+    <string name="content_menu1">Botão de menu do aplicativo.</string>
+    <string name="content_menu2">Botão de compartilhar a página.</string>
+    <string name="content_userPhoto">Foto do usuário atual.</string>
+    <string name="content_dog2">Ícone de um cachorro.</string>
+    <string name="content_heart">Ícone de um coração.</string>
+    <string name="content_follower">Ícone de uma pessoa, usada para representar um seguidor.</string>
+    <string name="content_search">Ícone de uma lupa.</string>
+    <string name="content_microphone">Ícone de um microfone.</string>
+    <string name="content_animalPhoto">Foto de um animal.</string>
+    <string name="content_like">Ícone de uma mão com o polegar virado para cima.</string>
+    <string name="content_deslike">Ícone de uma mão com o polegar virado para baixo.</string>
+    <string name="content_contact">Ícone de um pessoa, usada para representar um contato.</string>
+    <string name="content_calendar">Ícone de um calendário.</string>
+    <string name="content_home">Ícone de uma casa, usada para representar a página inicial.</string>
+    <string name="content_back">Ícone de uma seta apontada para a esquerda.</string>
+    <string name="content_local">Ícone de uma seta de localização.</string>
+    <string name="content_clock">Ícone de um relógio.</string>
+    <string name="content_donate2">Ícone de uma mão com um coração acima.</string>
+    <string name="content_yourPhoto">Foto do seu perfil.</string>
+    <string name="content_editPhoto">Editar foto.</string>
+    <string name="content_accesoryPhoto">Foto de um acessório.</string>
+    <string name="content_add">Ícone de um sinal de mais.</string>
+    <string name="content_eye">Ícone de um olho.</string>
+    <string name="content_leaf">Ícone de uma folha.</string>
+    <string name="content_buy">Ícone de uma bolsa, usada para representar uma opção de comprar.</string>
+    <string name="content_info">Ícone de um símbolo de informação.</string>
+    <string name="content_messageMedia">Botão para enviar anexar um arquivo a mensagem.</string>
+    <string name="content_messageSend">Botão para enviar uma mensagem.</string>
+    <string name="content_basket">Ícone de uma cesta.</string>
+
+    <!-- TEXTOS DE TESTE -->
+    <string name="test_placeholderName">Fulano de Tal</string>
+    <string name="test_placeholderText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="test_placeholderParaph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="test_placeholderValue">1111111111111111111111111</string>
+    <string name="test_placeholderTitle">- Placeholder Title -</string>
+
+</resources>
