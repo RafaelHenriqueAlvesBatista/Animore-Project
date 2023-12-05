@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+            <Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbarApp"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/botaoMenu"
+                android:src="@drawable/ic_botao_menu"
+                android:background="@color/primary_500"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nomeApp"
+                android:textStyle="bold"
+                android:text="@string/app_name"
+                android:textSize="21sp"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/botaoMenu"
+                android:layout_marginStart="15dp"/>
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/botaoBuscar"
+                android:src="@drawable/ic_botao_compartilhar"
+                android:background="@color/primary_500"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- debug mode -"
+                android:textStyle="italic"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"/>
+            <Button
+                android:id="@+id/deslogar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="deslogar usuario"
+                android:backgroundTint="@color/secondary_500"/>
+            <Button
+                android:id="@+id/tela1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 1 - boas vindas"
+                android:backgroundTint="@color/primary_600"/>
+            <Button
+                android:id="@+id/tela2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 2 - escolha cargo"
+                android:backgroundTint="@color/primary_600"/>
+            <Button
+                android:id="@+id/tela3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 3 - login"
+                android:backgroundTint="@color/primary_600"/>
+            <Button
+                android:id="@+id/tela4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 4 - registrar"
+                android:backgroundTint="@color/primary_600"/>
+            <Button
+                android:id="@+id/tela5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 5 - esqueci senha"
+                android:backgroundTint="@color/primary_600"/>
+            <Button
+                android:id="@+id/tela6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 6 - tela inicial"
+                android:backgroundTint="@color/primary_900"/>
+            <Button
+                android:id="@+id/tela7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 7 - perfil usuario"
+                android:backgroundTint="@color/primary_900"/>
+            <Button
+                android:id="@+id/tela8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 8 - meus animais"
+                android:backgroundTint="@color/primary_900"/>
+            <Button
+                android:id="@+id/tela9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 9 - perfil animal"
+                android:backgroundTint="@color/primary_900"/>
+            <Button
+                android:id="@+id/tela10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 10 - perfil acessorio"
+                android:backgroundTint="@color/primary_900"/>
+            <Button
+                android:id="@+id/tela11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 11 - cadastro animal / acessorio"
+                android:backgroundTint="@color/primary_900"/>
+            <Button
+                android:id="@+id/tela12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 12 - configuracoes"
+                android:backgroundTint="@color/primary_900"/>
+            <Button
+                android:id="@+id/tela13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 13 - tela mensagem"
+                android:backgroundTint="@color/primary_900"/>
+            <Button
+                android:id="@+id/tela14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 14 - template"
+                android:backgroundTint="@color/primary_500"/>
+            <Button
+                android:id="@+id/tela15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tela 15 - apresentacao"
+                android:backgroundTint="@color/primary_500"/>
+            <Button
+                android:id="@+id/item1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="item 1 - item_checkbox"
+                android:backgroundTint="@color/triadic2_700"/>
+            <Button
+                android:id="@+id/item2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="item 2 - item_meus_animais"
+                android:backgroundTint="@color/triadic2_700"/>
+            <Button
+                android:id="@+id/item3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="item 3 - item_meus_acessorios"
+                android:backgroundTint="@color/triadic2_700"/>
+            <Button
+                android:id="@+id/item4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="item 4 - item_animais_tela_inicial"
+                android:backgroundTint="@color/triadic2_700"/>
+            <Button
+                android:id="@+id/item5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="item 5 - item_acessorios_tela_inicial"
+                android:backgroundTint="@color/triadic2_700"/>
+            <Button
+                android:id="@+id/menu1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="menu 1 - menu_head"
+                android:backgroundTint="@color/triadic2_400"/>
+            <Button
+                android:id="@+id/fragment1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fragment 1 - fragment_meus_animais"
+                android:backgroundTint="@color/triadic1_800"/>
+            <Button
+                android:id="@+id/fragment2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fragment 2 - fragment_meus_acessorios"
+                android:backgroundTint="@color/triadic1_800"/>
+            <Button
+                android:id="@+id/notificacao1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="notificacao 1 - teste"
+                android:backgroundTint="@color/analogous1_500"/>
+            <Button
+                android:id="@+id/notificacao2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="notificacao 2 - adocao solicitada"
+                android:backgroundTint="@color/analogous1_500"/>
+
+            <Button
+                android:id="@+id/servico1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="servico 1 - abrir whatsapp"
+                android:backgroundTint="@color/analogous2_600"/>
+            <Button
+                android:id="@+id/servico2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="servico 2 - abrir whatsapp numero dono animal"
+                android:backgroundTint="@color/analogous2_600"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
