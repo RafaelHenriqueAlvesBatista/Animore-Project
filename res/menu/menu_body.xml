@@ -13,14 +13,6 @@
         android:icon="@drawable/ic_menu_animal"
         android:title="Meus Animais" />
     <item
-        android:id="@+id/menu_mensagens"
-        android:icon="@drawable/ic_menu_mensagem"
-        android:title="Mensagens" />
-    <item
-        android:id="@+id/menu_opcoes"
-        android:icon="@drawable/ic_menu_configuracao"
-        android:title="Configurações" />
-    <item
         android:id="@+id/menu_sair"
         android:icon="@drawable/ic_menu_deslogar"
         android:title="Deslogar" />

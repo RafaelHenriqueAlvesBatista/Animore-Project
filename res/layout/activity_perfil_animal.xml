@@ -15,11 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp">
-            <Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/toolbarApp"
-                app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageButton
                 android:layout_width="50dp"
@@ -47,20 +42,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/botaoMenu"
                 android:layout_marginStart="15dp"/>
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/botaoBuscar"
-                android:src="@drawable/ic_botao_compartilhar"
-                android:background="@color/primary_500"
-                android:clickable="true"
-                android:focusable="true"
-                android:stateListAnimator="@animator/button_click_effect_1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="@string/content_menu2"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -73,7 +54,7 @@
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drlPagina"
             android:layout_width="match_parent"
-            android:layout_height="531dp"
+            android:layout_height="match_parent"
             tools:openDrawer="start"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -100,7 +81,7 @@
                 <ScrollView
                     android:id="@+id/scvTela"
                     android:layout_width="match_parent"
-                    android:layout_height="531dp"
+                    android:layout_height="match_parent"
                     android:fillViewport="true"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -370,42 +351,6 @@
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <!--
-                        <LinearLayout
-                            android:id="@+id/btnAdotarAnimal"
-                            android:layout_width="225dp"
-                            android:layout_height="60dp"
-                            android:background="@drawable/round_box2"
-                            android:backgroundTint="@color/analogous1_200"
-                            android:padding="10dp"
-                            android:layout_margin="20dp"
-                            android:orientation="horizontal"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:stateListAnimator="@animator/button_click_effect_3"
-                            android:visibility="gone"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/clyFotoPerfilAnimal">
-                            <LinearLayout
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:background="@drawable/layout_botao_adotar"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginEnd="0dp"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:text="@string/btn_adoptAnimal"
-                                android:textColor="@color/black"
-                                android:textSize="19sp"
-                                android:textStyle="bold"/>
-                        </LinearLayout>
-                        -->
-
                         <LinearLayout
                             android:id="@+id/llyDescricao"
                             android:layout_width="match_parent"
@@ -574,37 +519,6 @@
                                     android:ellipsize="end"/>
                             </LinearLayout>
 
-                            <!--
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="100dp"
-                                android:layout_height="match_parent">
-                                <LinearLayout
-                                    android:id="@+id/llyLigarDono"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:orientation="horizontal"
-                                    android:background="@drawable/layout_botao_ligar"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:stateListAnimator="@animator/button_click_effect_2"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintBottom_toBottomOf="parent"/>
-                                <LinearLayout
-                                    android:id="@+id/llyMensagemDono"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:orientation="horizontal"
-                                    android:background="@drawable/layout_botao_mensagem"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:stateListAnimator="@animator/button_click_effect_2"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintBottom_toBottomOf="parent"/>
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                            -->
-
                             <LinearLayout
                                 android:layout_width="100dp"
                                 android:layout_height="match_parent"
@@ -658,102 +572,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
-                                    <LinearLayout
-                                        android:id="@+id/llyVacinaAnimal1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:visibility="gone">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/text_topic"
-                                            android:textStyle="bold"
-                                            android:textSize="16sp"
-                                            android:textColor="@color/text_900"
-                                            android:fontFamily="monospace"
-                                            android:layout_marginStart="0dp"
-                                            android:layout_marginEnd="4dp"/>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/vacine_dogFlu"
-                                            android:textStyle="bold"
-                                            android:textSize="15sp"
-                                            android:textColor="@color/text_700"/>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:id="@+id/llyVacinaAnimal2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:visibility="gone">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/text_topic"
-                                            android:textStyle="bold"
-                                            android:textSize="16sp"
-                                            android:textColor="@color/text_900"
-                                            android:fontFamily="monospace"
-                                            android:layout_marginStart="0dp"
-                                            android:layout_marginEnd="4dp"/>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/vacine_dogRabies"
-                                            android:textStyle="bold"
-                                            android:textSize="15sp"
-                                            android:textColor="@color/text_700"/>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:id="@+id/llyVacinaAnimal3"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:visibility="gone">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/text_topic"
-                                            android:textStyle="bold"
-                                            android:textSize="16sp"
-                                            android:textColor="@color/text_900"
-                                            android:fontFamily="monospace"
-                                            android:layout_marginStart="0dp"
-                                            android:layout_marginEnd="4dp"/>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/vacine_dogR8"
-                                            android:textStyle="bold"
-                                            android:textSize="15sp"
-                                            android:textColor="@color/text_700"/>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:id="@+id/llyVacinaAnimal4"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:visibility="gone">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/text_topic"
-                                            android:textStyle="bold"
-                                            android:textSize="16sp"
-                                            android:textColor="@color/text_900"
-                                            android:fontFamily="monospace"
-                                            android:layout_marginStart="0dp"
-                                            android:layout_marginEnd="4dp"/>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/vacine_other"
-                                            android:textStyle="bold"
-                                            android:textSize="15sp"
-                                            android:textColor="@color/text_700"/>
-                                    </LinearLayout>
                                     <TextView
                                         android:id="@+id/txvVacinaAnimalVazio"
                                         android:layout_width="wrap_content"
@@ -762,6 +580,11 @@
                                         android:textStyle="bold"
                                         android:textSize="15sp"
                                         android:textColor="@color/text_700"/>
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/rcvVacinas"
+                                        android:layout_width="175dp"
+                                        android:layout_height="wrap_content"
+                                        android:visibility="gone"/>
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -779,8 +602,8 @@
                                         android:scrollbarFadeDuration="0"
                                         android:fillViewport="true">
                                         <androidx.recyclerview.widget.RecyclerView
-                                            android:id="@+id/rcvVacinaAnimal"
-                                            android:layout_width="match_parent"
+                                            android:id="@+id/rcvVacinasEdit"
+                                            android:layout_width="175dp"
                                             android:layout_height="wrap_content"/>
                                     </androidx.core.widget.NestedScrollView>
                                 </LinearLayout>
@@ -788,25 +611,48 @@
 
                         </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/txvImagensAnimal"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/llyImagensAnimal"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="15dp"
-                            android:text="@string/title_imagesAnimal"
-                            android:textStyle="bold"
-                            android:textSize="22sp"
-                            android:textColor="@color/black"
+                            android:orientation="vertical"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/llyStatusAnimal"/>
+                            app:layout_constraintTop_toBottomOf="@id/llyStatusAnimal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="15dp"
+                                android:text="@string/title_imagesAnimal"
+                                android:textStyle="bold"
+                                android:textSize="22sp"
+                                android:textColor="@color/black"/>
 
+                            <LinearLayout
+                                android:id="@+id/llyAdicionarFoto"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+                                <Button
+                                    android:id="@+id/btnAdicionarFotoAnimal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/btn_addPhoto"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- MODO NORMAL -->
                         <HorizontalScrollView
                             android:id="@+id/hsvImagensAnimal"
                             android:layout_width="match_parent"
                             android:layout_height="175dp"
                             android:fillViewport="true"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/txvImagensAnimal"
+                            app:layout_constraintTop_toBottomOf="@id/llyImagensAnimal"
                             android:scrollbarSize="0dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="0dp"
@@ -885,6 +731,102 @@
                                     android:layout_marginEnd="2dp">
                                     <ImageView
                                         android:id="@+id/imvFotoAnimal5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="fitXY"
+                                        android:background="@color/text_300"
+                                        android:contentDescription="@string/content_animalPhoto"/>
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+                        <!-- MODO EDICAO -->
+                        <HorizontalScrollView
+                            android:id="@+id/hsvImagensAnimalEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="175dp"
+                            android:fillViewport="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/llyImagensAnimal"
+                            android:scrollbarSize="0dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="0dp"
+                            android:visibility="gone">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <!-- FOTO ANIMAL 1 EDIT -->
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginEnd="2dp">
+                                    <ImageView
+                                        android:id="@+id/imvFotoAnimal1Edit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="fitXY"
+                                        android:background="@color/text_300"
+                                        android:contentDescription="@string/content_animalPhoto"/>
+                                </androidx.cardview.widget.CardView>
+
+                                <!-- FOTO ANIMAL 2 EDIT -->
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginEnd="2dp">
+                                    <ImageView
+                                        android:id="@+id/imvFotoAnimal2Edit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="fitXY"
+                                        android:background="@color/text_300"
+                                        android:contentDescription="@string/content_animalPhoto"/>
+                                </androidx.cardview.widget.CardView>
+
+                                <!-- FOTO ANIMAL 3 EDIT -->
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginEnd="2dp">
+                                    <ImageView
+                                        android:id="@+id/imvFotoAnimal3Edit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="fitXY"
+                                        android:background="@color/text_300"
+                                        android:contentDescription="@string/content_animalPhoto"/>
+                                </androidx.cardview.widget.CardView>
+
+                                <!-- FOTO ANIMAL 4 EDIT -->
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginEnd="2dp">
+                                    <ImageView
+                                        android:id="@+id/imvFotoAnimal4Edit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="fitXY"
+                                        android:background="@color/text_300"
+                                        android:contentDescription="@string/content_animalPhoto"/>
+                                </androidx.cardview.widget.CardView>
+
+                                <!-- FOTO ANIMAL 5 EDIT -->
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginEnd="2dp">
+                                    <ImageView
+                                        android:id="@+id/imvFotoAnimal5Edit"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:scaleType="fitXY"
@@ -978,7 +920,7 @@
 
                 <!-- JANELA ONDE VISUALIZA A FOTO -->
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clySuaFoto"
+                    android:id="@+id/clyFoto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/darken_1"
@@ -1098,105 +1040,5 @@
                 app:menu="@menu/menu_body"/>
 
         </androidx.drawerlayout.widget.DrawerLayout>
-
-        <!-- FOOTER / MENU DO APP -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-            <LinearLayout
-                android:layout_width="350dp"
-                android:layout_height="1dp"
-                android:background="@color/text_300"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <!-- OPCAO 1 DO MENU - PAGINA PRINCIPAL -->
-            <LinearLayout
-                android:id="@+id/llyFooterMenuOpcao4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginEnd="90dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/llyFooterMenuOpcao2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@mipmap/ic_casa_foreground"
-                    android:backgroundTint="@color/text_700"
-                    android:layout_gravity="top|center"
-                    android:contentDescription="@string/content_home"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:text="@string/desc_home"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_600"
-                    android:layout_marginTop="6dp"/>
-            </LinearLayout>
-            <!-- OPCAO 2 DO MENU - CONTATOS -->
-            <LinearLayout
-                android:id="@+id/llyFooterMenuOpcao2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="100dp"
-                android:layout_marginEnd="85dp"
-                app:layout_constraintStart_toStartOf="@id/llyFooterMenuOpcao4"
-                app:layout_constraintEnd_toEndOf="@id/llyFooterMenuOpcao3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@mipmap/ic_contato_foreground"
-                    android:backgroundTint="@color/text_700"
-                    android:layout_gravity="top|center"
-                    android:contentDescription="@string/content_contact"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:text="@string/desc_contacts"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_600"
-                    android:layout_marginTop="6dp"/>
-            </LinearLayout>
-            <!-- OPCAO 3 DO MENU - COMPROMISSOS -->
-            <LinearLayout
-                android:id="@+id/llyFooterMenuOpcao3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="80dp"
-                app:layout_constraintStart_toStartOf="@id/llyFooterMenuOpcao2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@mipmap/ic_calendario_foreground"
-                    android:backgroundTint="@color/text_700"
-                    android:layout_gravity="top|center"
-                    android:contentDescription="@string/content_calendar"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:text="@string/desc_events"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_600"
-                    android:layout_marginTop="6dp"/>
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -21,7 +21,7 @@
             android:paddingBottom="3dp"
             android:gravity="bottom"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/clyOpcoesAcessorio">
+            app:layout_constraintBottom_toBottomOf="parent">
             <TextView
                 android:id="@+id/txvNomeAcessorio"
                 android:layout_width="160dp"
@@ -68,40 +68,6 @@
                 android:layout_height="128dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clyOpcoesAcessorio"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:background="@color/darken_1"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/clyFotoAcessorio">
-            <ImageButton
-                android:id="@+id/btnBolsaAcessorio"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:background="@mipmap/ic_bolsa_foreground"
-                android:layout_marginStart="5dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:stateListAnimator="@animator/button_click_effect_1"
-                android:contentDescription="@string/content_buy"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-            <ImageButton
-                android:id="@+id/btnInfoAcessorio"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:background="@mipmap/ic_info_foreground"
-                android:layout_marginEnd="5dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:stateListAnimator="@animator/button_click_effect_1"
-                android:contentDescription="@string/content_info"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

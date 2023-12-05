@@ -15,11 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp">
-            <Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/toolbarApp"
-                app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageButton
                 android:layout_width="50dp"
@@ -47,20 +42,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/botaoMenu"
                 android:layout_marginStart="15dp"/>
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/botaoBuscar"
-                android:src="@drawable/ic_botao_compartilhar"
-                android:background="@color/primary_500"
-                android:clickable="true"
-                android:focusable="true"
-                android:stateListAnimator="@animator/button_click_effect_1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="@string/content_menu2"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -73,7 +54,7 @@
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drlPagina"
             android:layout_width="match_parent"
-            android:layout_height="531dp"
+            android:layout_height="match_parent"
             tools:openDrawer="start"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -562,7 +543,7 @@
                                             android:textColor="@color/text_900"/>
                                     </LinearLayout>
 
-                                    <!-- DADO 2 ADICIONAL DO USUARIO - SEGUIDORES -->
+                                    <!-- DADO 2 ADICIONAL DO USUARIO - ACESSORIOS -->
                                     <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -573,19 +554,19 @@
                                             android:layout_width="25dp"
                                             android:layout_height="25dp"
                                             android:layout_marginEnd="8dp"
-                                            android:background="@mipmap/ic_seguidor_foreground"
+                                            android:background="@drawable/ic_bola1"
                                             android:backgroundTint="@color/text_700"
-                                            android:contentDescription="@string/content_follower"/>
+                                            android:contentDescription="@string/content_ball"/>
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="@string/user_followers"
+                                            android:text="@string/user_accesories"
                                             android:textStyle="bold"
                                             android:textSize="13sp"
                                             android:textColor="@color/text_900"
                                             android:layout_marginEnd="6dp"/>
                                         <TextView
-                                            android:id="@+id/txvValorSeguidoresUsuario"
+                                            android:id="@+id/txvValorAcessoriosUsuario"
                                             android:layout_width="55dp"
                                             android:layout_height="wrap_content"
                                             android:maxLength="7"
@@ -622,87 +603,6 @@
                                             android:layout_width="72dp"
                                             android:layout_height="wrap_content"
                                             android:maxLength="10"
-                                            android:maxLines="1"
-                                            android:textStyle="bold"
-                                            android:textSize="13sp"
-                                            android:textColor="@color/text_900"/>
-                                    </LinearLayout>
-                                </LinearLayout>
-
-                                <!-- SEPARADOR DAS LISTAS -->
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="150dp"
-                                    android:background="@color/text_600"
-                                    android:layout_marginStart="10dp"/>
-
-                                <!-- LISTA 2 DOS DADOS -->
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginStart="10dp">
-
-                                    <!-- DADO 4 ADICIONAL DO USUARIO - DOACOES -->
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:gravity="center"
-                                        android:layout_marginTop="15dp">
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_marginEnd="8dp"
-                                            android:background="@mipmap/ic_doar2_foreground"
-                                            android:backgroundTint="@color/text_700"
-                                            android:contentDescription="@string/content_donate2"/>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/user_donations"
-                                            android:textStyle="bold"
-                                            android:textSize="13sp"
-                                            android:textColor="@color/text_900"
-                                            android:layout_marginEnd="6dp"/>
-                                        <TextView
-                                            android:id="@+id/txvValorDoacoesUsuario"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:maxLength="7"
-                                            android:maxLines="1"
-                                            android:textStyle="bold"
-                                            android:textSize="13sp"
-                                            android:textColor="@color/text_900"/>
-                                    </LinearLayout>
-
-                                    <!-- DADO 5 ADICIONAL DO USUARIO - CURTIDAS -->
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:gravity="center"
-                                        android:layout_marginTop="20dp">
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_marginEnd="8dp"
-                                            android:background="@drawable/ic_coracao"
-                                            android:backgroundTint="@color/text_700"
-                                            android:contentDescription="@string/content_heart"/>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/user_likes"
-                                            android:textStyle="bold"
-                                            android:textSize="13sp"
-                                            android:textColor="@color/text_900"
-                                            android:layout_marginEnd="6dp"/>
-                                        <TextView
-                                            android:id="@+id/txvValorCurtidasUsuario"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:maxLength="7"
                                             android:maxLines="1"
                                             android:textStyle="bold"
                                             android:textSize="13sp"
@@ -779,7 +679,7 @@
                                             android:textColor="@color/text_700"/>
                                     </LinearLayout>
 
-                                    <!-- DADO 2 ADICIONAL DO USUARIO - SEGUIDORES -->
+                                    <!-- DADO 2 ADICIONAL DO USUARIO - ACESSORIOS -->
                                     <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -790,19 +690,19 @@
                                             android:layout_width="25dp"
                                             android:layout_height="25dp"
                                             android:layout_marginEnd="8dp"
-                                            android:background="@mipmap/ic_seguidor_foreground"
+                                            android:background="@drawable/ic_bola1"
                                             android:backgroundTint="@color/text_500"
-                                            android:contentDescription="@string/content_follower"/>
+                                            android:contentDescription="@string/content_ball"/>
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="@string/user_followers"
+                                            android:text="@string/user_accesories"
                                             android:textStyle="bold"
                                             android:textSize="13sp"
                                             android:textColor="@color/text_700"
                                             android:layout_marginEnd="6dp"/>
                                         <TextView
-                                            android:id="@+id/txvValorSeguidoresUsuarioEdit"
+                                            android:id="@+id/txvValorAcessoriosUsuarioEdit"
                                             android:layout_width="55dp"
                                             android:layout_height="wrap_content"
                                             android:maxLength="7"
@@ -839,87 +739,6 @@
                                             android:layout_width="72dp"
                                             android:layout_height="wrap_content"
                                             android:maxLength="10"
-                                            android:maxLines="1"
-                                            android:textStyle="bold"
-                                            android:textSize="13sp"
-                                            android:textColor="@color/text_700"/>
-                                    </LinearLayout>
-                                </LinearLayout>
-
-                                <!-- SEPARADOR DAS LISTAS -->
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="150dp"
-                                    android:background="@color/text_600"
-                                    android:layout_marginStart="10dp"/>
-
-                                <!-- LISTA 2 DOS DADOS -->
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginStart="10dp">
-
-                                    <!-- DADO 4 ADICIONAL DO USUARIO - DOACOES -->
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:gravity="center"
-                                        android:layout_marginTop="15dp">
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_marginEnd="8dp"
-                                            android:background="@mipmap/ic_doar2_foreground"
-                                            android:backgroundTint="@color/text_500"
-                                            android:contentDescription="@string/content_donate2"/>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/user_donations"
-                                            android:textStyle="bold"
-                                            android:textSize="13sp"
-                                            android:textColor="@color/text_700"
-                                            android:layout_marginEnd="6dp"/>
-                                        <TextView
-                                            android:id="@+id/txvValorDoacoesUsuarioEdit"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:maxLength="7"
-                                            android:maxLines="1"
-                                            android:textStyle="bold"
-                                            android:textSize="13sp"
-                                            android:textColor="@color/text_700"/>
-                                    </LinearLayout>
-
-                                    <!-- DADO 5 ADICIONAL DO USUARIO - CURTIDAS -->
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:gravity="center"
-                                        android:layout_marginTop="20dp">
-                                        <ImageView
-                                            android:layout_width="25dp"
-                                            android:layout_height="25dp"
-                                            android:layout_marginEnd="8dp"
-                                            android:background="@drawable/ic_coracao"
-                                            android:backgroundTint="@color/text_500"
-                                            android:contentDescription="@string/content_heart"/>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/user_likes"
-                                            android:textStyle="bold"
-                                            android:textSize="13sp"
-                                            android:textColor="@color/text_700"
-                                            android:layout_marginEnd="6dp"/>
-                                        <TextView
-                                            android:id="@+id/txvValorCurtidasUsuarioEdit"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:maxLength="7"
                                             android:maxLines="1"
                                             android:textStyle="bold"
                                             android:textSize="13sp"
@@ -1130,105 +949,5 @@
                 app:menu="@menu/menu_body"/>
 
         </androidx.drawerlayout.widget.DrawerLayout>
-
-        <!-- FOOTER / MENU DO APP -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-            <LinearLayout
-                android:layout_width="350dp"
-                android:layout_height="1dp"
-                android:background="@color/text_300"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <!-- OPCAO 1 DO MENU - PAGINA PRINCIPAL -->
-            <LinearLayout
-                android:id="@+id/llyFooterMenuOpcao4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginEnd="90dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/llyFooterMenuOpcao2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@mipmap/ic_casa_foreground"
-                    android:backgroundTint="@color/text_700"
-                    android:layout_gravity="top|center"
-                    android:contentDescription="@string/content_home"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:text="@string/desc_home"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_600"
-                    android:layout_marginTop="6dp"/>
-            </LinearLayout>
-            <!-- OPCAO 2 DO MENU - CONTATOS -->
-            <LinearLayout
-                android:id="@+id/llyFooterMenuOpcao2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="100dp"
-                android:layout_marginEnd="85dp"
-                app:layout_constraintStart_toStartOf="@id/llyFooterMenuOpcao4"
-                app:layout_constraintEnd_toEndOf="@id/llyFooterMenuOpcao3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@mipmap/ic_contato_foreground"
-                    android:backgroundTint="@color/text_700"
-                    android:layout_gravity="top|center"
-                    android:contentDescription="@string/content_contact"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:text="@string/desc_contacts"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_600"
-                    android:layout_marginTop="6dp"/>
-            </LinearLayout>
-            <!-- OPCAO 3 DO MENU - COMPROMISSOS -->
-            <LinearLayout
-                android:id="@+id/llyFooterMenuOpcao3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="80dp"
-                app:layout_constraintStart_toStartOf="@id/llyFooterMenuOpcao2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@mipmap/ic_calendario_foreground"
-                    android:backgroundTint="@color/text_700"
-                    android:layout_gravity="top|center"
-                    android:contentDescription="@string/content_calendar"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:text="@string/desc_events"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_600"
-                    android:layout_marginTop="6dp"/>
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
