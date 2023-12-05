@@ -62,8 +62,8 @@ public class PerfilAcessorio extends AppCompatActivity {
     private boolean modoEdicao = false;
     private int feedbackAtualizou = 0;
     private boolean excluindo = false;
-    private int[] statusFotos;
     private String nomeAcessorio;
+    private int[] statusFotos;
     private String[] uriFotosAcessorio;
     private Uri uriArquivo;
     private int[] fotosAcessorio;
@@ -71,6 +71,7 @@ public class PerfilAcessorio extends AppCompatActivity {
     private boolean modoAdicionar;
     private int fotoAcessorioSelecionada;
     private boolean atualizouFoto = false;
+    private boolean travarProgresso = false;
     private String[] refFotosAcessorio;
 
     // COMPONENTES TOOLBAR
@@ -354,7 +355,7 @@ public class PerfilAcessorio extends AppCompatActivity {
                         .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                decrementarEstatisticas();
+                                atualizarNumeroAcessorios();
                             }
                         })
                         .setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -468,6 +469,7 @@ public class PerfilAcessorio extends AppCompatActivity {
             // VERIFICA SE A URI NAO ESTA VAZIA
             switch (statusFotos[index]) {
                 case 2:
+                    travarProgresso = true;
                     if (refFotosAcessorio[index] != null && !refFotosAcessorio[index].isEmpty()) {
                         // EXCLUI A FOTO ANTIGA
                         StorageReference imageRef = storageRefAcessorio.child(refFotosAcessorio[index]);
@@ -587,9 +589,11 @@ public class PerfilAcessorio extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (!edtNomeAcessorio.getText().toString().equals("") && !edtNomeAcessorio.getText().toString().equals(documentSnapshot.getString("nome"))) {
                     ativarProgresso();
+                    travarProgresso = true;
                     documentRefAcessorio.update("nome", edtNomeAcessorio.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+                            travarProgresso = false;
                             desativarProgresso();
                             feedbackAtualizou += 1;
                             mandarFeedbackAtualizou();
@@ -598,9 +602,11 @@ public class PerfilAcessorio extends AppCompatActivity {
                 }
                 if (!edtDescricao.getText().toString().equals(documentSnapshot.getString("descricao"))) {
                     ativarProgresso();
+                    travarProgresso = true;
                     documentRefAcessorio.update("descricao", edtDescricao.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+                            travarProgresso = false;
                             desativarProgresso();
                             feedbackAtualizou += 1;
                             mandarFeedbackAtualizou();
@@ -609,10 +615,11 @@ public class PerfilAcessorio extends AppCompatActivity {
                 }
                 if (atualizouFoto) {
                     atualizouFoto = false;
+                    travarProgresso = false;
                     desativarProgresso();
                     feedbackAtualizou += 1;
                     mandarFeedbackAtualizou();
-                } else {
+                } else if (!travarProgresso) {
                     desativarProgresso();
                 }
             }
@@ -631,7 +638,7 @@ public class PerfilAcessorio extends AppCompatActivity {
     }
 
     private void procurarUsuarioAtual() {
-        usuarioID                     = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        usuarioID          = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         documentRefUsuario = db.collection("Usuarios").document(usuarioID);
     }
@@ -1108,6 +1115,34 @@ public class PerfilAcessorio extends AppCompatActivity {
         }
     }
 
+    private void atualizarNumeroAcessorios() {
+        ativarProgresso();
+        documentRefUsuario.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot != null) {
+                    int numAcessoriosInt = Integer.parseInt(documentSnapshot.getString("numAcessorios"));
+                    documentRefUsuario.update("numAcessorios", String.valueOf(numAcessoriosInt -= 1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            decrementarEstatisticas();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            cancelarOperacao(e.getMessage());
+                        }
+                    });
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                cancelarOperacao(e.getMessage());
+            }
+        });
+    }
+
     private void decrementarEstatisticas() {
         DocumentReference documentReferenceEstatisticas = db.collection("Estatisticas").document("Estatisticas");
         documentReferenceEstatisticas.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -1135,7 +1170,6 @@ public class PerfilAcessorio extends AppCompatActivity {
     }
 
     private void excluirRegistroAcessorio() {
-        ativarProgresso();
         excluindo = true;
 
         documentRefAcessorio.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

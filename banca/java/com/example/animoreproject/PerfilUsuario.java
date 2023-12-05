@@ -41,6 +41,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -49,19 +51,6 @@ import com.santalu.maskara.widget.MaskEditText;
 import com.squareup.picasso.Picasso;
 
 public class PerfilUsuario extends AppCompatActivity {
-
-    private static final int PICK_IMAGE_REQUEST = 1; // CONSTANTE PARA A SELECAO DE IMAGEM
-    private TextView txvNomeUsuario, txvEmailUsuario, txvCelularUsuario, txvRuaUsuario, txvBairroUsuario, txvEstadoUsuario;
-    private TextView txvValorAnimaisUsuario, txvValorSeguidoresUsuario, txvValorDoacoesUsuario, txvValorCurtidasUsuario, txvDataLogadoUsuario;
-    private TextView txvEmailUsuarioEdit, txvValorAnimaisUsuarioEdit, txvValorSeguidoresUsuarioEdit, txvValorDoacoesUsuarioEdit, txvValorCurtidasUsuarioEdit, txvDataLogadoUsuarioEdit;
-    private ImageView imvFotoSmall, imvFotoBig;
-    private TextInputEditText edtNomeUsuario, edtRuaUsuario, edtBairroUsuario, edtEstadoUsuario;
-    private MaskEditText edtCelularUsuario;
-    private ConstraintLayout clySuaFoto, clyTelaCarregando;
-    private LinearLayout llyNomeUsuario, llyNomeUsuarioEdit, llyDadosPerfilUsuario, llyDadosPerfilUsuarioEdit, llyDetalhesPerfilUsuario, llyDetalhesPerfilUsuarioEdit, llyPerfilUsuarioOpcoes1, llyPerfilUsuarioOpcoes2;
-    private ScrollView scvTela;
-    private Button btnEditar, btnExcluir, btnSalvar, btnCancelar, btnSairFoto, btnImportarFoto;
-    private FloatingActionButton fabVoltar, fabEditarFoto;
 
     // COMPONENTES TOOLBAR
     private ImageButton botaoMenu;
@@ -80,6 +69,25 @@ public class PerfilUsuario extends AppCompatActivity {
     private MenuItem mnuAnimais;
     private MenuItem mnuSair;
 
+    // COMPONENTES DADOS - NORMAL
+    private TextView txvNomeUsuario, txvEmailUsuario, txvCelularUsuario, txvRuaUsuario, txvBairroUsuario, txvEstadoUsuario;
+    private TextView txvValorAnimaisUsuario, txvValorAcessoriosUsuario, txvDataLogadoUsuario;
+
+    // COMPONENTES DADOS - EDICAO
+    private TextView txvEmailUsuarioEdit, txvValorAnimaisUsuarioEdit, txvValorAcessoriosUsuarioEdit, txvDataLogadoUsuarioEdit;
+    private TextInputEditText edtNomeUsuario, edtRuaUsuario, edtBairroUsuario, edtEstadoUsuario;
+    private MaskEditText edtCelularUsuario;
+
+    // COMPONENTES DIVERSOS
+    private ImageView imvFotoSmall, imvFotoBig;
+    private ConstraintLayout clySuaFoto, clyTelaCarregando;
+    private LinearLayout llyNomeUsuario, llyNomeUsuarioEdit, llyDadosPerfilUsuario, llyDadosPerfilUsuarioEdit, llyDetalhesPerfilUsuario, llyDetalhesPerfilUsuarioEdit, llyPerfilUsuarioOpcoes1, llyPerfilUsuarioOpcoes2;
+    private ScrollView scvTela;
+    private Button btnEditar, btnExcluir, btnSalvar, btnCancelar, btnSairFoto, btnImportarFoto;
+    private FloatingActionButton fabVoltar, fabEditarFoto;
+
+    // VARIAVEIS DA ACTIVITY
+    private static final int PICK_IMAGE_REQUEST = 1; // CONSTANTE PARA A SELECAO DE IMAGEM
     private boolean modoEdicao = false;
     private boolean atualizouFoto = false;
     private int feedbackAtualizou = 0;
@@ -110,21 +118,20 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void instanciarComponentes() {
-        botaoMenu             = findViewById(R.id.botaoMenu);
+        botaoMenu                     = findViewById(R.id.botaoMenu);
 
-        drlPagina             = findViewById(R.id.drlPagina);
+        drlPagina                     = findViewById(R.id.drlPagina);
 
-        nvvMenu               = findViewById(R.id.nvvMenu);
-        headerView            = nvvMenu.getHeaderView(0);
+        nvvMenu                       = findViewById(R.id.nvvMenu);
+        headerView                    = nvvMenu.getHeaderView(0);
 
-        txvMenuNomeUsuario    = headerView.findViewById(R.id.txvMenuNomeUsuario);
-        imvMenuFotoUsuario    = headerView.findViewById(R.id.imvMenuFotoUsuario);
-        menu                  = nvvMenu.getMenu();
-        mnuInicial            = menu.findItem(R.id.menu_paginaInicial);
-        mnuPerfil             = menu.findItem(R.id.menu_perfil);
-        mnuAnimais            = menu.findItem(R.id.menu_meusAnimais);
-        mnuSair               = menu.findItem(R.id.menu_sair);
-
+        txvMenuNomeUsuario            = headerView.findViewById(R.id.txvMenuNomeUsuario);
+        imvMenuFotoUsuario            = headerView.findViewById(R.id.imvMenuFotoUsuario);
+        menu                          = nvvMenu.getMenu();
+        mnuInicial                    = menu.findItem(R.id.menu_paginaInicial);
+        mnuPerfil                     = menu.findItem(R.id.menu_perfil);
+        mnuAnimais                    = menu.findItem(R.id.menu_meusAnimais);
+        mnuSair                       = menu.findItem(R.id.menu_sair);
 
         txvNomeUsuario                = findViewById(R.id.txvNomeUsuario);
         txvEmailUsuario               = findViewById(R.id.txvEmailUsuario);
@@ -132,42 +139,36 @@ public class PerfilUsuario extends AppCompatActivity {
         txvRuaUsuario                 = findViewById(R.id.txvRuaUsuario);
         txvBairroUsuario              = findViewById(R.id.txvBairroUsuario);
         txvEstadoUsuario              = findViewById(R.id.txvEstadoUsuario);
-
         txvValorAnimaisUsuario        = findViewById(R.id.txvValorAnimaisUsuario);
-        txvValorSeguidoresUsuario     = findViewById(R.id.txvValorSeguidoresUsuario);
-        txvValorDoacoesUsuario        = findViewById(R.id.txvValorDoacoesUsuario);
-        txvValorCurtidasUsuario       = findViewById(R.id.txvValorCurtidasUsuario);
+        txvValorAcessoriosUsuario     = findViewById(R.id.txvValorAcessoriosUsuario);
         txvDataLogadoUsuario          = findViewById(R.id.txvDataLogadoUsuario);
 
-
-        txvValorAnimaisUsuarioEdit    = findViewById(R.id.txvValorAnimaisUsuarioEdit);
-        txvValorSeguidoresUsuarioEdit = findViewById(R.id.txvValorSeguidoresUsuarioEdit);
-        txvValorDoacoesUsuarioEdit    = findViewById(R.id.txvValorDoacoesUsuarioEdit);
-        txvValorCurtidasUsuarioEdit   = findViewById(R.id.txvValorCurtidasUsuarioEdit);
-        txvDataLogadoUsuarioEdit      = findViewById(R.id.txvDataLogadoUsuarioEdit);
-
-
-        imvFotoSmall                  = findViewById(R.id.imvFotoSmall);
-        imvFotoBig                    = findViewById(R.id.imvFotoBig);
+        llyNomeUsuario                = findViewById(R.id.llyNomeUsuario);
+        llyDadosPerfilUsuario         = findViewById(R.id.llyDadosPerfilUsuario);
+        llyDetalhesPerfilUsuario      = findViewById(R.id.llyDetalhesPerfilUsuario);
 
         edtNomeUsuario                = findViewById(R.id.edtNomeUsuario);
-        txvEmailUsuarioEdit           = findViewById(R.id.txvEmailUsuarioEdit);
         edtCelularUsuario             = findViewById(R.id.edtCelularUsuario);
         edtRuaUsuario                 = findViewById(R.id.edtRuaUsuario);
         edtBairroUsuario              = findViewById(R.id.edtBairroUsuario);
         edtEstadoUsuario              = findViewById(R.id.edtEstadoUsuario);
 
-        clySuaFoto                    = findViewById(R.id.clySuaFoto);
-        clyTelaCarregando             = findViewById(R.id.clyTelaCarregando);
+        txvEmailUsuarioEdit           = findViewById(R.id.txvEmailUsuarioEdit);
+        txvValorAnimaisUsuarioEdit    = findViewById(R.id.txvValorAnimaisUsuarioEdit);
+        txvValorAcessoriosUsuarioEdit = findViewById(R.id.txvValorAcessoriosUsuarioEdit);
+        txvDataLogadoUsuarioEdit      = findViewById(R.id.txvDataLogadoUsuarioEdit);
 
-        llyNomeUsuario                = findViewById(R.id.llyNomeUsuario);
         llyNomeUsuarioEdit            = findViewById(R.id.llyNomeUsuarioEdit);
-        llyDadosPerfilUsuario         = findViewById(R.id.llyDadosPerfilUsuario);
         llyDadosPerfilUsuarioEdit     = findViewById(R.id.llyDadosPerfilUsuarioEdit);
-        llyDetalhesPerfilUsuario      = findViewById(R.id.llyDetalhesPerfilUsuario);
         llyDetalhesPerfilUsuarioEdit  = findViewById(R.id.llyDetalhesPerfilUsuarioEdit);
         llyPerfilUsuarioOpcoes1       = findViewById(R.id.llyPerfilUsuarioOpcoes1);
         llyPerfilUsuarioOpcoes2       = findViewById(R.id.llyPerfilUsuarioOpcoes2);
+
+        imvFotoSmall                  = findViewById(R.id.imvFotoSmall);
+        imvFotoBig                    = findViewById(R.id.imvFotoBig);
+
+        clySuaFoto                    = findViewById(R.id.clySuaFoto);
+        clyTelaCarregando             = findViewById(R.id.clyTelaCarregando);
 
         btnEditar                     = findViewById(R.id.btnEditar);
         btnExcluir                    = findViewById(R.id.btnExcluir);
@@ -263,6 +264,10 @@ public class PerfilUsuario extends AppCompatActivity {
                         .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                ativarProgresso();
+                                excluindo = true;
+                                excluirRegistros("Animais");
+                                excluirRegistros("Acessorios");
                                 decrementarEstatisticas();
                             }
                         })
@@ -396,12 +401,8 @@ public class PerfilUsuario extends AppCompatActivity {
 
                         txvValorAnimaisUsuario.setText(documentSnapshot.getString("numAnimais"));
                         txvValorAnimaisUsuarioEdit.setText(documentSnapshot.getString("numAnimais"));
-                        txvValorSeguidoresUsuario.setText(documentSnapshot.getString("seguidores"));
-                        txvValorSeguidoresUsuarioEdit.setText(documentSnapshot.getString("seguidores"));
-                        txvValorDoacoesUsuario.setText(documentSnapshot.getString("doacoes"));
-                        txvValorDoacoesUsuarioEdit.setText(documentSnapshot.getString("doacoes"));
-                        txvValorCurtidasUsuario.setText(documentSnapshot.getString("curtidas"));
-                        txvValorCurtidasUsuarioEdit.setText(documentSnapshot.getString("curtidas"));
+                        txvValorAcessoriosUsuario.setText(documentSnapshot.getString("numAcessorios"));
+                        txvValorAcessoriosUsuarioEdit.setText(documentSnapshot.getString("numAcessorios"));
                         txvDataLogadoUsuario.setText(documentSnapshot.getString("dataCadastro"));
                         txvDataLogadoUsuarioEdit.setText(documentSnapshot.getString("dataCadastro"));
 
@@ -647,6 +648,82 @@ public class PerfilUsuario extends AppCompatActivity {
         }
     }
 
+    private void excluirRegistros(String nomeCollection) {
+        db.collection(nomeCollection).whereEqualTo("dono", usuarioID).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                int quantidadeRegistros = queryDocumentSnapshots.size();
+                for (int i = 0; i < quantidadeRegistros; i++) {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        // FAZ A LEITURA DAS FOTOS PARA REALIZAR A EXCLUSAO
+                        String[] refFotosRegistro = new String[5];
+                        refFotosRegistro[0] = document.getString("refFoto1");
+                        refFotosRegistro[1] = document.getString("refFoto2");
+                        refFotosRegistro[2] = document.getString("refFoto3");
+                        refFotosRegistro[3] = document.getString("refFoto4");
+                        refFotosRegistro[4] = document.getString("refFoto5");
+                        StorageReference  storageRefRegistro  = FirebaseStorage.getInstance().getReference("uploads");
+                        DatabaseReference databaseRefRegistro = FirebaseDatabase.getInstance().getReference("uploads");
+                        for (int j = 0; j < 5; j++) {
+                            // VERIFICA SE A FOTO RECUPERADA NAO E NULA
+                            if (refFotosRegistro[j] != null && !refFotosRegistro[j].isEmpty()) {
+                                int index = j;
+                                // EXCLUI AS REFERENCIAS DAS FOTOS
+                                StorageReference imageRef = storageRefRegistro.child(refFotosRegistro[j]);
+                                imageRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        String fotoField = "foto" + (index + 1);
+                                        databaseRefRegistro.child(document.getId()).child(fotoField).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {}
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                        // EXCLUI OS DADOS DO ANIMAL / ACESSORIO
+                        db.collection(nomeCollection).document(document.getId()).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {}
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                cancelarOperacao(e.getMessage());
+                            }
+                        });
+                    }
+                }
+
+                // DECREMENTA O NUMERO DAS ESTATISTICAS
+                DocumentReference documentReferenceEstatisticas = db.collection("Estatisticas").document("Estatisticas");
+                documentReferenceEstatisticas.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot != null) {
+                            String campoEstatistica = nomeCollection.toLowerCase();
+                            int registroInt = Integer.parseInt(documentSnapshot.getString(campoEstatistica));
+                            documentReferenceEstatisticas.update(campoEstatistica, String.valueOf(registroInt -= quantidadeRegistros)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {}
+                            });
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        cancelarOperacao(e.getMessage());
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                cancelarOperacao(e.getMessage());
+            }
+        });
+    }
+
     private void decrementarEstatisticas() {
         DocumentReference documentReferenceEstatisticas;
         documentReferenceEstatisticas = db.collection("Estatisticas").document("Estatisticas");
@@ -670,9 +747,6 @@ public class PerfilUsuario extends AppCompatActivity {
     }
 
     private void excluirContaUsuario() {
-        ativarProgresso();
-        excluindo = true;
-
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

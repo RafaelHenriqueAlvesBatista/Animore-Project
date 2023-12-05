@@ -32,9 +32,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.animoreproject.classes.AdapterVacina;
+import com.example.animoreproject.classes.AdapterVacinaCadastro;
 import com.example.animoreproject.classes.CustomScrollView;
-import com.example.animoreproject.classes.ItemVacina;
+import com.example.animoreproject.classes.ItemVacinaCadastro;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -65,13 +65,12 @@ public class FormCadastroAnimal extends AppCompatActivity {
     private int fotoAnimalSelecionada;
     private int fotoAcessorioSelecionada;
     private boolean modoAdicionar;
-    private List<ItemVacina> itemVacina;
-    private AdapterVacina adapterVacina;
+    private List<ItemVacinaCadastro> itemVacinaCadastro;
+    private AdapterVacinaCadastro adapterVacinaCadastro;
     private String[] vacinasDisponiveis;
     private Uri uriFoto;
     private String[] uriFotosAnimal;
     private String[] uriFotosAcessorio;
-    private String local;
     private Uri uriArquivo;
 
     private static final int PICK_IMAGE_REQUEST = 1; // CONSTANTE PARA A SELECAO DE IMAGEM
@@ -697,13 +696,13 @@ public class FormCadastroAnimal extends AppCompatActivity {
     }
 
     private void montarListaVacinas() {
-        itemVacina = new ArrayList<>();
+        itemVacinaCadastro = new ArrayList<>();
         for (String nomeVacinas : vacinasDisponiveis) {
-            itemVacina.add(new ItemVacina(nomeVacinas));
+            itemVacinaCadastro.add(new ItemVacinaCadastro(nomeVacinas));
         }
-        adapterVacina = new AdapterVacina(itemVacina);
+        adapterVacinaCadastro = new AdapterVacinaCadastro(itemVacinaCadastro);
         rcvVacinaAnimal.setLayoutManager(new LinearLayoutManager(this));
-        rcvVacinaAnimal.setAdapter(adapterVacina);
+        rcvVacinaAnimal.setAdapter(adapterVacinaCadastro);
     }
 
     private int checarFotosVazias(){
@@ -943,7 +942,7 @@ public class FormCadastroAnimal extends AppCompatActivity {
 
     private String obterCodigoVacinasSelecionadas() {
         String codigoVacinas = "";
-        for (ItemVacina vacinasSelecionadas : itemVacina) {
+        for (ItemVacinaCadastro vacinasSelecionadas : itemVacinaCadastro) {
             if (vacinasSelecionadas.isSelected()) {
                 codigoVacinas += "1";
             } else {
@@ -969,57 +968,40 @@ public class FormCadastroAnimal extends AppCompatActivity {
                                  String descricao) {
         ativarProgresso();
 
-        // ATRIBUI O LOCAL ONDE O ANIMAL MORA, COM O LOCAL DO DONO
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        // MONTA A TABELA DO ANIMAL COM OS DADOS JA PREENCHIDOS
+        Map<String,Object> animais = new HashMap<>();
+
+        // VALORES QUE O USUARIO ESCREVEU NO FORMULARIO, E VALORES FIXOS
+        animais.put("tipo",      tipo);
+        animais.put("raca",      raca);
+        animais.put("nome",      nome);
+        animais.put("idade",     idade);
+        animais.put("peso",      peso);
+        animais.put("vacina",    vacina);
+        animais.put("sexo",      sexo);
+        animais.put("descricao", descricao);
+
+        // VALORES QUE SAO ATRIBUIDOS POR PADRAO
+        animais.put("foto1",     "");
+        animais.put("foto2",     "");
+        animais.put("foto3",     "");
+        animais.put("foto4",     "");
+        animais.put("foto5",     "");
+        animais.put("refFoto1",  "");
+        animais.put("refFoto2",  "");
+        animais.put("refFoto3",  "");
+        animais.put("refFoto4",  "");
+        animais.put("refFoto5",  "");
+        animais.put("likes",     "0");
+        animais.put("deslikes",  "0");
+        animais.put("dono",      usuarioID);
+
+        db.collection("Animais").add(animais).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot != null) {
-                    local = documentSnapshot.getString("cidade");
-                    local += " - " + documentSnapshot.getString("estado");
-
-                    // MONTA A TABELA DO ANIMAL COM OS DADOS JA PREENCHIDOS
-                    Map<String,Object> animais = new HashMap<>();
-
-                    // VALORES QUE O USUARIO ESCREVEU NO FORMULARIO, E VALORES FIXOS
-                    animais.put("tipo",      tipo);
-                    animais.put("raca",      raca);
-                    animais.put("nome",      nome);
-                    animais.put("idade",     idade);
-                    animais.put("peso",      peso);
-                    animais.put("vacina",    vacina);
-                    animais.put("sexo",      sexo);
-                    animais.put("descricao", descricao);
-
-                    // VALORES QUE SAO ATRIBUIDOS POR PADRAO
-                    animais.put("foto1",     "");
-                    animais.put("foto2",     "");
-                    animais.put("foto3",     "");
-                    animais.put("foto4",     "");
-                    animais.put("foto5",     "");
-                    animais.put("refFoto1",  "");
-                    animais.put("refFoto2",  "");
-                    animais.put("refFoto3",  "");
-                    animais.put("refFoto4",  "");
-                    animais.put("refFoto5",  "");
-                    animais.put("likes",     "0");
-                    animais.put("deslikes",  "0");
-                    animais.put("local",     local);
-                    animais.put("dono",      usuarioID);
-
-                    db.collection("Animais").add(animais).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            String IDanimal = documentReference.getId();
-                            DocumentReference documentReferenceAnimal = db.collection("Animais").document(IDanimal);
-                            salvarFotosAnimal(IDanimal, documentReferenceAnimal, 0);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            cancelarOperacao(e.getMessage());
-                        }
-                    });
-                }
+            public void onSuccess(DocumentReference documentReference) {
+                String IDanimal = documentReference.getId();
+                DocumentReference documentReferenceAnimal = db.collection("Animais").document(IDanimal);
+                salvarFotosAnimal(IDanimal, documentReferenceAnimal, 0);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -1032,50 +1014,33 @@ public class FormCadastroAnimal extends AppCompatActivity {
     private void cadastrarAcessorio(String tipo, String nome, String descricao) {
         ativarProgresso();
 
-        // ATRIBUI O LOCAL ONDE O ACESSORIO FICA, COM O LOCAL DO DONO
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        // MONTA A TABELA DO ACESSORIO COM OS DADOS JA PREENCHIDOS
+        Map<String,Object> acessorios = new HashMap<>();
+
+        // VALORES QUE O USUARIO ESCREVEU NO FORMULARIO, E VALORES FIXOS
+        acessorios.put("tipo",      tipo);
+        acessorios.put("nome",      nome);
+        acessorios.put("descricao", descricao);
+
+        // VALORES QUE SAO ATRIBUIDOS POR PADRAO
+        acessorios.put("foto1",     "");
+        acessorios.put("foto2",     "");
+        acessorios.put("foto3",     "");
+        acessorios.put("foto4",     "");
+        acessorios.put("foto5",     "");
+        acessorios.put("refFoto1",  "");
+        acessorios.put("refFoto2",  "");
+        acessorios.put("refFoto3",  "");
+        acessorios.put("refFoto4",  "");
+        acessorios.put("refFoto5",  "");
+        acessorios.put("dono",      usuarioID);
+
+        db.collection("Acessorios").add(acessorios).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot != null) {
-                    local = documentSnapshot.getString("cidade");
-                    local += " - " + documentSnapshot.getString("estado");
-
-                    // MONTA A TABELA DO ACESSORIO COM OS DADOS JA PREENCHIDOS
-                    Map<String,Object> acessorios = new HashMap<>();
-
-                    // VALORES QUE O USUARIO ESCREVEU NO FORMULARIO, E VALORES FIXOS
-                    acessorios.put("tipo",      tipo);
-                    acessorios.put("nome",      nome);
-                    acessorios.put("descricao", descricao);
-
-                    // VALORES QUE SAO ATRIBUIDOS POR PADRAO
-                    acessorios.put("foto1",     "");
-                    acessorios.put("foto2",     "");
-                    acessorios.put("foto3",     "");
-                    acessorios.put("foto4",     "");
-                    acessorios.put("foto5",     "");
-                    acessorios.put("refFoto1",  "");
-                    acessorios.put("refFoto2",  "");
-                    acessorios.put("refFoto3",  "");
-                    acessorios.put("refFoto4",  "");
-                    acessorios.put("refFoto5",  "");
-                    acessorios.put("local",     local);
-                    acessorios.put("dono",      usuarioID);
-
-                    db.collection("Acessorios").add(acessorios).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            String IDacessorio = documentReference.getId();
-                            DocumentReference documentReferenceAcessorio = db.collection("Acessorios").document(IDacessorio);
-                            salvarFotosAcessorio(IDacessorio, documentReferenceAcessorio, 0);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            cancelarOperacao(e.getMessage());
-                        }
-                    });
-                }
+            public void onSuccess(DocumentReference documentReference) {
+                String IDacessorio = documentReference.getId();
+                DocumentReference documentReferenceAcessorio = db.collection("Acessorios").document(IDacessorio);
+                salvarFotosAcessorio(IDacessorio, documentReferenceAcessorio, 0);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -1170,7 +1135,7 @@ public class FormCadastroAnimal extends AppCompatActivity {
                 salvarFotosAnimal(IDanimal, documentReferenceAnimal, index + 1);
             }
         } else {
-            atualizarNumeroAnimais();
+            atualizarNumeroRegistros();
         }
     }
 
@@ -1259,7 +1224,7 @@ public class FormCadastroAnimal extends AppCompatActivity {
                 salvarFotosAcessorio(IDacessorio, documentReferenceAcessorio, index + 1);
             }
         } else {
-            incrementarEstatisticas();
+            atualizarNumeroRegistros();
         }
     }
 
@@ -1297,23 +1262,38 @@ public class FormCadastroAnimal extends AppCompatActivity {
         finish();
     }
 
-    private void atualizarNumeroAnimais() {
+    private void atualizarNumeroRegistros() {
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot != null) {
-                    int numAnimaisInt = Integer.parseInt(documentSnapshot.getString("numAnimais"));
-                    documentReference.update("numAnimais", String.valueOf(numAnimaisInt += 1)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            incrementarEstatisticas();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            cancelarOperacao(e.getMessage());
-                        }
-                    });
+                    if (telaFormulario == 1) {
+                        int numAnimaisInt = Integer.parseInt(documentSnapshot.getString("numAnimais"));
+                        documentReference.update("numAnimais", String.valueOf(numAnimaisInt += 1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                incrementarEstatisticas();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                cancelarOperacao(e.getMessage());
+                            }
+                        });
+                    } else {
+                        int numAcessoriosInt = Integer.parseInt(documentSnapshot.getString("numAcessorios"));
+                        documentReference.update("numAcessorios", String.valueOf(numAcessoriosInt += 1)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                incrementarEstatisticas();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                cancelarOperacao(e.getMessage());
+                            }
+                        });
+                    }
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

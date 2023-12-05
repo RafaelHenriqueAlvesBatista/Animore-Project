@@ -285,9 +285,7 @@ public class FormCadastro extends AppCompatActivity {
         usuarios.put("foto",       "");
         usuarios.put("refFoto",    "");
         usuarios.put("numAnimais", "0");
-        usuarios.put("seguidores", "0");
-        usuarios.put("doacoes",    "0");
-        usuarios.put("curtidas",   "0");
+        usuarios.put("numAcessorios", "0");
 
         // INSTANCIA A CLASSE DB PARA VERIFICAR SE O USUARIO FOI CADASTRADO COM SUCESSO
         FirebaseFirestore db = FirebaseFirestore.getInstance();

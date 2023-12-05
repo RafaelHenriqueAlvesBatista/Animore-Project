@@ -47,7 +47,6 @@ public class TelaInicial extends AppCompatActivity {
     private AdapterAnimalTelaInicial animalAdapter;
     private List<ItemAcessorioTelaInicial> acessorioInicial;
     private AdapterAcessorioTelaInicial acessorioAdapter;
-    private boolean footerOculto = false;
 
     // COMPONENTES TOOLBAR
     private ImageButton botaoMenu;
@@ -67,7 +66,7 @@ public class TelaInicial extends AppCompatActivity {
     private MenuItem mnuSair;
 
     // ATRIBUTOS USUARIO
-    private TextView txvNomeUsuario, atributoValorUsuario1, atributoValorUsuario2, atributoValorUsuario3;
+    private TextView txvNomeUsuario, atributoValorUsuario1, atributoValorUsuario2;
     private ImageView imvFotoUsuario;
 
     // LISTA ANIMAIS E ACESSORIOS
@@ -125,7 +124,6 @@ public class TelaInicial extends AppCompatActivity {
         txvNomeUsuario            = findViewById(R.id.txvNomeUsuario);
         atributoValorUsuario1     = findViewById(R.id.atributoValorUsuario1);
         atributoValorUsuario2     = findViewById(R.id.atributoValorUsuario2);
-        atributoValorUsuario3     = findViewById(R.id.atributoValorUsuario3);
         imvFotoUsuario            = findViewById(R.id.imvFotoUsuario);
 
         rcvAnimaisTelaInicial     = findViewById(R.id.rcvAnimaisTelaInicial);
@@ -223,8 +221,7 @@ public class TelaInicial extends AppCompatActivity {
                 if (documentSnapshot != null){
                     txvNomeUsuario.setText(documentSnapshot.getString("nome"));
                     atributoValorUsuario1.setText(documentSnapshot.getString("numAnimais"));
-                    atributoValorUsuario2.setText(documentSnapshot.getString("curtidas"));
-                    atributoValorUsuario3.setText(documentSnapshot.getString("seguidores"));
+                    atributoValorUsuario2.setText(documentSnapshot.getString("numAcessorios"));
 
                     txvMenuNomeUsuario.setText(documentSnapshot.getString("nome"));
 

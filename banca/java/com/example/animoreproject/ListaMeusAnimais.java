@@ -354,6 +354,11 @@ public class ListaMeusAnimais extends AppCompatActivity {
                 if (fragmentListaAnimais.getView() != null) {
                     Button btnCadastrarAnimal = findViewById(R.id.btnCadastrarAnimal);
 
+                    LinearLayout llyListaVazia1     = findViewById(R.id.llyListaVazia1);
+                    RecyclerView rcvListaAnimais    = findViewById(R.id.rcvListaAnimais);
+                    rcvListaAnimais.setVisibility(View.GONE);
+                    llyListaVazia1.setVisibility(View.VISIBLE);
+
                     btnCadastrarAnimal.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -371,6 +376,11 @@ public class ListaMeusAnimais extends AppCompatActivity {
             if (fragmentListaAcessorios != null) {
                 if (fragmentListaAcessorios.getView() != null) {
                     Button btnCadastrarAcessorio = findViewById(R.id.btnCadastrarAcessorio);
+
+                    LinearLayout llyListaVazia2        = findViewById(R.id.llyListaVazia2);
+                    RecyclerView rcvListaAcessorios    = findViewById(R.id.rcvListaAcessorios);
+                    rcvListaAcessorios.setVisibility(View.GONE);
+                    llyListaVazia2.setVisibility(View.VISIBLE);
 
                     btnCadastrarAcessorio.setOnClickListener(new View.OnClickListener() {
                         @Override
