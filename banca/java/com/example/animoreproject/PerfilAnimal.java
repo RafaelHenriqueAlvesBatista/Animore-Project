@@ -871,7 +871,7 @@ public class PerfilAnimal extends AppCompatActivity {
             case "Gato":
                 vacinasDisponiveis = getResources().getStringArray(R.array.animal_vacinesCat);
                 break;
-            case "Passaro":
+            case "Pássaro":
                 vacinasDisponiveis = getResources().getStringArray(R.array.animal_vacinesBird);
                 break;
             case "Rato":
