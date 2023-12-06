@@ -243,25 +243,34 @@
     </string-array>
 
     <string-array name="animal_vacinesDog">
+        <item>Anti-rábica</item>
+        <item>Giardia</item>
+        <item>Gripe canina</item>
+        <item>Leishmaniose</item>
         <item>R8</item>
-        <item>Raiva</item>
-        <item>Gripe Canina</item>
+        <item>R10</item>
         <item>Outro</item>
     </string-array>
 
     <string-array name="animal_vacinesCat">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
+        <item>Anti-rábica</item>
+        <item>FeLV</item>
+        <item>FVRCP</item>
+        <item>V3</item>
+        <item>V4</item>
+        <item>V5</item>
         <item>Outro</item>
     </string-array>
 
     <string-array name="animal_vacinesBird">
-        <item>123</item>
-        <item>321</item>
+        <item>Bouba aviária</item>
+        <item>Bronquite infecciosa</item>
+        <item>Coccidiose</item>
+        <item>Doença de Gumboro</item>
+        <item>Doença de Marek</item>
+        <item>Doença de Newcastle</item>
+        <item>Influenza aviária</item>
+        <item>Salmonela</item>
         <item>Outro</item>
     </string-array>
 
